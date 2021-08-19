@@ -1,18 +1,4 @@
-/*******************************************************************************
-Slate Theme for GitHub Pages
-by Jason Costello, @jsncostello
-modified slightly by Brandon Rohrer
-*******************************************************************************/
-
-/*@import url(github-light.css);*/
-
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
-/*@font-face {
-    font-family: 'Lato';
-    src: local('fonts/Lato-Regular.ttf')
-    format('truetype')
-}*/
 
 /*******************************************************************************
 MeyerWeb Reset
@@ -57,20 +43,6 @@ table {
 Theme Styles
 *******************************************************************************/
 /*
-Retro Rocks palette from SlideStream
-https://www.slideteam.net/blog/9-beautiful-color-palettes-for-designing-powerful-powerpoint-slides/
-#04253a : dark blue
-#e1ddbf : tan
-#4c837a : green
-
-https://visme.co/blog/website-color-schemes/
-#182628 turquoise black
-#687864 green gray
-#31708E deep sea
-#5085A5 dawn blue
-#8FC1E3 sky blue
-#F7F9FB off white
-
 Thistle Pinterest picks
 #fbe7d2 light warm
 #bed3c3 mint
@@ -83,7 +55,7 @@ Thistle Pinterest picks
 body {
   box-sizing: border-box;
   color: #212e53;
-  background: #212e53;
+  background: #fbe7d2;
   font-size: 16px;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
