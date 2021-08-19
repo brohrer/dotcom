@@ -364,6 +364,13 @@ Full-Width Styles
   margin: 0 auto;
 }
 
+.center{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #header_wrap {
   background: #212e53;
 }
