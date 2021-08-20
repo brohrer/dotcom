@@ -44,6 +44,7 @@ Theme Styles
 *******************************************************************************/
 /*
 Thistle Pinterest picks
+#fdf1e2 off white
 #fbe7d2 light warm
 #bed3c3 mint
 #ebaca2 salmon
@@ -55,7 +56,7 @@ Thistle Pinterest picks
 body {
   box-sizing: border-box;
   color: #212e53;
-  background: #fbe7d2;
+  background: #fdf1e2;
   font-size: 16px;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -102,7 +103,7 @@ p {
 }
 
 footer p {
-  color: #fbe7d2;
+  color: #fdf1e2;
 }
 
 a {
@@ -135,7 +136,7 @@ a:hover, a:focus {
 }
 
 footer a {
-  color: #fbe7d2;
+  color: #fdf1e2;
   /*font-weight: 700;
   text-decoration: none;*/
 }
@@ -191,7 +192,7 @@ var {
 pre, code {
   font-size: 14px;
   width: 100%;
-  color: #fbe7d2; 
+  color: #fdf1e2; 
   background: #212e53;
   border-radius: 2px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
@@ -296,7 +297,7 @@ th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 10px;
   background: #212e53;
-  color: #fbe7d2;
+  color: #fdf1e2;
  }
 
 td {
@@ -317,7 +318,7 @@ td pre code{
 }
 
 form {
-  background: #fbe7d2;
+  background: #fdf1e2;
   padding: 20px;
 }
 
@@ -354,7 +355,7 @@ Full-Width Styles
 
 #project_title {
   margin: 0;
-  color: #fbe7d2;
+  color: #fdf1e2;
   font-size: 42px;
   font-weight: 700;
   text-shadow: #111 0px 0px 10px;
@@ -363,7 +364,7 @@ Full-Width Styles
 
 <!--
 #main_content_wrap {
-  background: #fbe7d2;
+  background: #fdf1e2;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
