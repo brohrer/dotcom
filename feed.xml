@@ -4,6 +4,11 @@
 <channel>
   <title>Brandon Rohrer RSS Feed</title>
   <link>https://www.brandonrohrer.com</link>
+  <image>
+    <url>https://www.e2eml.school/images/transformers/attention_multihead.png</url>
+    <title>Blog</title>
+    <link>https://www.e2eml.school</link>
+  </image>
   <description>Brandon Rohrer's blog, articles, and books</description>
   <item>
     <title>Transformers From Scratch</title>
