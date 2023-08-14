@@ -13,7 +13,7 @@
   <item>
     <title>Transformers From Scratch</title>
     <link>https://e2eml.school/transformers</link>
-    <enclosure url="http://e2eml.school/images/transformers/attention_multihead.png" length="108278" type="image/png"/>
+    <enclosure url="http://e2eml.school/images/transformers/architecture_multihead.png" length="108278" type="image/png" />
     <description>A step-by-step walkthrough of transformers,
       the algorithm behind Large Language Models like ChatGPT.</description>
   </item>
@@ -21,7 +21,7 @@
     <title>Homepage</title>
     <link>https://e2eml.school</link>
     <description>A list of what I've written.</description>
-    <media:content url="http://e2eml.school/images/transformers/attention_multihead.png" type="image/png"/ medium="image" />
+    <media:content url="http://e2eml.school/images/transformers/architecture_multihead.png" type="image/png"/ medium="image" />
     <!--<media:content url="http://mysite.com/image.jpg" type="image/jpeg" medium="image" /> -->
   </item>
 </channel>
