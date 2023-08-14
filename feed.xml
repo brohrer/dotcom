@@ -15,7 +15,9 @@
     <title>Homepage</title>
     <link>https://e2eml.school</link>
     <description>A list of what I've written.</description>
-    <enclosure url="https://www.e2eml.school/images/transformers/attention_multihead.png" length="108278" type="image/png"/>
+    <media:content url="https://www.e2eml.school/images/transformers/attention_multihead.png" type="image/png"/ medium="image" />
+    <!--<media:content url="http://mysite.com/image.jpg" type="image/jpeg" medium="image" /> -->
+    <!-- <enclosure url="https://www.e2eml.school/images/transformers/attention_multihead.png" length="108278" type="image/png"/> -->
   </item>
 </channel>
 
