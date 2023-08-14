@@ -1,0 +1,21 @@
+ <?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+  <title>Brandon Rohrer RSS Feed</title>
+  <link>https://www.brandonrohrer.com</link>
+  <description>Brandon Rohrer's blog, articles, and books</description>
+  <item>
+    <title>Transformers From Scratch</title>
+    <link>https://e2eml.school/transformers</link>
+    <description>A step-by-step walkthrough of transformers,
+      the algorithm behind Large Language Models like ChatGPT.</description>
+  </item>
+  <item>
+    <title>Homepage</title>
+    <link>https://e2eml.school</link>
+    <description>A list of what I've written.</description>
+  </item>
+</channel>
+
+</rss> 
