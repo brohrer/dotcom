@@ -21,6 +21,7 @@
   <item>
     <title>How to Train Your Robot, Chapter 1</title>
     <link>https://tyr.fyi/1</link>
+    <enclosure url="http://brandonrohrer.com/feed/ducks.png" length="725898" type="image/png" />
     <description>The first chapter of a book that builds a solution to the Human Directed Reinforcement Learning (HDRL) problem, more commonly known as teaching a dog to sit.  It's titled Can't Artificial Intelligence Already Do That</description>
   </item>
 
