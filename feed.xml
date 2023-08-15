@@ -10,6 +10,16 @@
     <link>https://www.e2eml.school</link>
   </image>
   <description>Brandon Rohrer's blog, articles, and books</description>
+
+  <item>
+    <title>How to Train Your Robot, Chapter 1</title>
+    <link>https://tyr.fyi/1</link>
+    <description>The first chapter of a book that builds a solution
+    to the Human Directed Reinforcement Learning (HDRL) problem,
+    more commonly known as teaching a dog to sit.
+    It's titled Can't Artificial Intelligence Already Do That?</description>
+  </item>
+
   <item>
     <title>Transformers From Scratch</title>
     <link>https://e2eml.school/transformers</link>
@@ -17,6 +27,7 @@
     <description>A step-by-step walkthrough of transformers,
       the algorithm behind Large Language Models like ChatGPT.</description>
   </item>
+
   <item>
     <title>Homepage</title>
     <link>https://e2eml.school</link>
@@ -24,6 +35,7 @@
     <media:content url="http://e2eml.school/images/transformers/architecture_multihead.png" type="image/png"/ medium="image" />
     <!--<media:content url="http://mysite.com/image.jpg" type="image/jpeg" medium="image" /> -->
   </item>
+
 </channel>
 
 </rss> 
