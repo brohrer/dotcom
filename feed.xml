@@ -12,12 +12,18 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
+    <title>Getting Processes to Talk to Each Other: How to Train Your Robot, Chapter 3</title>
+    <link>https://tyr.fyi/3</link>
+    <enclosure url="https://www.brandonrohrer.com/feed/queue.png" length="54305" type="image/png" />
+    <description>In this chapter we get to build an adding machine. It is exactly as fascinating as it sounds.</description>
+  </item>
+
+  <item>
     <title>Keeping Time with Python: How to Train Your Robot, Chapter 2</title>
     <link>https://tyr.fyi/2</link>
     <enclosure url="https://www.brandonrohrer.com/feed/sleep.png" length="367523" type="image/png" />
     <description>The second installment in a quest to build a robot as smart as my pup.</description>
   </item>
-
 
   <item>
     <title>How to Train Your Robot, Chapter 1</title>
