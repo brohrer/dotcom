@@ -12,6 +12,18 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
+    <title>Keeping Time with Python\nHow to Train Your Robot, Chapter 2</title>
+    <link>https://tyr.fyi/2</link>
+    <description><![CDATA[The 
+      <a href="tyr.fyi/2">
+            second installment
+      </a>
+      in a quest to build a
+      robot as smart as my pup.]]></description>
+  </item>
+
+
+  <item>
     <title>How to Train Your Robot, Chapter 1</title>
     <link>https://tyr.fyi/1</link>
     <description><![CDATA[The first chapter of a book that builds a solution
