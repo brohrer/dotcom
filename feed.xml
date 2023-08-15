@@ -15,24 +15,13 @@
     <title>Keeping Time with Python: How to Train Your Robot, Chapter 2</title>
     <link>https://tyr.fyi/2</link>
     <description>The second installment in a quest to build a robot as smart as my pup.</description>
-    <!--<description><![CDATA[The 
-      <a href="tyr.fyi/2">
-            second installment
-      </a>
-      in a quest to build a
-      robot as smart as my pup.]]></description> -->
   </item>
 
 
   <item>
     <title>How to Train Your Robot, Chapter 1</title>
     <link>https://tyr.fyi/1</link>
-    <description><![CDATA[The first chapter of a book that builds a solution
-    to the Human Directed Reinforcement Learning (HDRL) problem,
-    more commonly known as teaching a dog to sit.
-    It's titled
-    <a href="tyr.fyi/1">Can't Artificial Intelligence Already Do That</a>
-    ?]]></description>
+    <description>The first chapter of a book that builds a solution to the Human Directed Reinforcement Learning (HDRL) problem, more commonly known as teaching a dog to sit.  It's titled Can't Artificial Intelligence Already Do That</description>
   </item>
 
   <item>
@@ -47,8 +36,6 @@
     <title>Homepage</title>
     <link>https://e2eml.school</link>
     <description>A list of what I've written.</description>
-    <media:content url="http://e2eml.school/images/transformers/architecture_multihead.png" type="image/png"/ medium="image" />
-    <!--<media:content url="http://mysite.com/image.jpg" type="image/jpeg" medium="image" /> -->
   </item>
 
 </channel>
