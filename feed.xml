@@ -14,10 +14,12 @@
   <item>
     <title>How to Train Your Robot, Chapter 1</title>
     <link>https://tyr.fyi/1</link>
-    <description>The first chapter of a book that builds a solution
+    <description><![CDATA[The first chapter of a book that builds a solution
     to the Human Directed Reinforcement Learning (HDRL) problem,
     more commonly known as teaching a dog to sit.
-    It's titled Can't Artificial Intelligence Already Do That?</description>
+    It's titled
+    <a href="tyr.fyi/1">Can't Artificial Intelligence Already Do That</a>
+    ?]]></description>
   </item>
 
   <item>
