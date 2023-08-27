@@ -12,6 +12,17 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
+    <title>Making Animations with Matplotlib: How to Train Your Robot, Chapter 4</title>
+    <link>https://tyr.fyi/4</link>
+    <enclosure url="https://www.brandonrohrer.com/feed/spaceship.png" length="68666" type="image/png" />
+    <description>Chapter four is all about how to make moving pictures.
+      It's entertaining, yes, but it's also a very good way to represent complex
+      data that changes over time. It also happens to be a great companion to
+      games and simulations, which is exactly how we'll be using it
+      a few chapters later.</description>
+  </item>
+
+  <item>
     <title>Getting Processes to Talk to Each Other: How to Train Your Robot, Chapter 3</title>
     <link>https://tyr.fyi/3</link>
     <enclosure url="https://www.brandonrohrer.com/feed/queue.png" length="54305" type="image/png" />
