@@ -12,6 +12,13 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
+    <title>How to Train Your Robot has a Table of Contents</title>
+    <link>https://tyr.fyi</link>
+    <enclosure url="https://www.brandonrohrer.com/feed/tyr_fyi.png" length="107110" type="image/png" />
+    <description>The book project now has enough content to merit a table of contents.</description>
+  </item>
+
+  <item>
     <title>Making Your Python Code Run Faster: How to Train Your Robot, Chapter 6</title>
     <link>https://tyr.fyi/6</link>
     <enclosure url="https://www.brandonrohrer.com/feed/numba_ten.png" length="89931" type="image/png" />
