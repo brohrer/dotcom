@@ -12,6 +12,22 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
+    <title>A Pythonista's First Database</title>
+    <link>https://e2eml.school/db_first_db.html </link>
+    <description> It's a familiar story. Your friends all brag about their humongous databases. They go on and on about MySQL this and Redis that, and "oh can you believe they swapped out Mongo for Snowflake!?!" and they all laugh and you pretend to laugh along. But inside you're sad because you don't have a database. Well today is your lucky day. Today you get a database of your very own.
+
+One of the sleekest and slickest databases out there is SQLite. It's so lean that it got folded right into standard Python as the sqlite3 library. It's the single most used database in the world, and its code is entirely open source, in the public domain.
+
+If you're already working in Python, you have SQLite installed. </description>
+  </item>
+
+  <item>
+    <title>Navigating Database Awkwardness: The First Date</title>
+    <link>https://e2eml.school/db_awkwardness.html </link>
+    <description> One of the things that can make databases awkward at first, especially in Python, is the terminology. It’s based on some old school concepts and technologies. A very long time ago bits were carved into stone tablets with magnetic chisels. These tablets were circular in shape and stacked on top of each other, resulting in something shaped like a can, or a drum. And this is why databases are always represented as cylinders in architecture diagrams.</description>
+  </item>
+
+  <item>
     <title>How to Train Your Robot has a Table of Contents</title>
     <link>https://tyr.fyi</link>
     <enclosure url="https://www.brandonrohrer.com/feed/tyr_toc.png" length="107110" type="image/png" />
