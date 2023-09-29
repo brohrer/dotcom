@@ -12,6 +12,19 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
+    <title>From csv to database with Python</title>
+    <link> https://e2eml.school/db_penguins.html </link>
+    <description> Databases are the new Dataframes
+
+Not really, but join me in a thought experiment.
+
+Imagine you wanted to do some data analysis, but also wanted to avoid importing any external libraries into Python. This is not just an academic exercise. A large part of the challenge of working in Python is managing dependencies, environments, and breaking updates. Sticking with base Python and the libraries it ships with would make your code considerably more robust and lower maintenance.
+
+We can do exactly this with SQLite3. To demonstrate how we would ingest a csv to a Dataframe will use the most excellent Palmer Penguins Data Set.
+</description>
+  </item>
+
+  <item>
     <title>A Pythonista's First Database</title>
     <link>https://e2eml.school/db_first_db.html </link>
     <description> It's a familiar story. Your friends all brag about their humongous databases. They go on and on about MySQL this and Redis that, and "oh can you believe they swapped out Mongo for Snowflake!?!" and they all laugh and you pretend to laugh along. But inside you're sad because you don't have a database. Well today is your lucky day. Today you get a database of your very own.
