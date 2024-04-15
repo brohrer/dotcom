@@ -12,6 +12,39 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
+    <title>sqlogging, a sqlite3-based logging library for Python</title>
+    <link> https://github.com/brohrer/sqlogging </link>
+    <description>I wrote some code!
+
+sqlogging roughly mimics Python’s logging library except that it writes log
+entries as rows of a sqlite table. It’s not fast
+(about 7 ms per write on my machine) but if you spend time working with your log
+data the improved flexibility is life changing. No tedious json parsing,
+no fiddly pandas syntax. Just SQL to base Python. 
+
+Nothing feels quite as satisfying as making something useful. 
+
+If you want to try it, it’s pip installable.
+
+pip install sqlite-logging
+
+And in proactice it looks like this:
+
+from sqlogging import logging
+
+logger = logging.create_logger(name="test_logger", columns=["iter", "score"])
+logger.info({"iter": 0, "score": .4})
+logger.info({"iter": 1, "score": .1})
+logger.info({"iter": 2, "score": .8})
+
+result = logger.query(f"SELECT SUM(score) FROM {logger.name}")
+print("sum of scores:", result[0][0])
+
+logger.delete()
+</description>
+  </item>
+
+  <item>
     <title>From csv to database with Python</title>
     <link> https://e2eml.school/db_penguins.html </link>
     <description> Databases are the new Dataframes
