@@ -12,6 +12,64 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
+    <title>Naive Cartographer: A Markov Decision Process Learner</title>
+    <link>https://codeberg.org/brohrer/cartographer-paper/raw/branch/main/cartographer.pdf</link>
+   <description>
+   tl;dr: A naive Bayes algorithm for learning Markov de-
+cision processes with fuzzy state
+
+x Fuzzy Naive Cartographer (FNC) builds a Markov Decision Process-like model of
+its world in the form of a set of sequences. Sequences are of the form of
+state-action-state as in MDPs. Here they're also referred to as
+feature-action-outcome sequences, to disambiguate the before- and after-state.
+
+FNC builds a value function too. It creates a set of feature-action pairs
+and associates a reward with each. This is analogous to the state-action
+value functions of Q-learning.
+
+A model and a value function allow for prediction and planning.
+Knowing the current active features and recent actions,
+both the reward and the resulting features can be anticipated.
+
+Technically FNC is just the "model" part of a model-based RL algorithm.
+It needs to paired with a planner, some element that will choose
+an action or goal, to be a complete RL algorithm.
+There are some rudimentary planners included with this module to get you up and running.
+
+Repository: https://codeberg.org/brohrer/ziptie
+
+White paper: https://codeberg.org/brohrer/cartographer-paper/raw/branch/main/cartographer.pdf
+</description>
+  </item>
+
+  <item>
+    <title>Ziptie, byte pair encoding for fuzzy variables</title>
+    <link>https://www.brandonrohrer.com/ziptie</link>
+   <description>
+   A robot learning to navigate the world finds that the combination of
+   certain sensors gives more information than either
+of them alone. The combination of x- and y-position tells
+more about when to watch for obstacles than either variable
+on its own. The speed and position of arm tells more about
+what shoulder torque needs to be generated than either does
+alone. Individual pixels from a camera are of very little use,
+but certain patterns are detected across many pixels, they
+can clearly distinguish between a hawk and a handsaw.
+
+These cases of sensor interaction can be hard coded manually.
+Human designers often exploit their knowledge of the
+system to do this via feature engineering, but in cases where
+the robot system is too complex to intuit these useful interactions,
+they can be learned. Automatically creating these
+predictive features is the goal of the Ziptie algorithm.
+
+Repository: https://codeberg.org/brohrer/ziptie
+
+White paper: https://codeberg.org/brohrer/ziptie-paper/raw/branch/main/ziptie.pdf 
+</description>
+  </item>
+
+  <item>
     <title>sqlogging, a sqlite3-based logging library for Python</title>
     <link> https://github.com/brohrer/sqlogging </link>
     <description>I wrote some code!
