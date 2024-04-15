@@ -33,14 +33,50 @@ And in proactice it looks like this:
 from sqlogging import logging
 
 logger = logging.create_logger(name="test_logger", columns=["iter", "score"])
+
 logger.info({"iter": 0, "score": .4})
+
 logger.info({"iter": 1, "score": .1})
+
 logger.info({"iter": 2, "score": .8})
 
 result = logger.query(f"SELECT SUM(score) FROM {logger.name}")
+
 print("sum of scores:", result[0][0])
 
 logger.delete()
+</description>
+  </item>
+
+  <item>
+    <title>pacemaker, a metronome for your Python code</title>
+    <link> https://github.com/brohrer/pacemaker </link>
+    <description>
+A carefully paced loop comes in handy for interacting with physical sensors and robots, managing rate-limited APIs, synchronizing frame refreshes in animations, and pacing cycles in real-time simulations. Pacemaker provides an accurate metronome for your code to keep time with, good up to 1 MHz.
+
+The pacemaker package is intentionally minimalistic and has no external dependencies. It's a glorified snippet. I kept dragging it from project to project, so I finally decided to turn it into an actual package. Works on Linux, Windows, and MacOS.
+
+the repo: https://github.com/brohrer/pacemaker
+
+the long-winded explanation of how it does what it does: https://brandonrohrer.com/httyr2pdf
+
+Installation
+
+pip install pacemaker-lite
+
+Usage
+
+from pacemaker.pacemaker import Pacemaker
+
+iterations_per_second = 2.5
+
+pm = Pacemaker(iterations_per_second)
+
+for i in range(100):
+
+    _ = pm.beat()
+
+    print(i)
 </description>
   </item>
 
