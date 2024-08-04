@@ -13,18 +13,19 @@ class BucketTree:
                 f"'BucketTree.max_buckets' ({self.max_buckets}) " +
                 "needs to be non-negative."
             )
-        self.buckets = [None] * self.max_buckets
-        self.root = Bucket(i_bucket=0)
         self.n_buckets = 0
+        self.buckets = [None] * self.max_buckets
         self.full = False
-        self.add_bucket(self.root)
-        self.buckets[0] = self.root
+
         self.highs = np.zeros(self.max_buckets)
         self.lows = np.zeros(self.max_buckets)
         self.leaves = np.zeros(self.max_buckets, dtype=bool)
         self.levels = -np.ones(self.max_buckets, dtype=int)
 
-    def add_bucket(self, bucket):
+        self.root = Bucket()
+        self._add_bucket(self.root)
+
+    def _add_bucket(self, bucket):
         if self.full:
             return
 
@@ -86,4 +87,4 @@ if __name__ == "__main__":
     print(f"    lo = {bt.lo[i_bucket]}")
     print(f"    hi = {bt.hi[i_bucket]}")
     print(f"    level = {bt.level[i_bucket]}")
-    print(f"    {}")
+    # print(f"    {}")

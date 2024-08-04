@@ -10,7 +10,7 @@ def test_bucket_initialization():
     assert bucket.hi == 1.0
     assert type(bucket.level) == int
     assert bucket.level == 2
-    assert bucket.leaf = False
+    assert bucket.leaf == False
 
 
 def test_bucket_bounds():
@@ -40,8 +40,8 @@ def test_bucket_tree_initialization():
     assert bt.root.leaf == True
     assert bt.root.level == 0
 
-    assert bt.highs[0] == sys.float_info.min
-    assert bt.lows[0] == sys.float_info.max
+    assert bt.highs[0] == sys.float_info.max
+    assert bt.lows[0] == sys.float_info.min
     assert bt.leaves[0] == True
     assert bt.levels[0] == 0
 
@@ -49,7 +49,7 @@ def test_bucket_tree_initialization():
 def test_bucket_tree_bounds():
     caught = False
     try:
-        bt = BucketTree(max_bins=-100)
+        bt = BucketTree(max_buckets=-100)
     except ValueError:
         caught = True
     assert caught

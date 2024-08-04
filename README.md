@@ -1,6 +1,6 @@
 # Bucket Tree
 
-An online hierarchical binning algorithm.
+An online hierarchical binning algorithm:
 
 * **Binning**: A bucket tree sorts observations into
 [bins](https://en.wikipedia.org/wiki/Data_binning), or buckets, according to their
@@ -49,7 +49,8 @@ The minimum value of a float allowed by the system.
 
 ---
 
-### class `BucketTree`
+### class `BucketTree(max_buckets=100)`
+
 
 #### Attributes
 
@@ -73,12 +74,6 @@ The minimum value of a float allowed by the system.
 
 #### Methods
 
-**`BucketTree(max_buckets=100)`**
-
-Creates a new `BucketTree` object.
-
-- `max_buckets`, `int`: The maximum number of buckets the tree is allowed to create.
-
 **`bin(value)`**
 
 - `value`, `float`: The floating-point value to bin and learn from.
@@ -90,7 +85,7 @@ parent bucket.)
 
 ---
 
-### class `Bucket`
+### class `Bucket(lo=MIN_VAL, hi=MAX_VAL, leaf=True, level=0)`
 
 #### Attributes
 
@@ -109,12 +104,3 @@ The range *includes* the `lo` value.
 
 #### Methods
 
-**`Bucket(lo=MIN_VAL, hi=MAX_VAL, leaf=True, level=0)`**
-
-Creates a new `Bucket` object.
-
-- `lo`
-
-- `hi`
-
-- `level`
