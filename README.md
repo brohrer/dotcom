@@ -26,29 +26,44 @@ python3 -m pip install bucket_tree
 ```python
 from bucket_tree import BucketTree
 
-bt = BucketTree(n_max_buckets=100)
+bt = BucketTree(max_buckets=100)
 
 ```
----------------------------------
-recycling bin
 
-Binner
-Slicer
-Dicer
-Chunker
-Divisive clustering
-incize
-(multidimensional) hierarchical online incremental dynamic adaptive binning
-hierarchical online binning
-discretization
-quantization
+## API
 
-taxonomist
-biner
-bucket tree
+### Constants
 
+**`MAX_VAL`**
 
-https://en.wikipedia.org/wiki/Data_binning
+**`MIN_VAL`**
 
+---
 
+### class `BucketTree`
 
+#### Attributes
+
+#### Methods
+
+**`BucketTree(max_buckets=100)`**
+
+Creates a new `BucketTree` object.
+
+- `max_buckets` is the maximum number of buckets the tree is allowed to create.
+
+---
+
+### class `Bucket`
+
+#### Attributes
+
+#### Methods
+
+**`Bucket(lo=MIN_VAL, hi=MAX_VAL, level=0)`**
+
+Creates a new `Bucket` object.
+
+- `lo` is the lower bound of the bucket's range. The range *includes* the `lo` value. 
+
+- `hi` is the upper bound of the bucket's range. The range *excludes* the `hi` value. 
