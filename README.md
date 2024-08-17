@@ -21,36 +21,26 @@ and if a good diving threshold can be found, two child buckets are created for i
 
 ## How to use it
 
+Install at the command line.
+
 ```bash
 python3 -m pip install bucket_tree
 ```
 
+Put it in a Python script.
 
 ```python
-from bucket_tree import BucketTree
+from buckettree.bucket_tree import BucketTree
 
 bt = BucketTree()
 
 for _ in range(10_000):
-    bt.bin(np.random.sample())
+    bin_memberships = bt.bin(np.random.sample())
 ```
 
-## API
-
-### Constants
-
-**`MAX_VAL`**
-
-The maximum value of a float allowed by the system.
-
-**`MIN_VAL`**
-
-The minimum value of a float allowed by the system.
-
----
+## API Reference
 
 ### class `BucketTree(max_buckets=100)`
-
 
 #### Attributes
 
@@ -78,16 +68,19 @@ The minimum value of a float allowed by the system.
 
 - `value`, `float`: The floating-point value to bin and learn from.
 
-- `returns numpy.ndarray`: Array of floats of length `max_buckets`.
+- Returns `numpy.ndarray`: Array of floats of length `max_buckets`.
 Each element is either 0.0 or 1.0, with 1.0 elements showing buckets in which
 `value` belongs. (If a value belongs in a child bucket, it also belongs in the
-parent bucket.)
+parent bucket, so most values will belong to several buckets.)
 
 ---
 
-### class `Bucket(lo=MIN_VAL, hi=MAX_VAL, leaf=True, level=0)`
+### class `Bucket(bucket_size=100, lo=MIN_VAL, hi=MAX_VAL, leaf=True, level=0)`
 
 #### Attributes
+
+- `bucket_size`, `int`: After a bucket collects this many observations, it starts
+trying to create child buckets.
 
 - `hi`, `float`: The upper bound of the bucket's range.
 The range *excludes* the `hi` value. 
@@ -102,5 +95,22 @@ the root of the tree.
 - `lo`, `float`: The lower bound of the bucket's range.
 The range *includes* the `lo` value. 
 
+- `lo_child`
+
+- `hi_child`
+
+- `split_value`
+
 #### Methods
 
+---
+
+### Constants
+
+**`MAX_VAL`**
+
+The maximum value of a float allowed by the system.
+
+**`MIN_VAL`**
+
+The minimum value of a float allowed by the system.
