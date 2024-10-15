@@ -1,6 +1,7 @@
 # Redirects for inbound queries
 # /                   https://brandonrohrer.com/card.html    301!
 # /                   https://e2eml.school/blog.html    301!
+/                   https://brandonrohrer.com/blog.html    301!
 
 # /i                    https://e2eml.school/blog.html    301!
 # /ind                  https://e2eml.school/blog.html    301!
