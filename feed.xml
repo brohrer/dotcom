@@ -12,63 +12,87 @@
   <description>Brandon Rohrer's blog, articles, and books</description>
 
   <item>
-    <title>Blog post: Ten Tips for Working with Numba</title>
-    <link>https://brandonrohrer.com/numba</link>
-   <description>
-Vectorization with NumPy is an indispensable tool for working with data and algorithms, but sometimes even that isn't quite fast enough. If you have deep pockets and the patience of a saint, you can get your code running on GPUs, but for most of us, Numba is the secret to unlocking performance. Here are some tricks I've collected.
+    <title>
+        Handling stochastic non-integer delay in reinforcement learning
+    </title>
+    <link>
+        https://brandonrohrer.com/rl_noninteger_delay.html
+    </link>
+    <description>
+    # Stochastic non-integer delay in real-time reinforcement learning
 
-    1. Try for-loops first. Set aside all your hard-won intuitions about vectorization. They don't apply within a Numba function.
-    
-    2. Avoid using NumPy array operations or using NumPy functions. Modify one element at a time using common operators. Undo all your vectorization.
-    
-    3. Don't create intermediate NumPy arrays in your Numba code. Those get allocated and written, which takes extra time.
-    
-    4. Don't write your own matrix multiplication. (Unless it's for fun.)
-    
-    5. Use @njit rather than @jit. This will prevent your function from failing silently and slowing down to interpreted Python.
-    
-    6. Call Numba-jitted functions once before kicking off the program. This "warms them up" by forcing the compiler to compile them on the first time through.
-    
-    7. Pass return variables in as input arguments. That way the memory space for them is pre-allocated.
-    
-    8. Declare array arguments and created arrays with an explicit data type (usually numpy.float). This will prevent cryptic error messages later.
-    
-    9. Profile your code line by line. Only use Numba where it really makes a difference.
-    
-    10. Build Numba functions incrementally, testing often.
-</description>
-  </item>
+## When turn-taking breaks down
+
+Synchronization between agents in worlds gets trickier when the world is operating
+in real time, as with robots and other physical systems. In non real-time RL,
+the world can wait for the agent to plan its next action. It is a turn-taking
+scenario where the agent waits for the world to make its next move and vice versa.
+But for physical hardware the world doesn't wait for the agent to compute.
+The instant it reports its sensor readings to the agent, they are already obsolete.
+The world has already moved on in its machinations. Time and tide wait for no agent.
+
+If the world moves slowly compared to the speed at which the agent computes,
+this mismatch can be mostly ignored. But if computations are intensive,
+as with some vision applications and nearly all transformer-based agents,
+or compute power is limited, as with many mobile robots, then this delay can
+become considerable. In practical applications it can render modern
+algorithms infeasible.
 
 
-  <item>
-    <title>Naive Cartographer: A Markov Decision Process Learner</title>
-    <link>https://codeberg.org/brohrer/cartographer-paper/raw/branch/main/cartographer.pdf</link>
-   <description>
-   tl;dr: A naive Bayes algorithm for learning Markov de-
-cision processes with fuzzy state
+This problem is described in [this 2019 paper](https://arxiv.org/pdf/1911.04448v4)
+as well as
+[here](https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2018.00079/full)
+and [here](https://arxiv.org/pdf/2010.02966).
+The terminology used to describe it varies, but if you want to explore the
+literature, serch terms the search terms "stochastic delay" and "non-integer delay"
+will get you started.
 
-x Fuzzy Naive Cartographer (FNC) builds a Markov Decision Process-like model of
-its world in the form of a set of sequences. Sequences are of the form of
-state-action-state as in MDPs. Here they're also referred to as
-feature-action-outcome sequences, to disambiguate the before- and after-state.
+## A bad solution: Waiting around for the agent
 
-FNC builds a value function too. It creates a set of feature-action pairs
-and associates a reward with each. This is analogous to the state-action
-value functions of Q-learning.
+One workaround would be to have the world sit idle and take no action
+for a short period to enable
+agent to run itself, but this would require timing in the world to be tuned
+to the needs of the agent, which is dependent on the algorithm,
+the hardware, and other things that the world should not have to know about.
 
-A model and a value function allow for prediction and planning.
-Knowing the current active features and recent actions,
-both the reward and the resulting features can be anticipated.
+## An OK solution: Predict the near future
 
-Technically FNC is just the "model" part of a model-based RL algorithm.
-It needs to paired with a planner, some element that will choose
-an action or goal, to be a complete RL algorithm.
-There are some rudimentary planners included with this module to get you up and running.
+[These authors](https://arxiv.org/pdf/1911.04448v4)
+propose a solution where action selection is allowed a one time step delay,
+and the previous action is included in the state.
+This allows the agent to indirectly predict what the state of the world
+will be, once its action command is finally executed. It demonstrates the philosophy
+of "Skate to where the puck is going".
 
-Repository: https://codeberg.org/brohrer/ziptie
+One interesting case study here is the human brain moving the musculoskeletal system.
+The ability to predict the state of the system a short time into the future
+appears to be a critical component of its robust performance. (Although it does seem
+to be very sensitive to changes in the length of that delay.)
 
-White paper: https://codeberg.org/brohrer/cartographer-paper/raw/branch/main/cartographer.pdf
-</description>
+This predictive approach has the benefit of being ignorant of the system being controlled
+and the computation hardware being used to select the actions. It obtains this benefit
+by making the assumption that one time step is the roughly the amount of time
+needed to choose an action. If the time is much shorter than that, say
+one tenth of a time step, this approach adds a gratuitous delay of 9/10 of a time step.
+And in cases where action selection might take several steps,
+for example where more expensive planning or slower retrieval processes are involved,
+it would still fail to account for that.
+
+## A better solution (IMO): React as soon as the agent's command is available
+
+A better way to work around this is to take advantage of the fact that robots
+typically have a fast internal clock, and to have them try to read
+a new action at every step (or few steps) of this hardware clock,
+rather than at every agent step. This will ensure that as soon as the new action
+is available, it will get incorporated into the world.
+
+In practice this will introduce a small delay of several hardware steps.
+I don’t know of any way to avoid this.
+This is an important feature of real time reinforcement learning that gets lost
+in simulations. Any real time controller or physical hardware
+has to deal with this delay.
+
+    </description>
   </item>
 
 
