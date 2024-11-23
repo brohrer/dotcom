@@ -12,15 +12,7 @@ I mean, look at this opening paragraph. This is written to be read and understoo
 
 The paper is refreshingly concrete, fully loaded with examples, case studies, recommendations, and pitfalls. It's a map to the landmines in reinforcement learning. It's what I would have gifted my younger self.
 
-![Reinforcement Learning, an Empirical Science
-Running a good experiment in reinforcement learning is difficult. There are many decisions
-to be made: How long should you run your agent? Should you count the number of episodes
-or number of steps? Should performance be measured online or offline with test trials?
-How should you measure and aggregate performance? Do we use rules of thumb to set
-hyperparameters or some systematic search? What are the right baseline algorithms to
-compare against? Which environments should you use? What does good learning even look
-like in a given environment? The answer to each question can greatly impact the credibility
-and utility of the result, ranging from insightful to down-right misleading](
+![Reinforcement Learning, an Empirical Science Running a good experiment in reinforcement learning is difficult. There are many decisions to be made: How long should you run your agent? Should you count the number of episodes or number of steps? Should performance be measured online or offline with test trials?  How should you measure and aggregate performance? Do we use rules of thumb to set hyperparameters or some systematic search? What are the right baseline algorithms to compare against? Which environments should you use? What does good learning even look like in a given environment? The answer to each question can greatly impact the credibility and utility of the result, ranging from insightful to down-right misleading](
 https://brandonrohrer.com/images/empirical_rl/img_a.png
 "Opening paragraph from the paper")
 
