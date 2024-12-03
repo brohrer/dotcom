@@ -13,85 +13,39 @@
 
   <item>
     <title>
-        Handling stochastic non-integer delay in reinforcement learning
+        dsmq, the Dead Simple Message Queue
     </title>
     <link>
-        https://brandonrohrer.com/rl_noninteger_delay.html
+        https://brandonrohrer.com/dsmq.html
     </link>
     <description>
-    # Stochastic non-integer delay in real-time reinforcement learning
+I'd like to introduce dsmq, the Dead Simple Message Queue, to the world.
 
-## When turn-taking breaks down
+Part mail room, part bulletin board, dsmq is a central location for sharing messages between processes, even when they are running on different computers.
 
-Synchronization between agents in worlds gets trickier when the world is operating
-in real time, as with robots and other physical systems. In non real-time RL,
-the world can wait for the agent to plan its next action. It is a turn-taking
-scenario where the agent waits for the world to make its next move and vice versa.
-But for physical hardware the world doesn't wait for the agent to compute.
-The instant it reports its sensor readings to the agent, they are already obsolete.
-The world has already moved on in its machinations. Time and tide wait for no agent.
+Its defining characteristic is bare-bones simplicity.
 
-If the world moves slowly compared to the speed at which the agent computes,
-this mismatch can be mostly ignored. But if computations are intensive,
-as with some vision applications and nearly all transformer-based agents,
-or compute power is limited, as with many mobile robots, then this delay can
-become considerable. In practical applications it can render modern
-algorithms infeasible.
+What dsmq does
 
+A message queue lets different processes talk to each other, within or across machines. Message queues are a waystation, a place to publish messages and hold them until they get picked up by the process that needs them.
 
-This problem is described in [this 2019 paper](https://arxiv.org/pdf/1911.04448v4)
-as well as
-[here](https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2018.00079/full)
-and [here](https://arxiv.org/pdf/2010.02966).
-The terminology used to describe it varies, but if you want to explore the
-literature, serch terms the search terms "stochastic delay" and "non-integer delay"
-will get you started.
+In dsmq, a program running the message queue starts up first (the server). It handles all the receiving, delivering, sorting, and storing of messages.
 
-## A bad solution: Waiting around for the agent
+Other programs (the clients) connect to the server. They add messages to a queue or read messages from a queue. Each queue is a separate topic.
 
-One workaround would be to have the world sit idle and take no action
-for a short period to enable
-agent to run itself, but this would require timing in the world to be tuned
-to the needs of the agent, which is dependent on the algorithm,
-the hardware, and other things that the world should not have to know about.
+Why message queues?
+Message queues are invaluable for distributed systems of all sorts, but my favorite application is robotics. Robots typically have several (or many) processes doing different things at different speeds. Communication between processes is a fundamental part of any moderately complex automated system. When ROS (the Robot Operating System) was released, one of the big gifts it gave to robot builders was a reliable way to pass messages.
 
-## An OK solution: Predict the near future
+Why another message queue?
+There are lots of message queues in the world, and some are quite well known—Amazon SQS, RabbitMQ, Apache Kafka to name a few. It's fair to ask why this one was created.
 
-[These authors](https://arxiv.org/pdf/1911.04448v4)
-propose a solution where action selection is allowed a one time step delay,
-and the previous action is included in the state.
-This allows the agent to indirectly predict what the state of the world
-will be, once its action command is finally executed. It demonstrates the philosophy
-of "Skate to where the puck is going".
+The official reason for dsmq's existence is that all the other available options are pretty heavy. Take RabbitMQ for instance, a popular open source message queue. It has hundreds of associated repositories and it's core rabbitmq-server repo has many thousands of lines of code. It's a heavy lift to import this to support a small robotics project, and code running on small edge devices may struggle to run it at all.
 
-One interesting case study here is the human brain moving the musculoskeletal system.
-The ability to predict the state of the system a short time into the future
-appears to be a critical component of its robust performance. (Although it does seem
-to be very sensitive to changes in the length of that delay.)
+RabbitMQ is also mature and optimized and dockerized and multi-platform and fully featured and a lot of other things a robot doesn't need. It would be out of balance to use it for a small project.
 
-This predictive approach has the benefit of being ignorant of the system being controlled
-and the computation hardware being used to select the actions. It obtains this benefit
-by making the assumption that one time step is the roughly the amount of time
-needed to choose an action. If the time is much shorter than that, say
-one tenth of a time step, this approach adds a gratuitous delay of 9/10 of a time step.
-And in cases where action selection might take several steps,
-for example where more expensive planning or slower retrieval processes are involved,
-it would still fail to account for that.
+dsmq is only about 200 lines of Python, including client and server code. It's tiny. Good for reading and understanding front-to-back when you're integrating it with your project.
 
-## A better solution (IMO): React as soon as the agent's command is available
-
-A better way to work around this is to take advantage of the fact that robots
-typically have a fast internal clock, and to have them try to read
-a new action at every step (or few steps) of this hardware clock,
-rather than at every agent step. This will ensure that as soon as the new action
-is available, it will get incorporated into the world.
-
-In practice this will introduce a small delay of several hardware steps.
-I don’t know of any way to avoid this.
-This is an important feature of real time reinforcement learning that gets lost
-in simulations. Any real time controller or physical hardware
-has to deal with this delay.
-
+But the real reason is that I wanted to understand how a message queue might work and the best way I know to learn this is to build one.
     </description>
   </item>
 
