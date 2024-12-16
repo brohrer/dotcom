@@ -13,85 +13,25 @@
 
   <item>
     <title>
-        Handling stochastic non-integer delay in reinforcement learning
+    What is a server, anyway?
     </title>
     <link>
-        https://brandonrohrer.com/rl_noninteger_delay.html
+        https://www.brandonrohrer.com/server_naming.html
     </link>
     <description>
-    # Stochastic non-integer delay in real-time reinforcement learning
+It's true that naming things is one of the two (or three) hardest problems in computer science, but with "server" they seemed to have gone out of their way to make it worse. Here's my attempt to clear the fog.
 
-## When turn-taking breaks down
+SERVER: A process that waits and takes requests, like a server at a restaurant. Or perhaps more like an old-time rich people banquet where servers literally sat waiting nearby, ready to jump in and respond.
 
-Synchronization between agents in worlds gets trickier when the world is operating
-in real time, as with robots and other physical systems. In non real-time RL,
-the world can wait for the agent to plan its next action. It is a turn-taking
-scenario where the agent waits for the world to make its next move and vice versa.
-But for physical hardware the world doesn't wait for the agent to compute.
-The instant it reports its sensor readings to the agent, they are already obsolete.
-The world has already moved on in its machinations. Time and tide wait for no agent.
+REQUEST HANDLER (also called SERVER sometimes): A separate function, thread, or process that gets called to handle to request received by the server. In the restaurant example, the cooks in the kitchen are request handlers.
 
-If the world moves slowly compared to the speed at which the agent computes,
-this mismatch can be mostly ignored. But if computations are intensive,
-as with some vision applications and nearly all transformer-based agents,
-or compute power is limited, as with many mobile robots, then this delay can
-become considerable. In practical applications it can render modern
-algorithms infeasible.
+CLIENT-SERVER MODEL (also CLIENT-SERVER ARCHITECTURE): The setup where one process (the client) sends requests to another (the server), which fulfills the request and sends a response back to the client. When you sit down at a table in a restaurant and place your order, you are the client in a client-server model.
 
+SERVER HOST (often called SERVER, for short): The computer where the server process runs. It can sit in your broom closet, under your desk, or in a data center in Virginia. In the restaurant metaphor the server host is the restaurant itself.
 
-This problem is described in [this 2019 paper](https://arxiv.org/pdf/1911.04448v4)
-as well as
-[here](https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2018.00079/full)
-and [here](https://arxiv.org/pdf/2010.02966).
-The terminology used to describe it varies, but if you want to explore the
-literature, serch terms the search terms "stochastic delay" and "non-integer delay"
-will get you started.
+SERVERLESS ARCHITECTURE: Contrary to its name, serverless architectures involve plenty of servers and server host, but they are all hidden behind tools and teams that manage them. To stretch the restaurant analogy even further, a serverless architecture would be like placing a catering order for a thousand sandwiches through a form, which is then picked up by a catering supervisor who places several smaller orders with individual restaurants for a few dozen sandwiches each. The servers still exist, the server handlers still exist, the server hosts still exist, you just don't have to worry about any of them (in theory).
 
-## A bad solution: Waiting around for the agent
-
-One workaround would be to have the world sit idle and take no action
-for a short period to enable
-agent to run itself, but this would require timing in the world to be tuned
-to the needs of the agent, which is dependent on the algorithm,
-the hardware, and other things that the world should not have to know about.
-
-## An OK solution: Predict the near future
-
-[These authors](https://arxiv.org/pdf/1911.04448v4)
-propose a solution where action selection is allowed a one time step delay,
-and the previous action is included in the state.
-This allows the agent to indirectly predict what the state of the world
-will be, once its action command is finally executed. It demonstrates the philosophy
-of "Skate to where the puck is going".
-
-One interesting case study here is the human brain moving the musculoskeletal system.
-The ability to predict the state of the system a short time into the future
-appears to be a critical component of its robust performance. (Although it does seem
-to be very sensitive to changes in the length of that delay.)
-
-This predictive approach has the benefit of being ignorant of the system being controlled
-and the computation hardware being used to select the actions. It obtains this benefit
-by making the assumption that one time step is the roughly the amount of time
-needed to choose an action. If the time is much shorter than that, say
-one tenth of a time step, this approach adds a gratuitous delay of 9/10 of a time step.
-And in cases where action selection might take several steps,
-for example where more expensive planning or slower retrieval processes are involved,
-it would still fail to account for that.
-
-## A better solution (IMO): React as soon as the agent's command is available
-
-A better way to work around this is to take advantage of the fact that robots
-typically have a fast internal clock, and to have them try to read
-a new action at every step (or few steps) of this hardware clock,
-rather than at every agent step. This will ensure that as soon as the new action
-is available, it will get incorporated into the world.
-
-In practice this will introduce a small delay of several hardware steps.
-I don’t know of any way to avoid this.
-This is an important feature of real time reinforcement learning that gets lost
-in simulations. Any real time controller or physical hardware
-has to deal with this delay.
-
+PROTOCOL: The format of the communication used to place requests and interpret responses from the server. In a restaurant, protocol includes whether you order at the counter or the table, whether you pay at the beginning or the end of the meal, and what language you speak to order. There are a handful of common protocols, including HTTP (hypertext transfer protocol) for web servers, FTP (file transfer protocol) for file servers, and SMTP (Simple Mail Transfer Protocol) for mail servers, and many others used for very specific functions or systems.
     </description>
   </item>
 
