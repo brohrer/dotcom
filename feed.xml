@@ -13,6 +13,37 @@
 
   <item>
     <title>
+    Write an HTTP client in Python
+    </title>
+    <link>
+        https://www.brandonrohrer.com/http_client.html
+    </link>
+    <description>
+    Why bother with HTTP?
+There are a lot of reasons you might want to get two computers talking to each other, and HTTP is a good way to make this happen. It's used to share web pages of course (the name "hypertext transfer protocol" describes this use case directly) but it can be used to share all kinds of other data too—all varieties of text, image, audio, and video formats. Just imagine all the shenanigans you can orchestrate with this power.
+
+In the world of computer networking getting computers talking the same language (a.k.a. protocol) is the first step. Some protocols are very niche, intended for tasks like reading oxygen sensors in combustion engines or controlling the environment in office buildings. In contrast, HTTP is a general purpose networking protocol. It pays the price of longer messages and a more complex standard in order to fill lots of different needs. It's a Swiss Army knife rather than a scalpel. It is said that Python is the second-best programming language for every task. The same could be said about HTTP for networking.
+
+This post is an attempt to give some guide posts through the terrain, but the world of HTTP is wide and has a lot of history and hidden corners. Everything written here is oversimplified, and some of it is probably wrong, but I hope you find it useful.
+    </description>
+  </item>
+
+  <item>
+    <title>
+    Writing an HTTP server in Python
+    </title>
+    <link>
+        https://www.brandonrohrer.com/http_server.html
+    </link>
+    <description>
+    This is the sequel to a post walking through an HTTP client in Python. The client in that post sent a request to a server that performs addition. This post walks through the code for that server
+
+Server terminology can be confusing. "Server" can refer to both the program that listens for HTTP messages and the metal and ceramic box sitting in a rack in a data center where that program runs. In this post, we are focusing on the first of those.
+    </description>
+  </item>
+
+  <item>
+    <title>
     What is a server, anyway?
     </title>
     <link>

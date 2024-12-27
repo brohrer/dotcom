@@ -51,7 +51,9 @@ and the other is the server. The client initiates the conversation
 by sending a specific message with a specific format called a request.
 The server takes that request, does whatever it is that the
 server needs to do, and replies with another specific message
-format called a response.</p>
+format called a response. (If you're looking for a post on how
+to write an HTTP server,
+<a href="https://www.brandonrohrer.com/http_server.html">check here</a>.)</p>
 <p>Request messages have three parts</p>
 <ol>
 <li>a request to do something</li>
@@ -354,6 +356,28 @@ then converts that JSON to a dictionary. The content of
 the dictionary (or whatever form the response happens to be)
 depends entirely on the server.</p>
 
+<h2>A quick note on levels of abstraction</h2>
+
+There are several different tools for interacting with HTTP servers
+in Python. They are at different levels of abstraction, that is,
+they make different assumptions about what the person writing the code
+is supposed to know; they're at different levels of down-in-the-weeds.
+Typically the higher the level of abstraction, the more assumptions
+are made behind the scenes and the fewer lines of code necessary to
+get the job done.
+
+Very roughly from highest to lowest level:
+<ul>
+<li><a href="https://pypi.org/project/urllib3/">urllib3</a></li>
+<li><a href="https://docs.python-requests.org/en/latest/index.html">requests</a></li>
+<li><a href="https://docs.python.org/3/library/http.client.html">http.client</a></li>
+<li><a href="https://docs.python.org/3/library/socket.html">socket</a></li>
+</ul>
+
+I've chosen to run with <code>http.client</code> here because I'm interested in
+having (and giving) a lot of control and covering a lot of potential
+networking use cases. Also, <code>http.client</code> has a lot of symmetry with
+<code>http.server</code>, which will feature in a companion post.
 <br>
 <br>
 <p>
