@@ -1,11 +1,15 @@
 # Redirects for inbound queries
-# /                   https://brandonrohrer.com/card.html    301!
-# /                   https://e2eml.school/blog.html    301!
 /                   https://brandonrohrer.com/blog.html    301!
+/home                   https://brandonrohrer.com/blog.html    301!
+/school                   https://brandonrohrer.com/blog.html    301!
+/i                   https://brandonrohrer.com/blog.html    301!
+/ind                   https://brandonrohrer.com/blog.html    301!
+/index                   https://brandonrohrer.com/blog.html    301!
+/library                   https://brandonrohrer.com/blog.html    301!
+/reference                   https://brandonrohrer.com/blog.html    301!
+/posts                   https://brandonrohrer.com/blog.html    301!
+/404.html                   https://brandonrohrer.com/blog.html    301!
 
-# /i                    https://e2eml.school/blog.html    301!
-# /ind                  https://e2eml.school/blog.html    301!
-# /index                https://e2eml.school/blog.html    301!
 
 /rickroll            https://vimeo.com/685995963  301!
 
@@ -48,4 +52,34 @@
 
 /ziptie        https://codeberg.org/brohrer/ziptie-paper/src/branch/main/ziptie.pdf  301!
 /cartographer  https://codeberg.org/brohrer/cartographer-paper/raw/branch/main/cartographer.pdf  301!
-/numba         https://e2eml.school/numba_tips.html  301!
+/numba         https://brandonrohrer.com/numba_tips.html  301!
+
+# GitLab projects aliases
+/code               https://gitlab.com/brohrer/    301!
+/proj               https://gitlab.com/brohrer/    301!
+/projects           https://gitlab.com/brohrer/    301!
+/repos              https://gitlab.com/brohrer/    301!
+/repostories        https://gitlab.com/brohrer/    301!
+
+/cottonwood         https://gitlab.com/brohrer/cottonwood/    301!
+/cw                 https://gitlab.com/brohrer/cottonwood/    301!
+/ponderosa          https://gitlab.com/brohrer/ponderosa/    301!
+/pon                https://gitlab.com/brohrer/ponderosa/    301!
+/lodgepole          https://gitlab.com/brohrer/lodgepole/    301!
+/lp                 https://gitlab.com/brohrer/lodgepole/    301!
+
+/ecg                https://gitlab.com/brohrer/study-ecg-rhythms   301!
+/ecg-rhythms        https://gitlab.com/brohrer/study-ecg-rhythms   301!
+/ecgrhythms         https://gitlab.com/brohrer/study-ecg-rhythms   301!
+
+/mnist              https://gitlab.com/brohrer/study-mnist-digits   301!
+/mnist-digits       https://gitlab.com/brohrer/study-mnist_digits   301!
+/mnistdigits        https://gitlab.com/brohrer/study-mnist_digits   301!
+
+/cifar              https://gitlab.com/brohrer/study-cifar-10   301!
+/cifar-10           https://gitlab.com/brohrer/study-cifar-10   301!
+/cifar10            https://gitlab.com/brohrer/study-cifar-10   301!
+
+/backpropagation    https://www.youtube.com/watch?v=6BMwisTZFr4 301!
+/backprop           https://www.youtube.com/watch?v=6BMwisTZFr4 301!
+/bp                 https://www.youtube.com/watch?v=6BMwisTZFr4 301!
