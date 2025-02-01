@@ -146,7 +146,16 @@ _time_to_live = 600.0  # seconds </code></pre>
         <p>Dead simple is an aesthetic. It says that the ideal is achieved not when nothing more can be added, but when nothing more can be taken away. It is the aims to follow the apocryphal advice of Albert Einstein, to make a thing as simple as possible, but no simpler.
         <p>Dead simple is like keystroke golfing, but instead of minimizing the number of characters, it minimizes the number of concepts a developer or a user has to hold in their head.
         <p>I&#39;ve tried to embody it in dsmq. dsmq has fewer lines of code than RabbitMQ has <em>repositories</em>. And that tickles me. 
-
+        <hr>
+        <h3>Update</h3>
+        <p>As of January 2025, dsmq uses
+        <a href="https://github.com/python-websockets/websockets">
+        websockets</a> for communication, instead
+        of sockets. They are at a higher level of abstration than sockets
+        (the application layer) but they do it well, keeping
+        things simple and robust. They also make it easier to read
+        messages right into javascript, if you were going to, say,
+        create some web-based monitoring and animations.
 
         <script type="text/javascript" src="javascripts/blog_signature.js"></script>
       </section>
