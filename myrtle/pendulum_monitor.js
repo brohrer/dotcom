@@ -15,15 +15,7 @@ function GetURLParameter(sParam)
 var host = GetURLParameter('host');
 var port = GetURLParameter('port');
 
-//const fs = require('fs');
-//const toml = require('toml');
-
-//const config = toml.parse(fs.readFileSync('../../../config.toml', 'utf-8'));
-
 const addr = `ws://${host}:${port}`;
-// const socket = new WebSocket("ws://127.0.0.1:30008");
-// const socket = new WebSocket("ws://192.168.1.20:30957");
-//const socket = new WebSocket("ws://192.168.1.20:38388");
 const socket = new WebSocket(addr);
 
 // get canvas and context
