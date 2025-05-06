@@ -51,9 +51,10 @@
 /httyr4minjerk   https://vimeo.com/768248726  301! 
 /httyr4logit     https://vimeo.com/772902777  301!
 
-/ziptie        https://codeberg.org/brohrer/ziptie-paper/src/branch/main/ziptie.pdf  301!
+/buckettree    https://codeberg.org/brohrer/bucket-tree  301!
 /cartographer  https://codeberg.org/brohrer/cartographer-paper/raw/branch/main/cartographer.pdf  301!
 /numba         https://brandonrohrer.com/numba_tips.html  301!
+/ziptie        https://codeberg.org/brohrer/ziptie-paper/src/branch/main/ziptie.pdf  301!
 
 # GitLab projects aliases
 /code               https://gitlab.com/brohrer/    301!
