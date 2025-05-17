@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+  <script type="text/javascript">var blog_title = " Solving an easy RL problem on hard mode";</script>
+  <script type="text/javascript">var publication_date = "May 17, 2025";</script>
+  <head>
+    <link rel="icon" href="images/ml_logo.png">
+    <meta charset='utf-8'>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <base target="_blank">
+    <script type="text/javascript" src="javascripts/blog_head.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript" src="javascripts/blog_header.js"></script>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+
+<p>
+A story about a reinforcement learning approach learning to make
+a pendulum stand up straight, while making very few assumptions.
+</p>
+
+<h2>  tl;dr </h2>
+
+<p>
+This is a demonstration of an RL approach that uses a combination of new tools
+to control a simulated pendulum:
+</p>
+
+<ul>
+<li> <a href="https://www.brandonrohrer.com/buckettree">BucketTree</a>
+to learn a discretization of the pendulum’s continuous
+state variables, angle and angular velocity,</li>
+<li> <a href="https://www.brandonrohrer.com/ziptie">Ziptie</a>
+to bundle the discretized values into discrete states,</li>
+<li> <a href="https://www.brandonrohrer.com/fnc">Fuzzy Naive Cartographer</a>
+(FNC) to learn common state-action-state sequences
+and to make conditional predictions of reward for each action.</li>
+</ul>
+
+<p>
+It all runs in <a href="https://www.brandonrohrer.com/myrtle">Myrtle</a>,
+a real-time reinforcement learning workbench.
+</p>
+
+<p>
+This approach requires only a little domain specific design
+and makes very few assumptions about its world.
+</p>
+
+<h2>  The game: Inverting a pendulum </h2>
+
+<p>
+The goal of this work was to demonstrate a new method, not to top a leaderboard
+or solve a previously unsolved problem. Demonstrating
+a method is best done on a simple, familiar task where successful behavior
+is obvious and any deviations from that are similarly obvious and straightforward
+to dissect.
+</p>
+
+<p>
+The playing field here is a pendulum. Imagine holding a broomstick by its
+one end. The goal is to invert the pendulum&mdash;to get it to stand straight up
+and stay there.
+</p>
+
+<p>
+<img title="Pendulum diagram" alt="An engineering diagram of a pendulum showing position, angular velocity, torque, and reward conventions." src="images/pendulum/pendulum.png">
+</p>
+
+<p>
+This is different from the popular
+<a href="https://gymnasium.farama.org/environments/classic_control/cart_pole/">cart-pole</a>
+task where the base of the pendulum slides back and forth on a rail.
+This post considers
+<a href="https://gymnasium.farama.org/environments/classic_control/pendulum/">a fixed-based pendulum</a>,
+a straight arm with a pinned shoulder.
+</p>
+
+<p>
+<iframe src="https://vimeo.com/856254210?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="820" height="454" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="demo video"></iframe>
+</p>
+
+<h3>  Physics </h3>
+
+<p>
+The physical representation of the pendulum is simplistic.
+The arm has uniform mass. It has a small amount of rotational friction,
+proportional to its speed. And gravity acts on the pendulum's center of mass,
+pulling it downward.
+</p>
+
+<p>
+As always, the canonical source of information is
+<a href="https://codeberg.org/brohrer/myrtle/src/branch/main/src/myrtle/worlds/pendulum.py">the code itself</a>.
+</p>
+
+<h3>  Sensors </h3>
+
+<p>
+There are two quantities returned by sensors: pendulum position and
+rotational speed.
+</p>
+
+<p>
+Position, &theta;,  is measured in radians, zero when pointing straight down,
+&theta; = &pi;/2 when pointing to the right, $theta = &pi; when pointing upward, and
+continuing around to almost 2&pi; when it reaches the bottom again and resets
+to 0.
+</p>
+
+<p>
+Angular speed, &omega;,  is measured in radians per second. Positive angular speed
+is counter-clockwise (the direction of increasing position) and
+negative speed is clockwise.
+</p>
+
+<h3>  Actions </h3>
+
+<p>
+Actions take the form of torque, &tau;,  applied to the base of the pendulum.
+Positive torque accelerates the pendulum counter-clockwise, 
+in the direction of increasing position. Negative torque accelerates it
+in the clockwise direction.
+</p>
+
+<p>
+Actions are discrete in time. Each action is a constant torque that
+lasts for 1/8 second.
+</p>
+
+<p>
+There are 13 discrete values the torque can take, 6 positive, 6 negative, and
+zero. Possible torque values are distributed nonuniformly across the
+range, with the middle half of the range having denser coverage. This results
+in a finer grained representation of small torques, useful for making
+fine-tuning adjustments.
+</p>
+
+<h3>  Reward </h3>
+
+<p>
+The pendulum returns reward, <em>r</em>,  related to how high the its swinging end reaches,
+its vertical distance from its straight down &theta; = 0 position.
+It reaches a maximum of <em>r</em> = 2 at the straight up &theta; = &pi; position.
+A successful learning curve will work its way up to 2 and stay close to it.
+</p>
+
+<h2>  Cheat mode: Servo </h2>
+
+<p>
+We can skip every hard and interesting part of this problem by using a servo,
+a motor and controller that take a desired position and drive the
+pendulum arm directly to it. It hides the problem from us. Instead of taking
+torque as an input and generating motion as an output,
+a servo allows us to provide the final answer, and then tells us not
+to look behind the curtain while it solves the problem for us. This is
+usually done by gearing the drive motor down so far that
+the pendulum dynamics become easy to ignore or by implementing
+some kind of controller in a black box.
+</p>
+
+<p>
+The servo solution is worth mentioning because it's common.
+When working with a machine that’s big enough to hurt when it hits you,
+it’s nice to know exactly where it’s going to be and when. This is one
+of the reasons that reinforcement learning is not frequently used in robots.
+(But also something I would love to change.)
+</p>
+
+<h2>  Level 1: Bang-bang control </h2>
+
+<p>
+One of the most straightforward ways to control a pendulum is
+to sense whether it is to the right or to the left of its desired position
+and apply the maximum torque the other direction. For some systems
+this works remarkable remarkably well. It’s also straightforward
+to implement. There’s no math other than a comparison with
+the desired position.
+</p>
+
+<p>
+Bang-bang control does require knowing a fair amount about your system, though.
+</p>
+
+<ol>
+<li> It requires knowing which position is the desired position.
+In a pendulum, the connection between position and reward is clear,
+but in real systems, it can be quite complex. In robots, it’s likely
+to involve the positions and velocities of many degrees of freedom,
+and probably their time histories as well.</li>
+<li> It requires knowing how the current state is related to the goal state
+In the pendulum, it’s obvious that &theta; greater than &pi;
+is past the goal in the counterclockwise direction while
+&theta; less than &pi; is past the goal in the clockwise direction.
+The relationship of every pendulum position to the goal is straightforward.
+This isn’t always the case. Driving through the crisscross of one-way streets
+that is downtown Boston demonstrates how the appearance of being close
+to a goal may not reflect the realities. The distance as the crow flies
+is only very loosely related to the actual driving distance, which itself
+is only a very approximate approximately connected to the drive time.</li>
+<li> It requires knowning which action will drive the system closer to its goal.
+Again in the pendulum this is obvious, but even in systems with
+two degress of freedom the connection becomes less obvious quickly.
+Assuming that we know which actions drive a system to its goal is
+a big assumption.</li>
+</ol>
+
+<p>
+Bang-bang control in a pendulum, while effective, only works because
+it allows us to build in a lot of implicit knowledge about how a pendulum works.
+</p>
+
+<h2>  Level 2: PD control </h2>
+
+<p>
+Bang-bang control is inelegant. When driving a car, bang bang control
+would be having the accelerator fully depressed until you reach
+your destination, at which point you instantly slam on the brake.
+It can be hard on your machine and on any humans involved.
+It can also result in poor performance, overshoot of the goal,
+and an audible "bang" when actuators switch instantly from
+full speed ahead to full reverse.
+</p>
+
+<p>
+A useful improvement over a bang bang is proportional-derivative (PD) control.
+It gets around some of the more obnoxious shortcomings of bang-bang control
+by adjusting its torque appropriately. The further away the pendulum is
+from the goal, the greater the torque applied to move it back
+(proportional control). And to help keep it stable, a small torque
+is added in the direction opposite to that of the pendulum's
+movement (derivative control). Similar to bang-bang control, PD-control
+drives the pendulum to its target position, albeit less violently.
+And like bang-bang control, it requires knowing which pendulum state
+maps to maximum reward, where pendulum states are relative to each other,
+and which actions move the pendulum from its current state to the goal
+state.
+</p>
+
+<h2>  Level 3: Q-learning </h2>
+
+<p>
+The difficulty level goes up considerably if we take away knowledge
+about which position is rewarded, where the current position is in
+relation to it, and which action will move the system closer to its goal.
+This is the difficulty level on which Q-learning operates.
+</p>
+
+<p>
+Rather than working with continuous angular positions and velocties,
+Q-learning works with a discretized state representation. Position is
+chopped into discrete bins, as is velocity. Now, instead of &theta;
+being able to take on any real value between 0 and 2&pi;, it has a
+relatively small number of discrete options to choose from.
+Similarly with &omega;. And because there are just a handful of
+positions and velocities to choose from, we can list every possible
+combination of them, together with every action that can be taken,
+in one big table. Then, learning to control the pendulum becomes a task
+of filling in the tabel - of trying every action 
+n every state a few times and learning what
+reward tends to occur.
+</p>
+
+<p>
+Q-learning is a classical reinforcement learning technique. It
+relaxes all the assumptions and system knowledge required by PD or
+bang-bang control. 
+</p>
+
+<h2>  Level 4: Q-learning with curiosity </h2>
+
+<h2>  Level 5: Model learning FNC </h2>
+
+<h2>  Level 6: Feature learning with Ziptie </h2>
+
+<h2>  Hard mode: Discretization learning with BucketTree </h2>
+
+<h2>  Next level </h2>
+
+<p>
+There are some remaining parts of the system that are either assumed away
+or hard coded.
+</p>
+
+<h3>  Action discretization </h3>
+
+<h3>  Attention </h3>
+
+<p>
+<hr>
+</p>
+
+<p>
+This approach minimizes the amount of problem-specific engineering that
+needs to be done. It gets closer to the ultimate goal of a domain-agnostic
+RL agent, a plug-and-play robot brain.
+</p>
+
+        <script type="text/javascript" src="javascripts/blog_signature.js"></script>
+      </section>
+    </div>
+    <script type="text/javascript" src="javascripts/blog_footer.js"></script>
+  </body>
+</html>
