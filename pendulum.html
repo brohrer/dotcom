@@ -2,7 +2,7 @@
 <html>
 
   <script type="text/javascript">var blog_title = " Solving an easy RL problem on hard mode";</script>
-  <script type="text/javascript">var publication_date = "May 24, 2025";</script>
+  <script type="text/javascript">var publication_date = "May 26, 2025";</script>
   <head>
     <link rel="icon" href="images/ml_logo.png">
     <meta charset='utf-8'>
@@ -50,6 +50,11 @@ a real-time reinforcement learning workbench.
 <p>
 This approach requires only a little domain specific design
 and makes very few assumptions about its world.
+</p>
+
+<p>
+<iframe src="https://player.vimeo.com/video/1087848386?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&embedded=true" width="660" height="400" frameborder="0"  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="The author reading the page"></iframe>
+If you prefer to listen, here's an audio version.
 </p>
 
 <h2>  The game: Inverting a pendulum </h2>
@@ -557,10 +562,10 @@ adds an extra forty thousand time steps to its learning process.
 
 <p>
 <figure>
-  <img title="Adding BucketTree results in a similar time period for learning, but with a more up-and-down time course" alt="The bottom plot shows a line that makes a jagged climb from
+  <img title="The addition of BucketTree discretizers results in a somewhat longer time period for learning, and a somewhat more up-and-down time course" alt="The bottom plot shows a line that makes a jagged climb from
 1.0 to 1.9 over about 100K time steps
 " src="images/pendulum/reward_buckettree_fnc_pendulum.png">
-  <figcaption>Adding BucketTree results in a similar time period for learning, but with a more up-and-down time course</figcaption>
+  <figcaption>The addition of BucketTree discretizers results in a somewhat longer time period for learning, and a somewhat more up-and-down time course</figcaption>
 </figure>
 </p>
 
@@ -660,23 +665,19 @@ that over many cycles, because it will be slightly different each time.
 
 <p>
 <figure>
-  <img title="A Myrtle timing report" alt="A set of plots showing the distribution of time taken for each step
+  <img title="A Myrtle timing report The timing report is dense, so it's worth a walk-through." alt="A set of plots showing the distribution of time taken for each step
 " src="images/pendulum/timing_buckettree_pendulum.png">
-  <figcaption>A Myrtle timing report</figcaption>
+  <figcaption>A Myrtle timing report The timing report is dense, so it's worth a walk-through.</figcaption>
 </figure>
 </p>
 
 <p>
-The timing report is dense, so it's worth a walk-through.
-</p>
-
-<p>
-The top plot shows a the most recent few cycles in the RL loop, extending
+The top plot shows the most recent few cycles in the RL loop, extending
 from the current time, 0 ms, back to almost 100 ms ago. The bars show
 phases of the cycle. The world bar shows the period between when it receives
 an action and when it passes the next round of sensor information back
 to the agent. In a perfectly fast RL system, the world bar would be solid
-across cycles, with zero agent processingn delay. In a real-time system
+across cycles, with zero agent processing delay. In a real-time system
 this will never be the case. But in this plot, it shows that the world
 bar covers about 80% of the cycle, which is pretty good. It also shows
 the agent processing time. Even for the BucketTree/Ziptie/FNC stack,
@@ -688,9 +689,9 @@ The sending of new sensor information to the agent occurs on time,
 regardless of any delays that came before. The gaps between the agent
 and world bars are the handoff times. Sensor and action information
 are passed using Python's multiprocessing Queues, which are quite fast,
-but they still have to wait to be read on the other side. Both the world
+but the information still has to wait to be read by the recipient. Both the world
 and agent check for new information on a regular cadence. It's quick, but
-it still means the letter sits in the mailbox for a few hundred microseconds.
+the letter sits in the mailbox for a few hundred microseconds.
 </p>
 
 <p>
@@ -701,7 +702,7 @@ and anomalies to become visible.
 
 <p>
 The fourth plot shows the distribution of the time per cycle.
-The pendulum control loop is running a 8 cycles per second. Given the
+The pendulum control loop is running at 8 cycles per second. Given the
 physical dynamics of the pendulum, issuing motor torque commands 8 times
 in a second is the sweet spot for being able to control it well.
 Much faster than that and the effect of an action is hard to observe.
@@ -741,17 +742,20 @@ and when they do it's usually by about 2 ms.
 <h2>  Bonus points: Simple reward function </h2>
 
 <p>
-It's a minor point, but worth mentioning: this work is also using a simpler
+It's a minor point, but worth mentioning: Myrtle's pendulum is also using a simpler
 reward function than the widely used
 <a href="https://gymnasium.farama.org/environments/classic_control/pendulum/#rewards">Gymnasium pendulum</a>.
-Gymnasium as a fanastic resource with a wide variety of worlds for a RL
-agent to try themselves against. The implementation of pendulum there
+Gymnasium as a fantastic resource with a wide variety of worlds for a RL
+agent to try themselves against. The implementation of the Gymnasium pendulum
 has a reward that includes a stiff penalty for moving quickly, as well
 as a cost for taking large actions.
 </p>
 
 <p>
-<code>-(&theta;^2 + &omega;^2/10 + torque^2/1000)</code>
+<code>-(&theta;^2 + &omega;^2/10 + &tau;^2/1000)</code>
+</p>
+
+<p>
 (Note that &theta; in the Gymnasium pendulum is defined as zero in the upright
 position, positive to the right and negative to the left.)
 </p>
@@ -759,7 +763,7 @@ position, positive to the right and negative to the left.)
 <p>
 This formulation gives indirect hints to the agent about what strategies
 it should adopt. It directly penalizes wild swings and hard twists.
-It's not at all wrong to do this, but it is important to note that the
+It's not wrong to do this, but it is important to note that the
 reward function is a common place for domain-specific knowledge and assumptions
 to get baked into the algorithm. Removing these extraneous terms, as we have,
 makes learning to control the pendulum a greater challenge. Definitely worthy
@@ -783,7 +787,7 @@ The <a href="https://codeberg.org/brohrer/myrtle/src/commit/7b957081a8e2e9372434
 was developed through trial and error and the learnability of the world
 is sensitive to them. BucketTree is great at automatically discretizing
 sensors, but the problem of learning useful action discretizations
-is a tougher one. I'm unconfortable having this much hard-coded domain
+is a tougher one. I'm uncomfortable having this much hard-coded domain
 knowledge in the world. It is an itch in my brain. It is on my
 to-do list to make this learnable as well.
 </p>
@@ -822,7 +826,7 @@ it can be estimated by looking at the last few positions and action torques.
 
 <p>
 The methods described here all assume that the current set of observations
-are sufficient for it to decide the best action to take next, also
+are all that's needed for deciding the best action to take next, also
 called the <a href="https://en.wikipedia.org/wiki/Markov_property">Markov Assumption</a>.
 To become more general and play on yet harder levels, it will be
 necessary to relax this assumption. This is something I'm working on
@@ -850,15 +854,16 @@ that determine how quickly new features and buckets get formed.
 </p>
 
 <p>
-There is a certain amound of kicking the can down the road.
-Even though I'm no longer hard coding in pendulum-specific information,
+Learning discretizations and features involves a certain amount of
+kicking the can down the road.
+Even though I'm no longer hard coding pendulum-specific information,
 I'm still hard coding the behaviors of the algorithms that learn them,
 their hyperparameters.
 But while the algorithms' performance is quite sensitive to their
-hyperparameters, they still cover a broad swath of systems, far more
-general than just a single degree of freedom pendulum.
-Learning the feature of a system and learning the discretization of its
-inputs makes an this approach applicable to far more systems than it would
+hyperparameters, they can learn a broad swath of systems, far more
+than just a single degree of freedom pendulum.
+Learning the features of a system and learning the discretization of its
+inputs make this approach applicable to far more systems than it would
 be without them.
 If there are still a few magic numbers to choose, then that's a small price
 to pay.
@@ -867,7 +872,7 @@ to pay.
 <p>
 The process of choosing those magic numbers, hyperparameter optimization,
 is a popular machine learning topic. Typical approaches range from
-include sophisticated
+sophisticated
 Bayesian algorithms to simply trying everything. But by far the most common
 approach is researchers trial-and-erroring their way into something that
 works pretty well most of the time. This isn't a terrible way to go.
@@ -877,9 +882,10 @@ faster than could be discovered by brute force.
 </p>
 
 <p>
-Bayesian hyperparameter optimization fall on the side of improving
+Bayesian hyperparameter optimization falls on the side of improving
 performance by building in
-more domain knowledge (priors). Exhaustive search falls on the other
+more domain knowledge (known in Bayesian circles as <em>priors</em>).
+Exhaustive search falls on the other
 side. It's horribly inefficient, but assumes nothing about the
 way hyperparameters act or interact. A middle ground can be found in
 <a href="https://www.brandonrohrer.com/evopowell.html">Evolutionary Powell's method</a>,
@@ -897,7 +903,7 @@ in a way that is weighted toward the most successful runs seen so far.
 <p>
 In this animated example the exploration proceeds along one dimension at
 a time (in the spirit of
-<a href="https://en.wikipedia.org/wiki/Powell's_method)">Powell's method</a> but
+<a href="https://en.wikipedia.org/wiki/Powell's_method) ">Powell's method</a> but
 the selection of the starting point for each new dimension is
 weighted according to the performance of its nearest evaluated neighbors.
 </p>
@@ -913,19 +919,18 @@ hard-coding hyperparameters
 <p>
 A loosely related concept here is the
 <a href="https://en.wikipedia.org/wiki/No_free_lunch_theorem">No Free Lunch Theorem</a>.
-In a gross oversimplification, it state that if algorithm A performs better
+In a gross oversimplification, it states that if algorithm A performs better
 than algorithm B on a task, there is another task for which the reverse
 will be true. There is no algorithm which performs better on every possible
 problem. The best you can do is identify the set of problems you care about
 the most and look for algorithms that perform well on them, at the expense 
-of all others. In the case of controlling robots, we can definitely do this.
+of all the others. In the case of controlling robots, we can definitely do this.
 We don't need an approach that can learn to maximize reward on just any system.
-There are a few assumptions we can hang onto.
-We can focus on
+There are a handful assumptions we can focus on,
 </p>
 
 <ol>
-<li> physical systems (or simulations of them),</li>
+<li> physical systems and simulations of physical systems,</li>
 <li> with length scales from a few millimeters to a few meters,</li>
 <li> on time scales from a few milliseconds to a few days,</li>
 <li> that are dominated by classical mechanics.</li>
@@ -941,7 +946,7 @@ what controlling a pendulum on hard mode is trying to do.
 
 <p>
 Ziptie, BucketTree, and FNC minimize the amount of problem-specific engineering that
-needs to be done. They gets closer to the ultimate goal of a domain-agnostic
+needs to be done. They get us closer to the ultimate goal of a domain-agnostic
 RL agent, a plug-and-play robot brain.
 </p>
 
@@ -957,7 +962,7 @@ RL agent, a plug-and-play robot brain.
 <code>cd pendulum-examples</code>
 </p>
 
-<h4>  2) Downlod uv if you don't already have it </h4>
+<h4>  2) Download uv if you don't already have it </h4>
 
 <p>
 <code>curl -LsSf https://astral.sh/uv/install.sh | sh</code>
