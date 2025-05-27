@@ -209,6 +209,11 @@ p img {
   border: none;
 }
 
+figcaption {
+  padding: 2px;
+  text-align: center;
+}
+
 pre, code, var {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 }

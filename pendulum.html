@@ -2,7 +2,7 @@
 <html>
 
   <script type="text/javascript">var blog_title = " Solving an easy RL problem on hard mode";</script>
-  <script type="text/javascript">var publication_date = "May 26, 2025";</script>
+  <script type="text/javascript">var publication_date = "May 27, 2025";</script>
   <head>
     <link rel="icon" href="images/ml_logo.png">
     <meta charset='utf-8'>
@@ -118,7 +118,7 @@ rotational speed.
 
 <p>
 Position, &theta;,  is measured in radians, zero when pointing straight down,
-&theta; = &pi;/2 when pointing to the right, $theta = &pi; when pointing upward, and
+&theta; = &pi;/2 when pointing to the right, &theta; = &pi; when pointing upward, and
 continuing around to almost 2&pi; when it reaches the bottom again and resets
 to 0.
 </p>
@@ -157,7 +157,7 @@ fine-tuning adjustments.
 The pendulum returns reward, <em>r</em>,  related to how high the its swinging end reaches,
 its vertical distance from its straight down &theta; = 0 position.
 It reaches a maximum of <em>r</em> = 2 at the straight up &theta; = &pi; position.
-A successful learning curve will work its way up to 2 and stay close to it.
+A successful learning curve will work its way up to 2 and stay there.
 </p>
 
 <p>
@@ -194,7 +194,7 @@ of the reasons that reinforcement learning is not frequently used in robots.
 One of the most straightforward ways to control a pendulum is
 to sense whether it is to the right or to the left of its desired position
 and apply the maximum torque the other direction. For some systems
-this works remarkable remarkably well. It’s also straightforward
+this works remarkably well. It’s also straightforward
 to implement. There’s no math other than a comparison with
 the desired position.
 </p>
@@ -218,7 +218,7 @@ This isn’t always the case. Driving through the crisscross of one-way streets
 that is downtown Boston demonstrates how the appearance of being close
 to a goal may not reflect the realities. The distance as the crow flies
 is only very loosely related to the actual driving distance, which itself
-is only a very approximate approximately connected to the drive time.</li>
+is only a very approximately connected to the drive time.</li>
 <li> It requires knowning which action will drive the system closer to its goal.
 Again in the pendulum this is obvious, but even in systems with
 two degress of freedom the connection becomes less obvious quickly.
@@ -234,7 +234,7 @@ it allows us to build in a lot of implicit knowledge about how a pendulum works.
 <h2>  Level 2: PD control </h2>
 
 <p>
-Bang-bang control is inelegant. When driving a car, bang bang control
+Bang-bang control is inelegant. When driving a car, bang-bang control
 would be having the accelerator fully depressed until you reach
 your destination, at which point you instantly slam it into reverse.
 It can be hard on your machine and on any humans involved.
@@ -244,13 +244,13 @@ full speed ahead to full reverse.
 </p>
 
 <p>
-A useful improvement over a bang bang is proportional-derivative (PD) control.
+A useful improvement over a bang-bang is proportional-derivative (PD) control.
 It gets around some of the more obnoxious shortcomings of bang-bang control
 by adjusting its torque appropriately. The further away the pendulum is
 from the goal, the greater the torque applied to move it back
 (proportional control). And to help keep it stable, a small torque
 is added in the direction opposite to that of the pendulum's
-movement (derivative control), simulating friction.
+movement, simulating friction (derivative control).
 </p>
 
 <p>
@@ -281,7 +281,7 @@ Similarly with &omega;. And because there are just a handful of
 positions and velocities to choose from, we can list every possible
 combination of them, together with every action that can be taken,
 in one big table. Then, learning to control the pendulum becomes a task
-of filling in the tabele&mdash;of trying every action 
+of filling in the table&mdash;of trying every action 
 in every state a few times and learning what
 reward tends to occur.
 </p>
@@ -392,7 +392,7 @@ the first time an action is tried in a situation will happen every time,
 (a learning rate of 1). Then for the second action the learning rate
 can be backed off, say to 1/2. This learning rate backoff continues
 for the third, fourth and subsequent trials, until eventually it settles
-in to some steady state learning rate floor, like 0.03.
+in to some steady state learning rate floor, say 0.03.
 </p>
 
 <p>
@@ -417,8 +417,8 @@ just short of 2.0 over about 65K time steps
 <p>
 Importantly, the gains that come from adding curiosity and aggressive
 early learning rates do not require any specific domain knowledge
-or assumptions. There is are subtle pendulum understandings built into
-them. They apply equally well to any world.
+or assumptions. There is no subtle pendulum understandings built into
+these tricks. They apply equally well to any world.
 </p>
 
 <h2>  Level 6: Feature learning with Ziptie </h2>
@@ -431,9 +431,10 @@ This seems like a very small step, and hardly any contribution of
 domain knowledge for the pendulum, but for systems with a large number
 of inputs, like an array of pressure sensors
 or an image with thousands of pixels, the full list of every possible
-combination would be imposible large. In this case
+combination would be imposibly large. When this is the case,
 small collections of sensors&mdash;a
-group of active pressure sensors here or a visible edge there&mdash;is a much
+group of active pressure sensors here or a group of pixels
+forming a visible edge there&mdash;is a much
 more useful set of features to learn from.
 </p>
 
@@ -447,10 +448,11 @@ of a designer.
 
 <p>
 The <a href="https://www.brandonrohrer.com/ziptie">Ziptie</a> algorithm is developed
-to solve exactly this problem. In the case of the pendulum, ziptie takes in all
+to solve exactly this problem. In the case of the pendulum, Ziptie takes in all
 the discrete pendulum positions and all the discrete velocity values and 
-learns to pair every position with every velocity. It's an not really
-necessary for a system as simple as the pendulum, but it is a way to
+learns to pair every position with every velocity. It's not really
+necessary to do this for a system as simple as the pendulum, but
+automatic feature creation is a way to
 make the learning approach more agnostic to the world it is learning
 to navigate.
 </p>
@@ -472,18 +474,19 @@ be constructed from raw sensors) makes the algorithm's job harder.
 It has an extra level of structure to learn. Before it can even start
 dialing in the optimal actions to take in each situation, it first has
 to learn to recognize those position-velocity pairs that represent
-each situation. The win is that the method is not stronger, more general.
+each situation. The win is that the method is a lot stronger, more general.
 It requires less built in knowledge. The cost of this win is an 
 extra forty thousand time steps before performance gets close to optimal,
 and the pendulum spends most of its time facing straight up.
 </p>
 
 <p>
-This is exactly the trade-off this work is targeting. It's not about learning
+This is exactly the trade-off this work is targeting. Playing on hard mode
+is not about learning
 to invert a pendulum. We've already seen there are easier ways to do that.
 The goal is to be able to learn to control systems that we don't know
 much about. Systems that are more complex or difficult to model.
-That's where the real power is - not in learning to do one thing
+That's where the real power is&mdash;not in learning to do one thing
 better than everyone else but in learning to do more things at a B- level.
 </p>
 
@@ -492,7 +495,7 @@ At this stage, it is helpful to note that
 FNC also lets go of a common assumption, that every sensor observation
 at every time step is relevant. Methods like Q-learning that list all
 possible states in a table use a dense state representation&mdash;for two
-states to be the same every value of every sensor must be identical.
+states to be the same, they both must have the same value of every sensor.
 If there are noisy sensors present that have no bearing on what action
 should be taken, they will confuse the algorithm. It will fail to learn
 from its experience because every experience will appear completely new.
@@ -501,7 +504,7 @@ the best torque to apply given a position/velocity combination a hundred
 other irrelevant sensors won't prevent it from applying that knowledge.
 Combined with Ziptie, FNC learns a minimal reduced-state representation
 that is just rich enough to allow it to achieve its goals. This capability
-is rare, if not unique.
+in FNC is rare, if not unique, among RL approaches.
 </p>
 
 <h2>  Hard mode: Discretization learning with BucketTree </h2>
@@ -538,10 +541,10 @@ comes in.
 
 <p>
 BucketTree is a tree of buckets. The root bucket contains all the 
-values from minus infinity to plus infinity. At the next level,
-the bucket is split in two, which one bucket covering minus infinity to
+values from minus infinity to plus infinity. The next level is split into two buckets,
+with one bucket covering minus infinity to
 the split, and the other covering from the split to plus infinity.
-at the next level. And this continues for as many levels and
+And this continues for as many levels and
 buckets as the tree is allowed to create. A BucketTree with <em>n</em> full
 levels will have a total of 2^<em>n</em> - 1 buckets. The total number of
 buckets allowed is specified at BucketTree creation.
