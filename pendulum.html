@@ -597,9 +597,10 @@ of its time, and so they get subdivided into finer and finer buckets.
 </p>
 
 <p>
-Notably this doesn't slow the learning down. This is probably because the
-original designed discretization (equally spaced position bins
-and regularly, logarithmically spaced position bins) is denser than it
+Notably this doesn't slow the learning down very much.
+This is probably because the
+original, hand-designed discretization (equally spaced position bins
+and semi-regularly spaced velocity bins) is denser than it
 needs to be, particularly in regions far from the reward, resulting
 in a larger state space.
 </p>
@@ -632,7 +633,7 @@ action then may no longer be.
 
 <p>
 This is the challenge of operating in real-time, grounded in a wall clock.
-This whole pendulum exercise above has been completed with this real-time
+The whole pendulum exercise above has been completed with this real-time
 constraint in force. I created the RL workbench
 <a href="https://brandonrohrer.com/myrtle">Myrtle</a> to do exactly this.
 </p>
@@ -650,10 +651,10 @@ don't cause hiccups in the critical processes.
 
 <p>
 The world is the metronome
-for the RL loop. It sends sensor information at a consistent pace,
+for the RL loop. It sends sensor information at a consistent pace
 thanks to a <a href="https://github.com/brohrer/pacemaker">Pacemaker</a>, a precision
 timekeeping tool. Although the pendulum in these examples is simulated,
-that simulation is also tied to the world clock. A high speed pacemaker
+that simulation is also tied to the wall clock. A high speed pacemaker
 is used to govern the fine timesteps of the physics simulation behind it.
 </p>
 
