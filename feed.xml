@@ -13,6 +13,36 @@
 
   <item>
     <title>
+      Solving an easy RL problem on hard mode
+    </title>
+    <link>
+      https://www.brandonrohrer.com/pendulum.html
+    </link>
+    <description>
+    A story about a reinforcement learning approach learning to make a pendulum stand up straight, while making very few assumptions.
+
+tl;dr
+This is a demonstration of an RL approach that uses a combination of new tools to control a simulated pendulum:
+
+BucketTree to learn a discretization of the pendulum’s continuous state variables, angle and angular velocity,
+Ziptie to bundle the discretized values into discrete states,
+Fuzzy Naive Cartographer (FNC) to learn common state-action-state sequences and to make conditional predictions of reward for each action.
+It all runs in Myrtle, a real-time reinforcement learning workbench.
+
+This approach requires only a little domain specific design and makes very few assumptions about its world.
+
+The game: Inverting a pendulum
+
+The goal of this work was to demonstrate a new method, not to top a leaderboard or solve a previously unsolved problem. Demonstrating a method is best done on a simple, familiar task where successful behavior is obvious and any deviations from that are similarly obvious and straightforward to dissect.
+
+The playing field here is a pendulum. Imagine holding a broomstick by its one end. The goal is to invert the pendulum—to get it to stand straight up and stay there.
+
+    </description>
+  </item>
+
+
+  <item>
+    <title>
     On microsuffering
     </title>
     <link>
@@ -126,62 +156,6 @@ Brandon
 December 30, 2024
     </description>
   </item>
-
-  <item>
-    <title>
-    Write an HTTP client in Python
-    </title>
-    <link>
-        https://www.brandonrohrer.com/http_client.html
-    </link>
-    <description>
-    Why bother with HTTP?
-There are a lot of reasons you might want to get two computers talking to each other, and HTTP is a good way to make this happen. It's used to share web pages of course (the name "hypertext transfer protocol" describes this use case directly) but it can be used to share all kinds of other data too—all varieties of text, image, audio, and video formats. Just imagine all the shenanigans you can orchestrate with this power.
-
-In the world of computer networking getting computers talking the same language (a.k.a. protocol) is the first step. Some protocols are very niche, intended for tasks like reading oxygen sensors in combustion engines or controlling the environment in office buildings. In contrast, HTTP is a general purpose networking protocol. It pays the price of longer messages and a more complex standard in order to fill lots of different needs. It's a Swiss Army knife rather than a scalpel. It is said that Python is the second-best programming language for every task. The same could be said about HTTP for networking.
-
-This post is an attempt to give some guide posts through the terrain, but the world of HTTP is wide and has a lot of history and hidden corners. Everything written here is oversimplified, and some of it is probably wrong, but I hope you find it useful.
-    </description>
-  </item>
-
-  <item>
-    <title>
-    Writing an HTTP server in Python
-    </title>
-    <link>
-        https://www.brandonrohrer.com/http_server.html
-    </link>
-    <description>
-    This is the sequel to a post walking through an HTTP client in Python. The client in that post sent a request to a server that performs addition. This post walks through the code for that server
-
-Server terminology can be confusing. "Server" can refer to both the program that listens for HTTP messages and the metal and ceramic box sitting in a rack in a data center where that program runs. In this post, we are focusing on the first of those.
-    </description>
-  </item>
-
-  <item>
-    <title>
-    What is a server, anyway?
-    </title>
-    <link>
-        https://www.brandonrohrer.com/server_naming.html
-    </link>
-    <description>
-It's true that naming things is one of the two (or three) hardest problems in computer science, but with "server" they seemed to have gone out of their way to make it worse. Here's my attempt to clear the fog.
-
-SERVER: A process that waits and takes requests, like a server at a restaurant. Or perhaps more like an old-time rich people banquet where servers literally sat waiting nearby, ready to jump in and respond.
-
-REQUEST HANDLER (also called SERVER sometimes): A separate function, thread, or process that gets called to handle to request received by the server. In the restaurant example, the cooks in the kitchen are request handlers.
-
-CLIENT-SERVER MODEL (also CLIENT-SERVER ARCHITECTURE): The setup where one process (the client) sends requests to another (the server), which fulfills the request and sends a response back to the client. When you sit down at a table in a restaurant and place your order, you are the client in a client-server model.
-
-SERVER HOST (often called SERVER, for short): The computer where the server process runs. It can sit in your broom closet, under your desk, or in a data center in Virginia. In the restaurant metaphor the server host is the restaurant itself.
-
-SERVERLESS ARCHITECTURE: Contrary to its name, serverless architectures involve plenty of servers and server host, but they are all hidden behind tools and teams that manage them. To stretch the restaurant analogy even further, a serverless architecture would be like placing a catering order for a thousand sandwiches through a form, which is then picked up by a catering supervisor who places several smaller orders with individual restaurants for a few dozen sandwiches each. The servers still exist, the server handlers still exist, the server hosts still exist, you just don't have to worry about any of them (in theory).
-
-PROTOCOL: The format of the communication used to place requests and interpret responses from the server. In a restaurant, protocol includes whether you order at the counter or the table, whether you pay at the beginning or the end of the meal, and what language you speak to order. There are a handful of common protocols, including HTTP (hypertext transfer protocol) for web servers, FTP (file transfer protocol) for file servers, and SMTP (Simple Mail Transfer Protocol) for mail servers, and many others used for very specific functions or systems.
-    </description>
-  </item>
-
 
 </channel>
 
