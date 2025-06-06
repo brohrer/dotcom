@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+  <script type="text/javascript">var blog_title = "Build with AI or traditional ML?";</script>
+  <script type="text/javascript">var publication_date = "June 05, 2025";</script>
+  <head>
+    <link rel="icon" href="images/ml_logo.png">
+    <meta charset='utf-8'>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <base target="_blank">
+    <script src="javascripts/blog_head.js"></script>
+  </head>
+  <body>
+    <script src="javascripts/blog_header.js"></script>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+
+<h3><a id="Summary"></a><a href="#Summary">Summary</a></h3>
+
+<p>
+Shoppi, a small company with a shopping list app, is building
+a list completion feature.
+</p>
+
+<p>
+A <strong>large language model</strong> provides
+</p>
+
+<ol>
+<li> Simple architecture</li>
+<li> Versatility beyond training data</li>
+</ol>
+
+<p>
+A <strong>recommender system</strong> provides
+</p>
+
+<ol>
+<li> Item discovery</li>
+<li> High relevance</li>
+</ol>
+
+<p>
+A <strong>rule-based approach</strong> provides
+</p>
+
+<ol>
+<li> Low computation cost</li>
+<li> Low latency</li>
+<li> Transparency (explainability and debuggability)</li>
+</ol>
+
+<p>
+The Shoppi team opted for a rule-based solution as a first step,
+instead of an LLM or a recommender system,
+because it suits their limited resources and aligns with their product strategy.
+They plan to transition to a recommender system in 18 months,
+as the engineering team and user base grows and allows them
+to take advantage of their scale.
+</p>
+
+<p>
+<hr>
+</p>
+
+<h2><a id="Scenario"></a><a href="#Scenario">Scenario</a></h2>
+
+<p>
+Choosing whether to power an intelligent feature with a traditional
+recommender system, hard-coded rules, or an LLM is a game of
+give and take between several highly desirable charactertistics, including
+performance, maintainability, and cost. The right answer will be different
+in every situation.
+</p>
+
+<p>
+In this particular example, Shoppi is a fictional startup that has built
+an app for writing and managing grocery shopping lists. Shoppi is
+bootstrapped. The company has 22 employees, and the app just passed
+80,000 monthly subscribers at 3 USD per month. 
+</p>
+
+<p>
+Shoppi has 12 engineers, 7 frontend engineers covering iOS, Android, and
+web versions of the app, and 5 backend engineers covering 
+authentication, data, and infrastructure, They use AWS for cloud services.
+</p>
+
+<p>
+Shoppi's moat is their accumulated user list data.
+While their strategy includes giving customers a friction-free
+onboarding and a delightful user experience, the team believes that
+the app's real stickiness will come from using past lists
+to help users create new ones. This collection of user-generated list
+items would be the most difficult asset for a competitor to replicate.
+</p>
+
+<h3><a id="Intelligent-list-completion"></a><a href="#Intelligent-list-completion">Intelligent list completion</a></h3>
+
+<p>
+Shoppi's first step in this direction is to create a list completion feature.
+Once a list is begun, the app will suggest the next five items.
+Users can either accept, edit, or remove each item, after which another
+suggestion is added to the list, keeping the queue at five.
+</p>
+
+<p>
+If done well, these suggested items will be exactly the ones the user
+had in mind, making the list creation experience faster and requiring less
+mental effort. If unsuccessful, these items will be a distraction, slowing
+the user down and degrading their experience.
+</p>
+
+<p>
+Broadly speaking, there are three options for the algorithm behind 
+making these list suggestions: A large language model (LLM), a
+recommender system, or a rule-based approach. They each have areas
+where they perform well and areas they struggle with. They are all
+widely used. The decision of which one Shoppi should use depends
+on the specifics of their situaion.
+</p>
+
+<h3><a id="Large-Language-Models"></a><a href="#Large-Language-Models">Large Language Models</a></h3>
+
+<p>
+LLMs need no introduction. They are the engine behind modern AI and are
+literally everywhere. Because of the passion and volume of LLM evangelists,
+they are a natural solution to consider first. 
+</p>
+
+<h4><a id="Simple-architecture"></a><a href="#Simple-architecture">Simple architecture</a></h4>
+
+<p>
+One thing LLMs have going for themselves is that they are relatively simple
+to use, if Shoppi relies on third-party models like GPT, Gemini, or Claude.
+The LLMs themselves are many-billion parameter monstrosities, but third-party
+providers who specialize in their training, hosting, and maintenance bear
+the burden of feeding and housing them.
+All Shoppi's engineers will need to do is add some
+API calls to their app code. This still requires care and craft to do robustly,
+but it is simpler than implementing logic or models and requires fewer
+infrastructure elements. This simplicity means fewer places for bugs
+to hide and fewer system compenents, which translates into shorter
+development times, lower maintenance cost, and fewer failures.
+</p>
+
+<h4><a id="Versatility-beyond-user-data"></a><a href="#Versatility-beyond-user-data">Versatility beyond user data</a></h4>
+
+<p>
+The most compelling aspect of LLMs is that they have been trained on a vast
+trove of data. The data certainly includes shopping lists, but also includes
+recipes, parts lists for robots, sights to see in Amsterdam, baby names, and
+every other type of list that has every been published on the internet.
+Once a user starts writing a list, an LLM would naturally suggest a few more
+items that follow along with that theme, even if no Shoppi user had ever
+created a list like that before.
+</p>
+
+<p>
+This versatility has strategic implications for Shoppi. Should they decide
+to market their app as The Everything List creator in an effort to add
+users and usage, an LLM would help them do that. But if they decide to
+stay focused on grocery lists, perhaps partnering with grocery store chains to
+provide discounts and build loyalty, the versatility of LLMs would be
+a distractor.
+</p>
+
+<h4><a id="Why-not-to-use-an-LLM"></a><a href="#Why-not-to-use-an-LLM">Why not to use an LLM</a></h4>
+
+<p>
+Despite their strengths, LLMs have some weaknesses too. They are known
+for making things up, also known as hallucination. For brainstorming a list,
+this ability to think way outside the box is useful, but if
+it suggests a non-existent brand of toilet paper, then it becomes
+decidedly less helpful.
+</p>
+
+<p>
+Using a model owned by someone else also introduces a lack of control.
+If the model has security vulnerabilities or its cost suddenly jumps,
+that's out of Shoppi's control. And it leaves no option for tweaking results
+or adjusting the model's behavior.
+</p>
+
+<p>
+Perhaps the biggest downside to using an LLM is that it takes away Shoppi's
+moat. The company no longer has any strategic advantage from the customer
+data it has collected. A competitor could swoop in and build a competing
+app with the same performance and functionality.
+</p>
+
+<h3><a id="-Recommender-systems"></a><a href="#-Recommender-systems"> Recommender systems</a></h3>
+
+<p>
+Recommenders have been around since the early days of Netflix and Amazon,
+well before LLMs. They are not a single thing, but a broad class of methods
+that take users' past choices and use them to identify future items they
+they are likely to select. In the case of shopping lists, a recommender
+system would suggest items that a user has added in the past,
+as well as items that other users with similar lists have added.
+</p>
+
+<h4><a id="High-relevance"></a><a href="#High-relevance">High relevance</a></h4>
+
+<p>
+A recommender system is naturally inclined to provide relevant suggestions,
+since it is pulling from a collection of items that other users
+have already deemed relevant enough to include in their own lists.
+It won't invent new items from thin air.
+</p>
+
+<h4><a id="Item-discovery"></a><a href="#Item-discovery">Item discovery</a></h4>
+
+<p>
+Because it can pull from the collective history of all users' grocery items,
+a recommender system can help users discover new items they are likely
+to enjoy. If I have a list with potatoes and cheddar cheese, and
+other users with potatoes and cheddar often add green chile to the list,
+then the recommender system can suggest it, and possibly raise my baked
+potato game to a new level.
+</p>
+
+<h4><a id="Customizability"></a><a href="#Customizability">Customizability</a></h4>
+
+<p>
+A recommender system often includes tweaks to get it to deliver the
+right mix of relevant and novel, to avoid duplication, to steer clear
+of recommending particular items, or to promote others. It can be
+adapted based on business needs, design decisions, and customer feedback
+to provide tailor-made distributions of suggestions. This is another
+way Shoppi can transform their accumulated domain knowledge into
+a wider competitive moat.
+</p>
+
+<h4><a id="Why-not-to-use-a-recommender-system"></a><a href="#Why-not-to-use-a-recommender-system">Why not to use a recommender system</a></h4>
+
+<p>
+By design, recommnder systems have several processing steps.
+They are "systems" rather than "algorithms" because they typically
+pull from multiple database tables and perform pre- and post-processing
+on results.
+They are tweakable, but that
+tweakability also implies fiddling with settings and adding processing steps,
+all of which adds complexity. More complexity in turn comes with more
+development time and more frequent failures. This can be addressed with
+careful testing and maintenance, but those come at the cost of some
+developer time.
+</p>
+
+<p>
+There is also a risk to user privacy when their list items can be shared
+with other users. Common items are not a problem, but if a user creates
+a very descriptive item or an item that includes someone's name, it could
+become personally identifiable. This issue is also addressable,
+but again it comes at the cost of additional pre- and post-processing,
+increasing complexity.
+</p>
+
+<h3><a id="Rule-based-suggestions"></a><a href="#Rule-based-suggestions">Rule-based suggestions</a></h3>
+
+<p>
+The minimum viable item recommender is a rule-based approach, for example
+"Suggest the five most frequent list items from this user's history
+that aren't already on the list."
+The rule set can be trivially simple or extensive. Its defining characteristic
+is that it's the same for everyone, all the time. It doesn't adapt
+based on its experience.
+</p>
+
+<h4><a id="Low-latency"></a><a href="#Low-latency">Low latency</a></h4>
+
+<p>
+Rule-based suggestions can be blazingly fast to compute. 
+There are no large matrices to multiply or LLMs to consult.
+And for many rule sets they can also be computed locally,
+on the user's device, making them even snappier.
+</p>
+
+<h4><a id="Low-computation-cost"></a><a href="#Low-computation-cost">Low computation cost</a></h4>
+
+<p>
+The lightweight computation requirements also come at lower cost.
+There are fewer FLOPs and less memory, which means they can be run on
+fewer, smaller, and cheaper computers.
+</p>
+
+<h4><a id="Transparency-(explainability-and-debuggability)"></a><a href="#Transparency-(explainability-and-debuggability)">Transparency (explainability and debuggability)</a></h4>
+
+<p>
+As a bonus, rule-based approaches are entirely transparent. Every decision
+for what to recommend can be traced back to the rule responsible.
+Debugging undesired behaviors becomes straightforward, as does modifying
+the rules to change those behaviors.
+</p>
+
+<h4><a id="Why-not-to-use-a-rule-based-system"></a><a href="#Why-not-to-use-a-rule-based-system">Why not to use a rule-based system</a></h4>
+
+<p>
+The only downside to rule-based recommendations is that they are narrow
+and brittle. They are limited to the cases that the creators can foresee.
+It's usually possible to find corner cases and combinations where the
+recommendations fail or become ridiculous. Maintaining them can become
+a game of Whac-A-Mole where a new rule gets added for every bug observed
+in production.
+</p>
+
+<h2><a id="Analysis"></a><a href="#Analysis">Analysis</a></h2>
+
+<p>
+<hr>
+</p>
+
+<p>
+I work with tech leaders in small and medium-sized companies
+to navigate all aspects of
+data, analytics, and machine learning.
+</p>
+
+<p>
+If you'd like me to let you know when the next post comes out, email me at
+<a href="mailto:posts@brandonrohrer.com?subject=Future%20posts&body=Please%20let%20me%20know%20when%20the%20next%20one%20comes%20out.">posts@brandonrohrer.com
+</a>
+</p>
+
+        <script src="javascripts/blog_signature.js"></script>
+      </section>
+    </div>
+    <script src="javascripts/blog_footer.js"></script>
+  </body>
+</html>
