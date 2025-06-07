@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 
-  <script type="text/javascript">var blog_title = " Solving an easy RL problem on hard mode";</script>
-  <script type="text/javascript">var publication_date = "May 27, 2025";</script>
+  <script type="text/javascript">var blog_title = "Solving an easy RL problem on hard mode";</script>
+  <script type="text/javascript">var publication_date = "June 07, 2025";</script>
   <head>
     <link rel="icon" href="images/ml_logo.png">
     <meta charset='utf-8'>
@@ -24,7 +24,7 @@ A story about a reinforcement learning approach learning to make
 a pendulum stand up straight, while making very few assumptions.
 </p>
 
-<h2>  tl;dr </h2>
+<h2><a id="tl;dr"></a><a href="#tl;dr">tl;dr</a></h2>
 
 <p>
 This is a demonstration of an RL approach that uses a combination of new tools
@@ -57,7 +57,7 @@ and makes very few assumptions about its world.
 If you prefer to listen, here's an audio version.
 </p>
 
-<h2>  The game: Inverting a pendulum </h2>
+<h2><a id="The-game:-Inverting-a-pendulum"></a><a href="#The-game:-Inverting-a-pendulum">The game: Inverting a pendulum</a></h2>
 
 <p>
 The goal of this work was to demonstrate a new method, not to top a leaderboard
@@ -95,7 +95,7 @@ The pendulum in motion at 8 frames per second, the frequency at which the
 agent gets updated on the pendulum's sensors and issues new action commands.
 </p>
 
-<h3>  Physics </h3>
+<h3><a id="Physics"></a><a href="#Physics">Physics</a></h3>
 
 <p>
 The physical representation of the pendulum is simplistic.
@@ -109,7 +109,7 @@ As always, the canonical source of information is
 <a href="https://codeberg.org/brohrer/myrtle/src/branch/main/src/myrtle/worlds/pendulum.py">the code itself</a>.
 </p>
 
-<h3>  Sensors </h3>
+<h3><a id="Sensors"></a><a href="#Sensors">Sensors</a></h3>
 
 <p>
 There are two quantities returned by sensors: pendulum position and
@@ -129,7 +129,7 @@ is counter-clockwise (the direction of increasing position) and
 negative speed is clockwise.
 </p>
 
-<h3>  Actions </h3>
+<h3><a id="Actions"></a><a href="#Actions">Actions</a></h3>
 
 <p>
 Actions take the form of torque, &tau;,  applied to the base of the pendulum.
@@ -151,7 +151,7 @@ in a finer grained representation of small torques, useful for making
 fine-tuning adjustments.
 </p>
 
-<h3>  Reward </h3>
+<h3><a id="Reward"></a><a href="#Reward">Reward</a></h3>
 
 <p>
 The pendulum returns reward, <em>r</em>,  related to how high the its swinging end reaches,
@@ -166,7 +166,7 @@ Three traces of reward collected by a spinning pendulum at 8x real time,
 covering short, medium, and longer term history.
 </p>
 
-<h2>  Cheat mode: Servo </h2>
+<h2><a id="Cheat-mode:-Servo"></a><a href="#Cheat-mode:-Servo">Cheat mode: Servo</a></h2>
 
 <p>
 We can skip every hard and interesting part of this problem by using a servo,
@@ -188,7 +188,7 @@ of the reasons that reinforcement learning is not frequently used in robots.
 (But also something I would love to change.)
 </p>
 
-<h2>  Level 1: Bang-bang control </h2>
+<h2><a id="Level-1:-Bang-bang-control"></a><a href="#Level-1:-Bang-bang-control">Level 1: Bang-bang control</a></h2>
 
 <p>
 One of the most straightforward ways to control a pendulum is
@@ -231,7 +231,7 @@ Bang-bang control in a pendulum, while effective, only works because
 it allows us to build in a lot of implicit knowledge about how a pendulum works.
 </p>
 
-<h2>  Level 2: PD control </h2>
+<h2><a id="Level-2:-PD-control"></a><a href="#Level-2:-PD-control">Level 2: PD control</a></h2>
 
 <p>
 Bang-bang control is inelegant. When driving a car, bang-bang control
@@ -262,7 +262,7 @@ and which actions move the pendulum from its current state to the goal
 state.
 </p>
 
-<h2>  Level 3: Q-learning </h2>
+<h2><a id="Level-3:-Q-learning"></a><a href="#Level-3:-Q-learning">Level 3: Q-learning</a></h2>
 
 <p>
 The difficulty level goes up considerably if we take away knowledge
@@ -304,7 +304,7 @@ The bottom plot shows a line climbing smoothly from 0.8 to 1.7.
 </figure>
 </p>
 
-<h2>  Level 4: Q-learning with curiosity </h2>
+<h2><a id="Level-4:-Q-learning-with-curiosity"></a><a href="#Level-4:-Q-learning-with-curiosity">Level 4: Q-learning with curiosity</a></h2>
 
 <p>
 Q-learning is a classical reinforcement learning technique. It
@@ -373,7 +373,7 @@ Curiosity doesn't eliminate any of the assumptions made about the system,
 but it does level up the performance.
 </p>
 
-<h2>  Level 5: Model learning FNC </h2>
+<h2><a id="Level-5:-Model-learning-FNC"></a><a href="#Level-5:-Model-learning-FNC">Level 5: Model learning FNC</a></h2>
 
 <p>
 It's also possible to level up Q-learning. Q-learning
@@ -397,7 +397,7 @@ in to some steady state learning rate floor, say 0.03.
 
 <p>
 A method called
-<a href="https://www.brandonrohrer.com/fnc)(FNC">Fuzzy Naive Cartographer</a>
+<a href="https://www.brandonrohrer.com/fnc) (FNC">Fuzzy Naive Cartographer</a>
 uses this trick to learn state-action values more quickly.
 It is an approach I developed to learning state-action-state transition
 world models, but it also learns a state-action-reward value function.
@@ -421,7 +421,7 @@ or assumptions. There is no subtle pendulum understandings built into
 these tricks. They apply equally well to any world.
 </p>
 
-<h2>  Level 6: Feature learning with Ziptie </h2>
+<h2><a id="Level-6:-Feature-learning-with-Ziptie"></a><a href="#Level-6:-Feature-learning-with-Ziptie">Level 6: Feature learning with Ziptie</a></h2>
 
 <p>
 We do however have some world-specific knowledge built in to how 
@@ -507,7 +507,7 @@ that is just rich enough to allow it to achieve its goals. This capability
 in FNC is rare, if not unique, among RL approaches.
 </p>
 
-<h2>  Hard mode: Discretization learning with BucketTree </h2>
+<h2><a id="Hard-mode:-Discretization-learning-with-BucketTree"></a><a href="#Hard-mode:-Discretization-learning-with-BucketTree">Hard mode: Discretization learning with BucketTree</a></h2>
 
 <p>
 Even though Ziptie does a good job learning to build features, it still
@@ -619,7 +619,7 @@ whole stack of assumptions and domain knowledge that the vast majority
 of approaches require.
 </p>
 
-<h2>  Harder mode: Real-time </h2>
+<h2><a id="Harder-mode:-Real-time"></a><a href="#Harder-mode:-Real-time">Harder mode: Real-time</a></h2>
 
 <p>
 Another assumption that many RL implementations make is that they have
@@ -743,7 +743,7 @@ indicating that sometimes things just take longer than expected,
 and when they do it's usually by about 2 ms.
 </p>
 
-<h2>  Bonus points: Simple reward function </h2>
+<h2><a id="Bonus-points:-Simple-reward-function"></a><a href="#Bonus-points:-Simple-reward-function">Bonus points: Simple reward function</a></h2>
 
 <p>
 It's a minor point, but worth mentioning: Myrtle's pendulum is also using a simpler
@@ -774,7 +774,7 @@ makes learning to control the pendulum a greater challenge. Definitely worthy
 of some bonus points.
 </p>
 
-<h2>  Next level </h2>
+<h2><a id="Next-level"></a><a href="#Next-level">Next level</a></h2>
 
 <p>
 There are some remaining parts of the system that are either assumed away
@@ -783,7 +783,7 @@ ultimate, no cheat-codes hard mode, I'll need to find a way for
 the RL agent to learn all of these.
 </p>
 
-<h3>  Action discretization </h3>
+<h3><a id="Action-discretization"></a><a href="#Action-discretization">Action discretization</a></h3>
 
 <p>
 The set of discrete actions available to the agent is extremely hard coded.
@@ -796,7 +796,7 @@ knowledge in the world. It is an itch in my brain. It is on my
 to-do list to make this learnable as well.
 </p>
 
-<h3>  Time discretization </h3>
+<h3><a id="Time-discretization"></a><a href="#Time-discretization">Time discretization</a></h3>
 
 <p>
 The cadence at which the world-agent RL loop runs is another magic number,
@@ -817,7 +817,7 @@ lower- and higher-order estimates stays in a given range. I still haven't
 worked out how to apply this concept to RL, but it is also on my to-do list.
 </p>
 
-<h3>  Sequences and time-series </h3>
+<h3><a id="Sequences-and-time-series"></a><a href="#Sequences-and-time-series">Sequences and time-series</a></h3>
 
 <p>
 For many systems, it's not only the current set of sensor values that
@@ -845,7 +845,7 @@ included in the history. Attention is a way to filter down the sensor
 values to the most relevant ones, keeping the problem tractable.
 </p>
 
-<h3>  Hyperparameters </h3>
+<h3><a id="Hyperparameters"></a><a href="#Hyperparameters">Hyperparameters</a></h3>
 
 <p>
 So far I've conveniently avoided the fact that even when algorithms
@@ -918,7 +918,7 @@ but this is the path I would use to avoid making assumptions and
 hard-coding hyperparameters
 </p>
 
-<h3>  How far can this go? How assumption-free can we get? </h3>
+<h3><a id="How-far-can-this-go?-How-assumption-free-can-we-get?"></a><a href="#How-far-can-this-go?-How-assumption-free-can-we-get?">How far can this go? How assumption-free can we get?</a></h3>
 
 <p>
 A loosely related concept here is the
@@ -954,9 +954,9 @@ needs to be done. They get us closer to the ultimate goal of a domain-agnostic
 RL agent, a plug-and-play robot brain.
 </p>
 
-<h2>  Appendix: Running the examples </h2>
+<h2><a id="Appendix:-Running-the-examples"></a><a href="#Appendix:-Running-the-examples">Appendix: Running the examples</a></h2>
 
-<h4>  1) Download the code </h4>
+<h4><a id="1)-Download-the-code"></a><a href="#1)-Download-the-code">1) Download the code</a></h4>
 
 <p>
 <code>git clone https://codeberg.org/brohrer/pendulum-examples.git</code>
@@ -966,13 +966,13 @@ RL agent, a plug-and-play robot brain.
 <code>cd pendulum-examples</code>
 </p>
 
-<h4>  2) Download uv if you don't already have it </h4>
+<h4><a id="2)-Download-uv-if-you-don't-already-have-it"></a><a href="#2)-Download-uv-if-you-don't-already-have-it">2) Download uv if you don't already have it</a></h4>
 
 <p>
 <code>curl -LsSf https://astral.sh/uv/install.sh | sh</code>
 </p>
 
-<h4>  3) Choose an example and run it </h4>
+<h4><a id="3)-Choose-an-example-and-run-it"></a><a href="#3)-Choose-an-example-and-run-it">3) Choose an example and run it</a></h4>
 
 <p>
 <code>uv run buckettree_ziptie_fnc.py</code>
@@ -988,7 +988,7 @@ about reward and timing, and how to view an animation in the browser.
 </figure>
 </p>
 
-<h2>  Learn more </h2>
+<h2><a id="Learn-more"></a><a href="#Learn-more">Learn more</a></h2>
 
 <ul>
 <li> <a href="https://www.brandonrohrer.com/buckettree">BucketTree code</a></li>
