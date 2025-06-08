@@ -2,7 +2,7 @@
 <html>
 
   <script type="text/javascript">var blog_title = "Build with AI or traditional ML?";</script>
-  <script type="text/javascript">var publication_date = "June 07, 2025";</script>
+  <script type="text/javascript">var publication_date = "June 08, 2025";</script>
   <head>
     <link rel="icon" href="images/ml_logo.png">
     <meta charset='utf-8'>
@@ -318,6 +318,85 @@ Their wish list for a solution includes several
 performance and implementation characteristics.
 </p>
 
+<ul>
+<li> &#9711; ok</li>
+<li> &#9682; better</li>
+<li> &#9899; best</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Rule-based</th>
+      <th>Recommender</th>
+      <th>LLM</th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td>Relevance of results</td>
+      <td>&#9711;</td>
+      <td>&#9899;</td>
+      <td>&#9682;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Absence of obvious mistakes</td>
+      <td>&#9899;</td>
+      <td>&#9899;</td>
+      <td>&#9711;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Snappy response</td>
+      <td>&#9899;</td>
+      <td>&#9682;</td>
+      <td>&#9711;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Short time to build</td>
+      <td>&#9682;</td>
+      <td>&#9711;</td>
+      <td>&#9899;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Ability to improve</td>
+      <td>&#9899;</td>
+      <td>&#9682;</td>
+      <td>&#9711;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Predictability and control</td>
+      <td>&#9899;</td>
+      <td>&#9682;</td>
+      <td>&#9711;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Low cost to maintain</td>
+      <td>&#9899;</td>
+      <td>&#9711;</td>
+      <td>&#9682;</td>
+      <td></td>
+    </tr>
+ </tbody>
+</table>
+
+
 <h4><a id="Relevance-of-results"></a><a href="#Relevance-of-results">Relevance of results</a></h4>
 
 <p>
@@ -385,81 +464,220 @@ need to decide whether this is the experience they want for their users.
 <h4><a id="Snappy-response"></a><a href="#Snappy-response">Snappy response</a></h4>
 
 <p>
-low latency
+The snappiness of the feature is determined by the latency, how long
+the user has to wait between accepting an item and seeing the next
+recommendation. Rule based approaches are the clear winner here,
+especially if the engineering team goes to the extra work to have them
+run on the device. The calculations involved are not complex, and even
+a long list of rules can be handled so quickly as to feel instantaneous.
+</p>
+
+<p>
+Recommender systems typically take a  bit longer, but are still quick.
+They normally involve multiple network calls and often require some
+matrix multiplication, but even so they tend to do their job in the
+10s-to-100s of milliseconds range. Just long enough to be noticeable,
+but not so long that it's annoying. The experience is more a speed bump
+than a stoplight.
+</p>
+
+<p>
+LLMs Bring up the rear in this category. It’s common for them to have
+latencies of a second or more. This feels sluggish and can have an
+negative effect on the user experience.
 </p>
 
 <h4><a id="Short-time-to-build"></a><a href="#Short-time-to-build">Short time to build</a></h4>
 
 <p>
-LLMs
+A short time to build is doubly desirable. It means a smaller investment
+of engineering time and a shorter delay before benefits of the new future
+can be realized. A basic implementation of LLMs has the shortest build time
+of the bunch. It can be implemented with an API call from the app.
+All the model training and hosting is handled by the model provider.
 </p>
 
 <p>
-rule-based
+Rule-based approaches take only a little longer to implement, especially
+for a simple rule set. Since past list items are already stored,
+rules can access them directly and use them to populate suggestions.
 </p>
 
 <p>
-recommender systems
-Hiring
+Recommender systems take the longest time to build. While there are
+libraries and templates, most of the advantages of recommender systems
+come from customizing them to your own use case and data. The effort required
+to build and maintain a modern recommendation system can be monumental,
+but there are simpler variants that would make more sense for Shoppi
+to start with where the required effort would be more reasonable.
 </p>
 
 <h4><a id="Ability-to-improve"></a><a href="#Ability-to-improve">Ability to improve</a></h4>
 
 <p>
-rule-based
+There are guaranteed to be cases where the Shoppi team will want to adjust
+to the results, either to respond to direct user feedback, or to remove
+items from the recommendation pool that may be discontinued, or to steer
+recommendations toward branded items instead of generic ones.
+A rule-based approach has the capability to do this quickly, often
+by changing a couple lines of code. They have the added benefit that
+the source of any undesirable recommendation is straightforward to identify.
+The net result is that they are easy to improve.
 </p>
 
 <p>
-recommender systems
+Recommender systems are also highly customizable, although getting them
+to produce a particular recommendation can be fiddly. Typically,
+it requires someone with an in-depth understanding of how the recommender
+works. However, once in the hands of an expert, a recommender system can be
+adapted and adjusted in ways that would be difficult for a rule-based
+system to emulate. They are trickier to work with but have more
+expansive capabilities.
 </p>
 
 <p>
-LLMs
-</p>
-
-<h4><a id="Low-cost-to-maintain"></a><a href="#Low-cost-to-maintain">Low cost to maintain</a></h4>
-
-<p>
-rule-based
-</p>
-
-<p>
-LLMs
-</p>
-
-<p>
-recommender systems
+LLMs are the least easy to improve of the three. The underlying model is
+pre-trained and not available for modification. A lot can be done to steer
+the model's output by adding extra instructions in the prompt, but this
+approach is even less deterministic than modifying recommender systems.
+Changes can have unintended consequences. Adding prompt instructions to
+affect one category of suggestions can end up changing another
+unrelated category for no apparent reason. Getting it to behave just right
+is an art and can require a great deal of trial, error, and patience.
 </p>
 
 <h4><a id="High-predictability-and-control"></a><a href="#High-predictability-and-control">High predictability and control</a></h4>
 
 <p>
-rule-based
+When you want to make confident statements about the performance, costs,
+and relevance of the results, greater level of control is helpful.
+Due to their simplicity, the rule-based approach is the most predictable
+and offers the greatest level of control. It is architecturally boring,
+but that is an asset when it comes to determinism and reliability.
 </p>
 
 <p>
-recommender systems
+By virtue of their complexity, recommender systems are less predictable
+than rule-based. Even though every aspect of the system is observable
+in theory, the way they interact can be complicated and challenging to
+instrument and interpret. However, costs are likely to scale predictably
+with the volume of queries, making it possible to do financial estimation well.
 </p>
 
 <p>
-LLMs
+LLMs are the least predictable of the available options. They have
+randomness built into them by nature, and it’s impossible to inspect them
+directly to determine why they are giving a particular recommendation.
+However, the more fundamental control issue is that the model is controlled
+entirely by another entity. If issues arise with quality of results,
+latency, or availability then there’s nothing that can be done except
+raise a ticket with the customer service teams at Google or OpenAI.
+Over the longer term, there are no guarantees about how pricing will
+change six or twelve months, or even whether a particular model will
+still be available. All of these are problems that can be solved,
+but they are good to be aware of before building LLM’s into a core feature.
 </p>
 
-<h3><a id="Prioritization"></a><a href="#Prioritization">Prioritization</a></h3>
+<h4><a id="Low-cost-to-maintain"></a><a href="#Low-cost-to-maintain">Low cost to maintain</a></h4>
 
 <p>
-There is not just one of the
-options that checks all the boxes. To settle on an answer,
-the Shoppi team has
-to choose which is the most important to them.
+Thanks to its architectural simplicity, a rule based approach is the
+least expensive to maintain. There are very few moving parts that can break.
+If and when any bugs do occur, it is transparent and straightforward
+to debug. The computational cost for operation is negligible.
 </p>
 
 <p>
-After some clear-eyed introspection, 
+LLMs Have a modest maintenance cost. There is a small cost based on
+its length. Luckily the queries involved in grocery list completion are
+relatively short. These can add up if there are a large number of them,
+but the cost per user will remain small. The larger factor in LLM
+maintenance costs is the overhead from ensuring that calls to the model are
+successful and that there is a graceful failure path when they are not.
+LLM API’s are fairly reliable, but not perfect. Unsuccessful calls happen
+often enough that a good product will be able to handle them. These
+monitoring and fallback systems need not be overly complex, but it does
+take a little time and effort to do them well.
 </p>
 
 <p>
-No VC investors to please.
+The complexity of recommender systems means that the monitoring,
+failure handling, and system maintenance effort is many times greater.
+While the details depend entirely on the specifics of the particular system,
+a medium-sized recommender system is likely to demand at least half-time
+attention from a machine learning engineer. Maintenance costs for
+a recommender system are relatively high.
+</p>
+
+<h3><a id="Decision"></a><a href="#Decision">Decision</a></h3>
+
+<p>
+There is not just one option that checks all the boxes. To settle on an answer,
+the Shoppi team has to choose which aspect are most important to them.
+</p>
+
+<p>
+After some clear-eyed introspection, Shoppi leaders came to the difficult
+conclusion that they care more about long-term sustainable success
+than quick growth. Their chief strategic concern is maintaining their
+competitive advantage over future competitors and widening
+their moat&mdash;their collect history of users' past grocery list items.
+</p>
+
+<p>
+Although they provide quick short-term progress, LLMs do not take advantage
+of users' histories in the way rule-based and recommender systems do.
+The team decided to set LLMs aside for now and re-evaluate their usefulness
+in 6-12 months, by which time both the business needs and LLM capabilities
+will probably have evolved.
+Shoppi is free to do this, since they are bootstrapped. They 
+have no venture capital investors to please, who might push Shoppi to use LLMs
+for reasons of their own.
+</p>
+
+<p>
+Between rule-based and recommender systems, the short time to build and
+low maintenance costs of a <strong>rule-based approach</strong> make it the front runner.
+Shoppi's engineering team is already running lean and does not have the
+capacity for the large development effort that a recommender system would
+require. Even more challenging, the team doesn't yet have the necessary
+expertise to build it. Embarking on a recommender system creation effort
+will probably require a specialized hire to create and maintain it.
+</p>
+
+<p>
+Rule-based item recommendations give the team an opportunity to test
+the value of the feature, and assess whether it is worth making a bigger
+investment in 12-18 months in order to generate more relevant recommendations.
+They anticipate that is also the timeframe in which they will explore
+partnerships with grocery store chains, and having a recommender system
+will let them track and guarantee user exposure to store brands and
+coupons.
+</p>
+
+<h3><a id="The-Big-Picture"></a><a href="#The-Big-Picture">The Big Picture</a></h3>
+
+<p>
+Taking a step back, the decision of the imaginary Shoppi team to use a
+rule-based approach is very specific to their needs and priorities.
+The point of this analysis is not to argue that one particular
+approach is superior,
+but to show the strengths and weaknesses of each option
+and the process of evaluating them.
+</p>
+
+<p>
+Trade-offs rule every technical decision we make. We always have to
+give up things we want for things we want more. The ability to do this
+with clarity and confidence will set your team apart and keep you
+from getting bogged down in indecision and divided effort.
+</p>
+
+<p>
+If you find your team weighing a strategic technical decision like this
+and would like a fresh pair of eyes to help you evaluate it,
+drop me a line at
+<a href="mailto:brandon@brandonrohrer.com">brandon@brandonrohrer.com</a>.
 </p>
 
 <p>
@@ -468,12 +686,11 @@ No VC investors to please.
 
 <p>
 I work with tech leaders in small and medium-sized companies
-to navigate all aspects of
-data, analytics, and machine learning.
+to navigate all aspects of data, analytics, and machine learning.
 </p>
 
 <p>
-If you'd like me to let you know when the next post comes out, email me at
+If you'd like a note when the next post comes out, email me at
 <a href="mailto:posts@brandonrohrer.com?subject=Future%20posts&body=Please%20let%20me%20know%20when%20the%20next%20one%20comes%20out.">posts@brandonrohrer.com
 </a>
 </p>
