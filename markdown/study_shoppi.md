@@ -466,6 +466,8 @@ and would like a fresh pair of eyes to help you evaluate it,
 drop me a line at
 [brandon@brandonrohrer.com](mailto:brandon@brandonrohrer.com).
 
+Special thanks to Karl Higley for reading through this and giving me
+some helpful feedback on recommender systems.
 -----
 
 I work with tech leaders in small and medium-sized companies

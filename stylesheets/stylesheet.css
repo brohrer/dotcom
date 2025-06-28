@@ -176,29 +176,32 @@ strong {
 }
 
 img {
-  /* display: block; */
-  display: inline;
-  max-width: 739px;
+  display: block;
+  /* display: inline; */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 640px;
+  /*max-width: 739px;*/
   /*padding: 5px;*/
   padding: 0px;
-  border: 1px solid #212e53;
-  margin: 10 auto;
+  /*border: 1px solid #212e53;*/
+  border: 0;
+  /* margin: 10 auto;*/
   text-align: center;
 
-  
-  box-shadow: 0 0 5px #ebebeb;
+  /*box-shadow: 0 0 5px #ebebeb;*/
 }
 
 p img {
-  display: inline;
-  /*margin: 5px;*/
-  margin: 15px;
-  /*padding: 10px;*/
+  display: block;
+  /* display: inline;*/
+  /* margin: 15px; */
+  margin-left: auto;
+  margin-right: auto;
   padding: 0px;
-  border: 1px solid #212e53;
   vertical-align: middle;
   text-align: center;
-  border: none;
+  border: 0;
 }
 
 figcaption {
