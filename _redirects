@@ -1,3 +1,4 @@
+
 # Redirects for inbound queries
 /                   https://brandonrohrer.com/blog.html    301!
 /home                   https://brandonrohrer.com/blog.html    301!
@@ -90,3 +91,7 @@
 
 /data_replication   https://en.wikipedia.org/wiki/Replication_(computing) 301!
 /statistics_resources.html https://www.brandonrohrer.com/stats_resources.html 301!
+
+# Anything else gets redirected to the blog
+/* /blog.html 404
+
