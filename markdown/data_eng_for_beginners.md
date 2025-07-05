@@ -514,7 +514,7 @@ the same piece of data might be copied several times. That extra
 storage can feel very inefficient.
 [Data virtualization](https://en.wikipedia.org/wiki/Data_virtualization)
 is an approach where data is only pulled through the pipeline when it's
-needed at the far end. (Virtualized data tables are also called *data views*.)
+needed at the far end. (A virtualized data table is also called a **data view**.)
 It only exists in the mart in a virtual form.
 Rather than going to the store and buying a bike off the rack, it's like
 browsing a catalog and pointing to a picture of a bike. The bike frame may not
@@ -600,7 +600,7 @@ but it may take a little time.
 
 ![Original cartoon from Pascal Jousselin's Mister Invincible
 https://www.magnetic-press.com/mr-invincible/
-](images/data_eng_for_beginners/eventual_consistency.jpg "Mister Invincible's superpower is eventual concurrency")
+](images/data_eng_for_beginners/eventual_consistency.jpg "Mister Invincible's superpower is eventual concurrency. Original cartoon from Pascal Jousselin's Mister Invincible. https://www.magnetic-press.com/mr-invincible/")
 
 Sometimes eventual consistency is plenty,
 When it’s not being used to support critical or time sensitive decisions
@@ -611,8 +611,6 @@ at slightly different times for different people. But strong consistency
 is what prevents a calendar app from letting people double book your time
 or an online marketplace from selling more of your handmade bookshelves
 than you have in stock.
-
-Image, strong consistency can prevent you from scheduling two dates on the same night.
 
 ### Throughput
 
@@ -667,7 +665,8 @@ A **flat schema** is what we're all familiar with in spreadsheets.
 There is set of columns and a set of rows laid out in a grid.
 
 Each row in a flat schema is a separate measurement, a separate observation.
-In database jargon, each row is a separate **fact**, and it is a fact table.
+In database jargon, each row is a separate **fact**, and it so it
+is also called a **fact table**.
 
 Something that tends to crop up a lot in a flat schema is groups of columns
 that change together. Picture a payroll database with coulmns for
@@ -696,28 +695,27 @@ is the [**star schema**](https://en.wikipedia.org/wiki/Star_schema).
 
 We can re-imagine the payroll database with the columns
 
-- check number
-- date issued
-- check amount
-- employee ID
-- bank ID
+| check number | date issued | check amount | employee ID | bank ID |
+| ----- | ----- | ----- | ----- | ----- |
+| | | | | |
+| | | | | |
+| | | | | |
 
 Then we can create another table of employees with columns
 
-- employee ID
-- employee name
-- employee phone number
-- employee email
-- home office
-- home office address
-- home office fax number
+| employee ID | employee name | employee phone number | employee email | home office | home office address | home office fax number |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
 
 And a third table of bank information with columns
 
-- bank ID
-- bank name
-- bank address
-- bank phone number
+| bank ID | bank name | bank address | bank phone number |
+| ----- | ----- | ----- | ----- |
+| | | | |
+| | | | |
+| | | | |
 
 The employee ID and bank ID are the links between these tables. They’re a
 special type of database column called a key. In the bank and
@@ -744,24 +742,24 @@ to change from row to row.
 And even though the employees' and banks' information may change occasionally,
 if either gets a new phone number, for instance, it’s almost always the
 most recent values that we care about.
-
 The employee and bank tables elaborate on particular aspects or
-**dimensions** of the fact table and are called dimension tables.
+**dimensions** of the fact table and are called **dimension tables**.
 
 You may have noticed that we still have some repeating information
 in the employee table. Every time a particular home office is mentioned, 
 its contact information gets repeated across multiple columns.
-We can take the star schema and apply it again to pull out a home office ID.
+We can take the star schema and apply it again to pull out a home office ID
+and create a separate home office table.
 Multi layer star schemas can go as deep as needed, and these have been
-given the poetic name of snowflake schema.
+given the poetic name of **snowflake schema**.
 
 ### Data model
 
-Several decisions and assumptions went into creating the payroll tables.
+Several assumptions and judgment calls went into creating the payroll tables.
 Separating out the home office into a separate table only makes sense
 if lots of employees share that office. If everyone is working from
-home, then home office information would make more sense in the employee
-table.
+their actual homes, then home office information would make
+more sense in the employee table.
 Choosing to include employee name and paycheck amount in the same table
 means that anyone with access to that table would be able to see everyone
 else's paychecks; in some companies that is considered sensitive information.
@@ -784,13 +782,13 @@ Should small/medium/large be represented with the strings
 "small", "medium", "large"? Or with the integers 1, 2, 3?
 And, one of the biggest database gotchas of all, should the absence of
 data be represented by a zero? An empty string? A nan (not-a-number)?
-The string "none"? The Null type? Or some cursed combination of these?
+The string "none"? The `null` type? Or some cursed combination of these?
 
 Another important part of data modeling is categorization.
 Sometimes it’s useful to represent continuous values as bins.
 For instance, salaries are also often represented in ranges,
 rather than with precise numbers. How big should those bins be?
-And where exactly to place the cut offs?
+And where exactly to place the cutoffs?
 
 Categorization also comes up all the time when trying to organize
 things into groups. Imagine a database of restaurants. Each restaurant
@@ -801,35 +799,27 @@ for restaurants doesn't feel like a hard problem, until you sit down
 at a table with four other people and try to write down a list of
 cuisines that accurately categorizes all the restaurants in your town.
 
-How do you group them?
-
-- By the geographic region they're associated with? Does that mean Chinese,
+- **How do you group them?**
+By the geographic region they're associated with? Does that mean Chinese,
 Japanese, and Korean all get lumped together? (And would that group
-contain Panda Express?) Would a Southern (US) restaurant be grouped
-with Tex-Mex? Greek, Italian, and Lebanese? 
-- By quality of the experience? Average price of an entrée? Whether they
+contain Panda Express?) What about Greek, Italian, and Lebanese? 
+By quality of the experience? Average price of an entrée? Whether they
 have white linen tablecloths? Small plates versus his family style?
-- By what meals they serve? Breakfast place versus lunch spot?
-
-How specific should the categories be?
-
-- Should Sichuan be distinct from Hunan, Cantonesem, and Shandong?
-- Should Guatemalan be distinct from Colombian, Salvadoran, and Venezuelan?
-
-What does it take to qualify as a restaurant?
-
-- Is an ice cream parlor a restaurant?
-- What about A coffee shop?
-- A coffee shop that serves bagels?
-
-Can a restaurant be more than one type of cuisine?
-
-- Is cuisine an attribute of an eating establishment or the items on its menu?
-- If a restaurant offers pizza does that automatically make it a pizza place?
-- How would you categorise a Vegas buffet?
+By what meals they serve? Breakfast place versus lunch spot?
+- **How specific should the categories be?**
+Should Sichuan be distinct from Hunan, Cantonesem, and Shandong?
+Should Guatemalan be distinct from Colombian, Salvadoran, and Venezuelan?
+- **What does it take to qualify as a restaurant?**
+Is an ice cream parlor a restaurant?
+What about A coffee shop?
+A coffee shop that serves bagels?
+- **Can a restaurant be more than one type of cuisine?**
+Is cuisine an attribute of an eating establishment or the items on its menu?
+If a restaurant offers pizza does that automatically make it a pizza place?
+How would you categorise a Vegas buffet?
 
 And the toughest question of all:
-[What exactly constitutes a sandwich](https://cuberule.com/)
+[**What exactly constitutes a sandwich**](https://cuberule.com/)
 
 ![sandwich alignment image https://twitter.com/matttomic/status/859117370455060481/photo/1
 ](images/data_eng_for_beginners/sandwich_alignment.jpeg "Tag yourself")
@@ -839,15 +829,16 @@ Or more accurately, every answer is kind of wrong. The most important thing
 is to find an answer that is useful, and to do that you need to know what
 it will be used for and keep that in the forefront. The other hard thing
 about categories is that if you get them very wrong, it will severely limit
-your ability to answer some questions and blind you to some trends entirely.
+your ability to answer some questions and will blind you to some trends entirely.
 It’s worth the effort to create a good set of categories when you’re doing
 your data modeling. A collection of categories and sub-categories
 is also called a taxonomy, and luckily there are people who specialize
 in creating useful taxonomies so you don’t have to go it alone.
 
-When data modeling is done well it looks effortless. The data is laid out
+When data modeling is done well it looks effortless. The data is
+broken up very logically into tables and laid out
 into meaningful columns without a lot of superfluous or hard to interpret
-columns and broken up very logically into tables. When done well it’s easy
+columns. When done well it’s easy
 for it to be underappreciated and to miss how much effort goes into getting
 it to that state. 
 
@@ -913,8 +904,8 @@ database that can be configured to work reasonably well as either one.
 
 Zooming in on the next level of detail, there are several aspects of
 performance that usually distinguish OLTP from OLAP from
-each other – read/write latency, input/output bandwidth, number of records that
-can be modified per second, strong vs. eventual consistency, but some
+each other--read/write latency, input/output bandwidth, throughput,
+strong vs. eventual consistency, datafreshness--but some
 databases have characteristics of both.
 Unless you are a database specialist, you don't need to worry about configuring
 and fine-tuning your database to optimize these. 
@@ -936,8 +927,8 @@ of **privacy** and **access controls**.
 - **Data provenance** -- keeping track of where data came from upstream
 and how it has been modified. This is especially relevant if you hold
 customer data and need to comply with GDPR.
-- **Disaster recovery** -- having a plan B in case a disk fails,
-you have a ransomware attach, or a natural disaster takes out a data center.
+- **Disaster recovery** -- having a Plan B in case a disk fails,
+you have a ransomware attack, or a natural disaster takes out a data center.
 It's not just about having backups, but about how quickly your org can
 detect and recover from catastrophe.
 - **Data governance** -- creating policies and practices to enable, encourage,
@@ -951,7 +942,8 @@ one right way to do data engineering. There are always
 trade-offs, and the best decision for your team will depend wholly on
 the data you have and what you want to do with it. There is no
 one size solution. You don't personally have to know all of the intricate details
-of your data, but you should definitely invite who does.
+of your data, but you should definitely find the person on your team who does,
+and really listen to them.
 
 -----
 

@@ -2,7 +2,7 @@
 <html>
 
   <script type="text/javascript">var blog_title = "Data Engineering for the Absolute Beginner";</script>
-  <script type="text/javascript">var publication_date = "July 04, 2025";</script>
+  <script type="text/javascript">var publication_date = "July 05, 2025";</script>
   <head>
     <link rel="icon" href="images/ml_logo.png">
     <meta charset='utf-8'>
@@ -63,43 +63,31 @@ There are a few basic <strong>data types</strong> that come up all the time
 <table>
   <thead>
     <tr>
-      <th></th>
       <th>data type</th>
       <th>examples</th>
-      <th></th>
 
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td></td>
       <td><em>integers</em></td>
       <td>1, 2, 3, 0, -1, -2, -3, and so on</td>
-      <td></td>
     </tr>
     <tr>
-      <td></td>
       <td><em>floating point numbers</em></td>
       <td>anything with a decimal place</td>
-      <td></td>
     </tr>
     <tr>
-      <td></td>
       <td><em>characters</em></td>
       <td>a, b, c, A, B, C, #, %, &, for example</td>
-      <td></td>
     </tr>
     <tr>
-      <td></td>
       <td><em>strings</em></td>
       <td>more than one character, strung together in a row</td>
-      <td></td>
     </tr>
     <tr>
-      <td></td>
       <td><em>boolean</em></td>
       <td>can be just 'true' or 'false'</td>
-      <td></td>
     </tr>
  </tbody>
 </table>
@@ -361,31 +349,23 @@ The email inbox table above has a schema that looks like this.
 <table>
   <thead>
     <tr>
-      <th></th>
       <th>column</th>
       <th>data type</th>
-      <th></th>
 
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td></td>
       <td>sender</td>
       <td><code>string</code></td>
-      <td></td>
     </tr>
     <tr>
-      <td></td>
       <td>subject</td>
       <td><code>string</code></td>
-      <td></td>
     </tr>
     <tr>
-      <td></td>
       <td>date</td>
       <td><code>datetime</code></td>
-      <td></td>
     </tr>
  </tbody>
 </table>
@@ -893,10 +873,10 @@ but it may take a little time.
 
 <p>
 <figure>
-  <img title="Mister Invincible's superpower is eventual concurrency" alt="Original cartoon from Pascal Jousselin's Mister Invincible
+  <img title="Mister Invincible's superpower is eventual concurrency. Original cartoon from Pascal Jousselin's Mister Invincible. https://www.magnetic-press.com/mr-invincible/" alt="Original cartoon from Pascal Jousselin's Mister Invincible
 https://www.magnetic-press.com/mr-invincible/
 " src="images/data_eng_for_beginners/eventual_consistency.jpg">
-  <figcaption>Mister Invincible's superpower is eventual concurrency</figcaption>
+  <figcaption>Mister Invincible's superpower is eventual concurrency. Original cartoon from Pascal Jousselin's Mister Invincible. https://www.magnetic-press.com/mr-invincible/</figcaption>
 </figure>
 </p>
 
@@ -910,10 +890,6 @@ at slightly different times for different people. But strong consistency
 is what prevents a calendar app from letting people double book your time
 or an online marketplace from selling more of your handmade bookshelves
 than you have in stock.
-</p>
-
-<p>
-Image, strong consistency can prevent you from scheduling two dates on the same night.
 </p>
 
 <h3><a id="Throughput"></a><a href="#Throughput">Throughput</a></h3>
@@ -982,7 +958,8 @@ There is set of columns and a set of rows laid out in a grid.
 
 <p>
 Each row in a flat schema is a separate measurement, a separate observation.
-In database jargon, each row is a separate <strong>fact</strong>, and it is a fact table.
+In database jargon, each row is a separate <strong>fact</strong>, and it so it
+is also called a <strong>fact table</strong>.
 </p>
 
 <p>
@@ -1022,38 +999,128 @@ is the <a href="https://en.wikipedia.org/wiki/Star_schema"><strong>star schema</
 We can re-imagine the payroll database with the columns
 </p>
 
-<ul>
-<li> check number</li>
-<li> date issued</li>
-<li> check amount</li>
-<li> employee ID</li>
-<li> bank ID</li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>check number</th>
+      <th>date issued</th>
+      <th>check amount</th>
+      <th>employee ID</th>
+      <th>bank ID</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+ </tbody>
+</table>
+
 
 <p>
 Then we can create another table of employees with columns
 </p>
 
-<ul>
-<li> employee ID</li>
-<li> employee name</li>
-<li> employee phone number</li>
-<li> employee email</li>
-<li> home office</li>
-<li> home office address</li>
-<li> home office fax number</li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>employee ID</th>
+      <th>employee name</th>
+      <th>employee phone number</th>
+      <th>employee email</th>
+      <th>home office</th>
+      <th>home office address</th>
+      <th>home office fax number</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+ </tbody>
+</table>
+
 
 <p>
 And a third table of bank information with columns
 </p>
 
-<ul>
-<li> bank ID</li>
-<li> bank name</li>
-<li> bank address</li>
-<li> bank phone number</li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>bank ID</th>
+      <th>bank name</th>
+      <th>bank address</th>
+      <th>bank phone number</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+ </tbody>
+</table>
+
 
 <p>
 The employee ID and bank ID are the links between these tables. They’re a
@@ -1087,30 +1154,28 @@ to change from row to row.
 And even though the employees' and banks' information may change occasionally,
 if either gets a new phone number, for instance, it’s almost always the
 most recent values that we care about.
-</p>
-
-<p>
 The employee and bank tables elaborate on particular aspects or
-<strong>dimensions</strong> of the fact table and are called dimension tables.
+<strong>dimensions</strong> of the fact table and are called <strong>dimension tables</strong>.
 </p>
 
 <p>
 You may have noticed that we still have some repeating information
 in the employee table. Every time a particular home office is mentioned, 
 its contact information gets repeated across multiple columns.
-We can take the star schema and apply it again to pull out a home office ID.
+We can take the star schema and apply it again to pull out a home office ID
+and create a separate home office table.
 Multi layer star schemas can go as deep as needed, and these have been
-given the poetic name of snowflake schema.
+given the poetic name of <strong>snowflake schema</strong>.
 </p>
 
 <h3><a id="Data-model"></a><a href="#Data-model">Data model</a></h3>
 
 <p>
-Several decisions and assumptions went into creating the payroll tables.
+Several assumptions and judgment calls went into creating the payroll tables.
 Separating out the home office into a separate table only makes sense
 if lots of employees share that office. If everyone is working from
-home, then home office information would make more sense in the employee
-table.
+their actual homes, then home office information would make
+more sense in the employee table.
 Choosing to include employee name and paycheck amount in the same table
 means that anyone with access to that table would be able to see everyone
 else's paychecks; in some companies that is considered sensitive information.
@@ -1137,7 +1202,7 @@ Should small/medium/large be represented with the strings
 "small", "medium", "large"? Or with the integers 1, 2, 3?
 And, one of the biggest database gotchas of all, should the absence of
 data be represented by a zero? An empty string? A nan (not-a-number)?
-The string "none"? The Null type? Or some cursed combination of these?
+The string "none"? The <code>null</code> type? Or some cursed combination of these?
 </p>
 
 <p>
@@ -1145,7 +1210,7 @@ Another important part of data modeling is categorization.
 Sometimes it’s useful to represent continuous values as bins.
 For instance, salaries are also often represented in ranges,
 rather than with precise numbers. How big should those bins be?
-And where exactly to place the cut offs?
+And where exactly to place the cutoffs?
 </p>
 
 <p>
@@ -1159,52 +1224,30 @@ at a table with four other people and try to write down a list of
 cuisines that accurately categorizes all the restaurants in your town.
 </p>
 
-<p>
-How do you group them?
-</p>
-
 <ul>
-<li> By the geographic region they're associated with? Does that mean Chinese,
+<li> <strong>How do you group them?</strong>
+By the geographic region they're associated with? Does that mean Chinese,
 Japanese, and Korean all get lumped together? (And would that group
-contain Panda Express?) Would a Southern (US) restaurant be grouped
-with Tex-Mex? Greek, Italian, and Lebanese? </li>
-<li> By quality of the experience? Average price of an entrée? Whether they
-have white linen tablecloths? Small plates versus his family style?</li>
-<li> By what meals they serve? Breakfast place versus lunch spot?</li>
-</ul>
-
-<p>
-How specific should the categories be?
-</p>
-
-<ul>
-<li> Should Sichuan be distinct from Hunan, Cantonesem, and Shandong?</li>
-<li> Should Guatemalan be distinct from Colombian, Salvadoran, and Venezuelan?</li>
-</ul>
-
-<p>
-What does it take to qualify as a restaurant?
-</p>
-
-<ul>
-<li> Is an ice cream parlor a restaurant?</li>
-<li> What about A coffee shop?</li>
-<li> A coffee shop that serves bagels?</li>
-</ul>
-
-<p>
-Can a restaurant be more than one type of cuisine?
-</p>
-
-<ul>
-<li> Is cuisine an attribute of an eating establishment or the items on its menu?</li>
-<li> If a restaurant offers pizza does that automatically make it a pizza place?</li>
-<li> How would you categorise a Vegas buffet?</li>
+contain Panda Express?) What about Greek, Italian, and Lebanese? 
+By quality of the experience? Average price of an entrée? Whether they
+have white linen tablecloths? Small plates versus his family style?
+By what meals they serve? Breakfast place versus lunch spot?</li>
+<li> <strong>How specific should the categories be?</strong>
+Should Sichuan be distinct from Hunan, Cantonesem, and Shandong?
+Should Guatemalan be distinct from Colombian, Salvadoran, and Venezuelan?</li>
+<li> <strong>What does it take to qualify as a restaurant?</strong>
+Is an ice cream parlor a restaurant?
+What about A coffee shop?
+A coffee shop that serves bagels?</li>
+<li> <strong>Can a restaurant be more than one type of cuisine?</strong>
+Is cuisine an attribute of an eating establishment or the items on its menu?
+If a restaurant offers pizza does that automatically make it a pizza place?
+How would you categorise a Vegas buffet?</li>
 </ul>
 
 <p>
 And the toughest question of all:
-<a href="https://cuberule.com/">What exactly constitutes a sandwich</a>
+<a href="https://cuberule.com/"><strong>What exactly constitutes a sandwich</strong></a>
 </p>
 
 <p>
@@ -1221,7 +1264,7 @@ Or more accurately, every answer is kind of wrong. The most important thing
 is to find an answer that is useful, and to do that you need to know what
 it will be used for and keep that in the forefront. The other hard thing
 about categories is that if you get them very wrong, it will severely limit
-your ability to answer some questions and blind you to some trends entirely.
+your ability to answer some questions and will blind you to some trends entirely.
 It’s worth the effort to create a good set of categories when you’re doing
 your data modeling. A collection of categories and sub-categories
 is also called a taxonomy, and luckily there are people who specialize
@@ -1229,9 +1272,10 @@ in creating useful taxonomies so you don’t have to go it alone.
 </p>
 
 <p>
-When data modeling is done well it looks effortless. The data is laid out
+When data modeling is done well it looks effortless. The data is
+broken up very logically into tables and laid out
 into meaningful columns without a lot of superfluous or hard to interpret
-columns and broken up very logically into tables. When done well it’s easy
+columns. When done well it’s easy
 for it to be underappreciated and to miss how much effort goes into getting
 it to that state. 
 </p>
@@ -1313,8 +1357,8 @@ database that can be configured to work reasonably well as either one.
 <p>
 Zooming in on the next level of detail, there are several aspects of
 performance that usually distinguish OLTP from OLAP from
-each other – read/write latency, input/output bandwidth, number of records that
-can be modified per second, strong vs. eventual consistency, but some
+each other&mdash;read/write latency, input/output bandwidth, throughput,
+strong vs. eventual consistency, datafreshness&mdash;but some
 databases have characteristics of both.
 Unless you are a database specialist, you don't need to worry about configuring
 and fine-tuning your database to optimize these. 
@@ -1340,8 +1384,8 @@ of <strong>privacy</strong> and <strong>access controls</strong>.</li>
 <li> <strong>Data provenance</strong> &mdash; keeping track of where data came from upstream
 and how it has been modified. This is especially relevant if you hold
 customer data and need to comply with GDPR.</li>
-<li> <strong>Disaster recovery</strong> &mdash; having a plan B in case a disk fails,
-you have a ransomware attach, or a natural disaster takes out a data center.
+<li> <strong>Disaster recovery</strong> &mdash; having a Plan B in case a disk fails,
+you have a ransomware attack, or a natural disaster takes out a data center.
 It's not just about having backups, but about how quickly your org can
 detect and recover from catastrophe.</li>
 <li> <strong>Data governance</strong> &mdash; creating policies and practices to enable, encourage,
@@ -1357,7 +1401,8 @@ one right way to do data engineering. There are always
 trade-offs, and the best decision for your team will depend wholly on
 the data you have and what you want to do with it. There is no
 one size solution. You don't personally have to know all of the intricate details
-of your data, but you should definitely invite who does.
+of your data, but you should definitely find the person on your team who does,
+and really listen to them.
 </p>
 
 <p>

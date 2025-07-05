@@ -278,7 +278,7 @@ def convert_block_to_table(block):
 """
 
     rows = block.split("\n")
-    header_cells = rows[0].split("|")
+    header_cells = rows[0].strip().split("|")[1 : -1]
     for header_cell in header_cells:
         html += f"      <th>{header_cell.strip()}</th>\n"
     html += """
@@ -289,7 +289,7 @@ def convert_block_to_table(block):
     # skip row 1, showing the heaading divider
     for row in rows[2:]:
         html += "    <tr>\n"
-        cells = row.split("|")
+        cells = row.strip().split("|")[1 : -1]
         for cell in cells:
             html += f"      <td>{cell.strip()}</td>\n"
         html += "    </tr>\n"
