@@ -2,7 +2,7 @@
 <html>
 
   <script type="text/javascript">var blog_title = "Data Engineering for the Absolute Beginner";</script>
-  <script type="text/javascript">var publication_date = "July 05, 2025";</script>
+  <script type="text/javascript">var publication_date = "July 06, 2025";</script>
   <head>
     <link rel="icon" href="images/ml_logo.png">
     <meta charset='utf-8'>
@@ -142,6 +142,8 @@ way stations. Blocks show places where the data is at rest, if only
 for a moment.
 The arrows represent the movement of data. A pipeline
 can mean just one of these arrows, or a whole sequence of them.
+Pipelines pop up under a couple of names. They're also called workflows,
+and a single pass from end to end is called a job.
 </p>
 
 <p>
@@ -728,7 +730,20 @@ The answers to these questions drive the dozens of small decisions necessary
 to create a fit-for-purpose data product.
 </p>
 
-<h3><a id="Data-Mesh"></a><a href="#Data-Mesh">Data Mesh</a></h3>
+<h3><a id="Data-orchestration"></a><a href="#Data-orchestration">Data orchestration</a></h3>
+
+<p>
+Moving data through these layers on a regular schedule is the job of
+a data orchestrator. In addition to running the ETL steps on a timer
+it takes care of niceties like making sure downstream steps wait
+for their upstream steps to complete, automatically retrying steps
+if they fail, and notifying you if they don't end up working after
+several retries. Every major data platform has their own tooling for
+orchestration and there are some others besides. Airflow, Dagster,
+Prefect, Luigi, and Keboola are some that you may run into.
+</p>
+
+<h3><a id="Data-mesh"></a><a href="#Data-mesh">Data mesh</a></h3>
 
 <p>
 Because the the end goal of the data pipeline is data products,
@@ -758,7 +773,7 @@ the same piece of data might be copied several times. That extra
 storage can feel very inefficient.
 <a href="https://en.wikipedia.org/wiki/Data_virtualization">Data virtualization</a>
 is an approach where data is only pulled through the pipeline when it's
-needed at the far end. (Virtualized data tables are also called <em>data views</em>.)
+needed at the far end. (A virtualized data table is also called a <strong>data view</strong>.)
 It only exists in the mart in a virtual form.
 Rather than going to the store and buying a bike off the rack, it's like
 browsing a catalog and pointing to a picture of a bike. The bike frame may not

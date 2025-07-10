@@ -71,6 +71,8 @@ way stations. Blocks show places where the data is at rest, if only
 for a moment.
 The arrows represent the movement of data. A pipeline
 can mean just one of these arrows, or a whole sequence of them.
+Pipelines pop up under a couple of names. They're also called workflows,
+and a single pass from end to end is called a job.
 
 Your home is full of pipelines. The closet-to-hamper clothing pipeline.
 The bookstore-to-bookshelf book pipeline.
@@ -489,7 +491,18 @@ How often? What is the cost of it being inaccurate? Slightly out of date?
 The answers to these questions drive the dozens of small decisions necessary
 to create a fit-for-purpose data product.
 
-### Data Mesh
+### Data orchestration
+
+Moving data through these layers on a regular schedule is the job of
+a data orchestrator. In addition to running the ETL steps on a timer
+it takes care of niceties like making sure downstream steps wait
+for their upstream steps to complete, automatically retrying steps
+if they fail, and notifying you if they don't end up working after
+several retries. Every major data platform has their own tooling for
+orchestration and there are some others besides. Airflow, Dagster,
+Prefect, Luigi, and Keboola are some that you may run into.
+
+### Data mesh
 
 Because the the end goal of the data pipeline is data products,
 built for particular people to answer particular questions, a data mesh
