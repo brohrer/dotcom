@@ -493,6 +493,9 @@ to create a fit-for-purpose data product.
 
 ### Data orchestration
 
+![An icon of an orchestrator, a clock set within a toothed gear
+](images/data_eng_for_beginners/orchestrator_icon.png)
+
 Moving data through these layers on a regular schedule is the job of
 a data orchestrator. In addition to running the ETL steps on a timer
 it takes care of niceties like making sure downstream steps wait

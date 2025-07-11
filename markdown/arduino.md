@@ -13,9 +13,10 @@ If you imagine a laptop, take away the screen and the keyboard, and
 shrink everything else down to a miniature scale, you won't be too far away
 from a microcontroller. 
 
-![](images/arduino/arm_cortex_m4.png "Renesas RA4M1, a.k.a. Arm® Cortex®-M4")
+![Renesas RA4M1, a.k.a. Arm® Cortex®-M4](images/arduino/arm_cortex_m4.png "Renesas RA4M1, a.k.a. Arm® Cortex®-M4")
 
-![](images/arduino/arduino_uno_r4.png "Arm Cortex microcontroller in its native environment, an Arduino UNO R4 Minima")
+![Arm Cortex microcontroller in its native environment, an Arduino UNO R4 Minima
+](images/arduino/arduino_uno_r4.png "Arm Cortex microcontroller in its native environment, an Arduino UNO R4 Minima")
 
 Digital I/O
 Analog input
