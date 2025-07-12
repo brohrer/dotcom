@@ -8,6 +8,10 @@ document.write('\
                 Brandon Rohrer\
               </a>\
             </h4>\
+            <p>\
+              <a href="https://brandonrohrer.com/blog.html">\
+                The Blog </a>\
+            </p>\
         </header>\
     </div>\
 ');

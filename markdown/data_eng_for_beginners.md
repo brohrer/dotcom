@@ -336,6 +336,9 @@ and evaluating the candidates based on those needs.
 
 ### Data catalog
 
+![An icon representing a data catalog
+](images/data_eng_for_beginners/catalog_icon.png)
+
 Once you have more than three database tables in your data warehouse
 it starts getting hard to remember everything that in there and how
 to find it. A data catalog helps keep track of inventory, giving a
@@ -921,7 +924,7 @@ database that can be configured to work reasonably well as either one.
 Zooming in on the next level of detail, there are several aspects of
 performance that usually distinguish OLTP from OLAP from
 each other--read/write latency, input/output bandwidth, throughput,
-strong vs. eventual consistency, datafreshness--but some
+strong vs. eventual consistency, data freshness--but some
 databases have characteristics of both.
 Unless you are a database specialist, you don't need to worry about configuring
 and fine-tuning your database to optimize these. 
@@ -930,6 +933,39 @@ with, what they will be used for, and how often, you can provide that to
 your data engineering team, they'll
 be able to craft you a data architecture to handle it, using OLTP and OLAP
 databases purpose built for your company's needs.
+
+### Data Environment
+
+In machine learning heavy companies, the data from the data warehouse
+is also used to give the customers a better experience. It might be used
+to make drive time predictions or recommend a pair of shoes. When the
+machine learning features are important to the health of the business
+it is important to both keep improving them and to avoid accidentally
+breaking them in the process.
+
+It's common to provide a sandbox for software developers to work the kinks out
+of new ideas, called a development environment or **dev environment**
+for short. Having a dev evironment for data serves the same purpose; it 
+gives a sampling of data that can be easily recreated if it gets corrupted
+and has no privacy demands. It's a place where screwing up has a very low cost.
+
+Then, after a software change has matured and is getting ready to go out
+into the world, it gets a dress rehearsal in a **staging environment**.
+Staging is a step closer to repreresenting the real worl than dev.
+If your data collection is manageable enough, you can just copy it in its
+entirety to create a data staging environment, but once your data gets
+large and unweildy enough this will not be economical.
+
+When the new code has gestated in staging with the staging data for long enough,
+it gets released into the real world, a **production environment**
+or just **prod**. Production data is the real deal, with all the consequences
+for messing it up and all the glory for transforming it into a delightful
+customer experience.
+
+Deciding exactly what should constitute the dev and staging environment
+in your organization is tied closely to your software development process and
+the nature of your data, especially to cost of losing part of it or
+of violating privacy protections on it.
 
 ## System level
 

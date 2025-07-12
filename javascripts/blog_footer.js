@@ -4,6 +4,8 @@ document.write('\
       <footer class="inner">\
         <section class="clearfix">\
           <p>\
+            <a href="https://brandonrohrer.com/blog.html">\
+            Read another post </a> <br>\
             <a href="https://brandonrohrer.com/feed.xml">\
             Subscribe to updates \
               <img title="RSS icon"\
