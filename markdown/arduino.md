@@ -49,8 +49,75 @@ A microcontroller on its own is cool in concept, but isn't particularly useful.
 Arduino makes it easy to extend them by adding on other components.
 These extension boards can be stacked below (**carriers**) or above
 (**shields**) the Arduino boards on rows of carefully laid out pins.
+Shields seem to be much more common than carriers.
 
 ![A stack of Arduino boards
 ](images/data_eng_for_beginners/arduino_stack.jpg "from https://www.detailedpedia.com/wiki-Arduino")
 
- 
+Shields give you a huge Swiss Army knife of tools
+
+- Ethernet
+- WiFi (although some boards come with this)
+- Extra memory
+- Relay switches
+- Motor controllers
+- Temperature other environmental sensors
+- Inertial measurement units
+- Microphone and some speech processing
+- Camera and some vision processing
+- LED and LCD displays
+
+### Models and form factors
+
+There are a handful of different form factors with names like UNO, MKR,
+Portenta, Nano, and Giga. 
+Here is [a really helpful breakdown of the different boards
+](https://www.pleasedontcode.com/blog/arduino-boards-comparison-a-selection-guideline)
+and some of the shields and carriers that go with them.
+When in doubt, start with
+[the latest UNO base](https://store.arduino.cc/collections/uno/products/uno-r4-minima)
+and build from there. UNO
+is meant to be a somewhat universal starting point.
+
+Most Arduino boards and shield are physically compatible, although
+[this post on the Arduino forum
+](https://arduino.stackexchange.com/questions/4456/are-all-arduino-shields-compatible-with-all-arduino-boards)
+strong encourages us to check the voltage (3.3 V vs 5 V) compatibility
+and the software library compatibility as well.
+
+Because all Arduino designs are open, there are a large number of
+[Arduino-compatible
+](https://en.wikipedia.org/wiki/List_of_Arduino_boards_and_compatible_systems),
+Arduino-adjacent, and Arduino spinoff boards and shields.
+It can all get a little overwhelming. It's the downside of not having a
+single corporate overlord dictating a conveniently consumable lineup
+of marketing-approved SKUs. Read item descriptions and blog posts carefully,
+prepare for some thoughtful trial and error, and embrace the anarchy.
+
+### The IDE
+
+The easiest way to start giving the microprocessor instructions to execute
+is to use the Arduino Integrated Development Environment (IDE).
+You can [download it](https://www.arduino.cc/en/software/) for Linux, MacOS,
+and Windows. It's free thanks to the generous folks behind it, but consider
+leaving a donation to keep the lights on.
+
+After you install and open it, the IDE takes you right to a code editor
+window.
+
+![Screenshot of the Arduino IDE showing a code editing window
+](images/arduino/arduino_ide.png "The starting screen on the Arduino IDE")
+
+There are two major versions of IDE - 1.x and 2.x.
+Version 1 is a little more bare bones, version 2 has fancy touches
+like autocomplete, function definitions, and dark mode. They'll both let you
+do what you need to do. You can try either or both and switch between them.
+
+I also recommend bookmarking 
+[the Arduino IDE documentation page](https://docs.arduino.cc/software/ide/),
+which covers both versions.
+
+![Screenshot of the Arduino IDE documentation page
+](images/arduino/arduino_ide_docs.png)
+
+
