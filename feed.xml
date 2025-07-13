@@ -13,6 +13,90 @@
 
   <item>
     <title>
+        Data Engineering for the Absolute Beginner
+    </title>
+    <link>
+        https://www.brandonrohrer.com/data_eng_for_beginners
+    </link>
+    <description>
+    There's a bewildering collection of jargon, but most of the concepts in data engineering are ideas that you're already familiar with.
+
+The building blocks
+These are the pieces of which all data engineering projects and systems are built.
+
+Data
+Data is really easy to define until you sit down to write a definition of it.
+
+If you break it down finely enough, data is all made out of ones and zeros. But that’s not really helpful. That’s like saying that if you break down a wristwatch down finely enough, it's made out of a bunch of atoms. It's technically true, but the interesting part of a watch is the structure the atoms take when they’re put together.
+
+Data is one and zeros put together in a way that means something. They might be a name, a phone number, an image of someone’s face, a recording of their voice. These are all different types of data, and what gives them meaning, what makes them worth storing and pushing from one computer to another, is that they represent something.
+
+There are a few basic data types that come up all the time
+
+data type	examples
+integers	1, 2, 3, 0, -1, -2, -3, and so on
+floating point numbers	anything with a decimal place
+characters	a, b, c, A, B, C, #, %, &, for example
+strings	more than one character, strung together in a row
+boolean	can be just 'true' or 'false'
+
+These go by different names in different computer languages, but are largely the same. The number of ones and zeros used to represent each type can differ by language, operating system, and processing hardware but it is well defined. This is important, because if you tell a data engineer that you want to store a billion credit card numbers, they will be able to work out how many integers that will require, how many ones and zeros they'll need to cover that, and tie it back to how many dollars it will cost you to store them per year.
+
+These fundamental data types can be used to build more complex ones. Global position, given by latitude and longitude, is a pair of floating point numbers (floats), as in (56.431440, -6.341224). Names are a collection of strings for first, last, middle, honorific, suffix, etc., as in
+
+Pablo Diego José Francisco de Paula Juan Nepomuceno María de los Remedios Cipriano de la Santísima Trinidad Ruiz y Picasso
+
+Dates and times (often mushed together into a "datetime" type) can actually be represented by integers, floats, or strings, depending on what you are using them for.
+    </description>
+  </item>
+
+  <item>
+    <title>
+      Build with AI or tradidiontal ML?
+    </title>
+    <link>
+        https://www.brandonrohrer.com/study_shoppi.html
+    </link>
+    <description>
+Summary
+Shoppi, a small company with a shopping list app, is building a list completion feature.
+
+A large language model provides
+
+Simple architecture
+Versatility beyond training data
+A recommender system provides
+
+Item discovery
+High relevance
+A rule-based approach provides
+
+Low computation cost
+Low latency
+Transparency (explainability and debuggability)
+The Shoppi team opted for a rule-based solution as a first step, instead of an LLM or a recommender system, because it suits their limited resources and aligns with their product strategy. They plan to transition to a recommender system in 18 months, as the engineering team and user base grows and allows them to take advantage of their scale.
+
+Scenario
+Choosing whether to power an intelligent feature with a traditional recommender system, hard-coded rules, or an LLM is a game of give and take between several highly desirable charactertistics, including performance, maintainability, and cost. The right answer will be different in every situation.
+
+In this particular example, Shoppi is a fictional startup that has built an app for writing and managing grocery shopping lists. Shoppi is bootstrapped. The company has 22 employees, and the app just passed 80,000 monthly subscribers at 3 USD per month.
+
+Shoppi has 12 engineers, 7 frontend engineers covering iOS, Android, and web versions of the app, and 5 backend engineers covering authentication, data, and infrastructure, They use AWS for cloud services.
+
+Shoppi's moat is their accumulated user list data. While their strategy includes giving customers a friction-free onboarding and a delightful user experience, the team believes that the app's real stickiness will come from using past lists to help users create new ones. This collection of user-generated list items would be the most difficult asset for a competitor to replicate.
+
+Intelligent list completion
+Shoppi's first step in this direction is to create a list completion feature. Once a list is begun, the app will suggest the next five items. Users can either accept, edit, or remove each item, after which another suggestion is added to the list, keeping the queue at five.
+
+If done well, these suggested items will be exactly the ones the user had in mind, making the list creation experience faster and requiring less mental effort. If unsuccessful, these items will be a distraction, slowing the user down and degrading their experience.
+
+Broadly speaking, there are three options for the algorithm behind making these list suggestions: A large language model (LLM), a recommender system, or a rule-based approach. They each have areas where they perform well and areas they struggle with. They are all widely used. The decision of which one Shoppi should use depends on the specifics of their situaion.
+
+    </description>
+  </item>
+
+  <item>
+    <title>
       Solving an easy RL problem on hard mode
     </title>
     <link>
@@ -37,123 +121,6 @@ The goal of this work was to demonstrate a new method, not to top a leaderboard 
 
 The playing field here is a pendulum. Imagine holding a broomstick by its one end. The goal is to invert the pendulum—to get it to stand straight up and stay there.
 
-    </description>
-  </item>
-
-
-  <item>
-    <title>
-    On microsuffering
-    </title>
-    <link>
-        https://www.brandonrohrer.com/microsuffering.html
-    </link>
-    <description>
-    I did yoga some years ago. I got stronger (which I lost) and taller (which I kept), but what that stuck with me more than either of those was the microsuffers.
-
-The instructor didn't call them that. Instead she said something about "breathing through the discomfort" and "being present with all your sensations". In particular there is a pose called Revolved Half Moon (Parivrtta Ardha Chandrasana if you're feeling precise) which had me standing on one straight leg, bent forward with the other leg kicked out behind me, with my torso wrenched so that I could touch the ground with my opposite hand.
-
-my body is contorted in an entirely unnatural way
-I'm straining every large muscle group at once
-I'm about to topple face forward
-it's hard to breathe
-"You're going to want to drop out of this pose really fast," she said. "But try holding it for just one breath. Now one more. You don't like it, but that's OK. Be in it for a moment."
-
-It was a lesson in microsuffering. I learned that I don't have to rush to escape right away. I have the option of stopping for a breath, of acknowledging that a thing is happening that I don't like.
-
-I realized I could do the same thing outside of class. There are a hundred uncomfortable moments in a day.
-
-my sock is wrinkled and it's pinching my foot
-I have an itch between my shoulder blades
-my head aches from sleeping funny
-my quads burn after climbing the stairs
-None of these are a danger to my health. I am free to take a moment before reacting to them. I can notice the sensation. I can sit with it for a couple of breaths. And then I can fix it. I don't know why, but breaking the chain of instant reaction and inserting a link engraved with "notice it" gives me a sense of power and peace. I'm are no longer a puppet, controlled by whatever small discomfort decides to pull my strings.
-
-This felt good, so I started looking for other ways to embrace microsuffers. There are plenty.
-
-the seat on the bus makes me sit in an awkward position
-the sun is in the direction I'm headed and it's shining too brightly
-it's only 2:30 pm and I'm feeling sleepy
-the tote bag I'm carrying is too heavy
-Even when discomfort doesn't cross over into the physical pain, it's still a chance to pause before reacting. Of course, I'm not going to spend a whole bus ride sitting awkwardly if I can avoid it, but pausing before shifting my pose is a way to assert my power over it. I'm reacting because I choose to, not because I must.
-
-You can also find microsuffers that don't touch your body. There are things about my surroundings that I reflexively move to change.
-
-there is a dirty dish on the counter
-the books on my shelf are not lined up
-a thumbscrew is loose in the finish trim
-the milk from my cereal splashed onto my laptop screen
-These things irritate me like a paper cut. Of course I want to set them right. But I also have the option to do a microsuffer. I can notice the irritation. Sit with it for a couple of breaths. Then do something about it. Or not. For some weird reason, that completely changes the experience for me.
-
-There are also plenty of microsuffers avaialable in the stuff that we have.
-
-my car got hit by a pebble and is missing a chip of paint on the hood
-the stairs in my house creak
-my monitor won't show the high resolution promised on the box
-my pants have a hole in the knee after three weeks
-One option is to launch into repair mode when things like this happen. Another option is pause first. Feel the full weight of the disappointment. Then feel guilty about feeling so much disappointment for something so superficial. And notice that guilt too. Let it all flow through you and even fill you up. I find that it's hard to hold onto. Saying out loud that I'm sad about the hole in my pants robs it of its intensity. I'm still sad about it, but it doesn't have the same grip on me.
-
-Suffering is personal. What causes me small discomfort can cause another debilitating pain, and you might not notice it at all. For some, the possibility that they offended someone is grimace inducing, but for others it is all consuming. And there are others still that would never think twice about it. Or imagine a scratchy clothing tag. It is a mild irritant for one person, completely unnoticeable to another, and a fate worse than death for a third. The things that cause us microsuffers are as unique as a fingerprint. Brains work very differently.
-
-(Personal note: I hesitated before publishing this post because the examples I give say a lot about what makes me tick. I had to think about whether I wanted to share this much detail. They're not all taken from my experience, but a lot of them are.)
-    </description>
-  </item>
-
-  <item>
-    <title>
-    Lessons learned from the End to End Machine Learning School
-    </title>
-    <link>
-        https://www.brandonrohrer.com/e2eml_lessons.html
-    </link>
-    <description>
-    Six years ago I started putting machine learning courses online in what I called the End to End Machine Learning School (e2eML). I hoped that eventually I would build a curriculum and a student body large enough to be self sustaining and allow me to teach full time. As of March 1, 2025 I'll be closing it down. Here are some things I learned along the way.
-
-Money comes from students
-It's obvious in retrospect, but in a school like mine, every dollar that went into my pocket came out of a student's pocket. In order to make enough to rely on teaching as a primary source of income, I either had to charge a few students a lot of money, or lots of students a little money. These approaches represent two different business plans: one where I focus on a small group of high-paying students and one where I recruit as many students as possible who can pay a small fee.
-
-People don't like giving away their money
-I was active on LinkedIn and Twitter and sent email newsletters. I posted regularly and engaged with commenters. I answered follow up questions and was responsive to requests. I had tens of millions of impressions on posts advertising my courses. Over 16,000 students committed to the school enough to sign up with an email address for some of the free content. Maybe 2% of those signed up for paid courses. Sales and marketing is hard work and I have a lot of respect for the people who are good at it.
-
-I'm don't like telling people to give me their money
-Some of the most popular ways of persuading people to part with their money are by frightening them or by promising them something you can't give them. I was uncomfortable with both of these, even in small doses. I wish I could have told prospective students that my courses would have gotten them high paying jobs, but that would have been an exaggeration. I wish I could have told them they'd be left behind if they didn't sign up today, but that would have been a lie. So I told them that the course content was fascinating and accessible, and might be useful. Not exactly a hard sell, but I realized that's the salesman I am.
-
-I enjoy helping people get a foothold
-When confronting a new topic or a new field, there's a thing that happens sometimes where you are excited about it, but you don't know where to start. That's a critical point. It's like starting to climb a mountain, but being confronted by a blank face of rock. There are a few people who will relentlessly hammer at it until they make their own way up, but there is a much larger group who just need some pointers on the first few steps--here's a less steep section; here's an edge to hold onto--and then they can take it from there. I love being able to point out those first few moves.
-
-This became the pattern for the content I created. After getting comfortable with a topic, I would write to introduction and tutorial that I wish I had when I started. What would past me most want to know?
-
-This decision meant that examples and concepts were often simplified, sometimes leaving out important details at first. Sometimes they weren't entirely correct, but gave a useful mental model for getting started. They definitely didn't showcase elegant mathematical formalisms and famous-name histories. It's not the only way to teach or even the best one, but it's one I chose.
-
-I enjoyed reaching people who might not have many options
-In order to make the courses financially accessible, I chose a low-tuition/ many student business model. This decision meant that I would not be able to give students much individual attention or mentoring or feedback. It made the nature of the courses more one-way and asynchronous. It certainly isn't the most effective way to teach. There is no substitute for one-on-one, interactive teaching. But it was the way I could reach the largest number people.
-
-Ultimately it was also the reason I made the courses free. I realized that even a US$9 cost was prohibitive for many of the people I was trying to reach. I experimented with discounts and promotions and scholarships, but at the end I realized that I had two incompatible goals--1) get money from students and 2) reach students without money--so I let go of the former and doubled down on the latter.
-
-I enjoyed lecturing more than fielding questions
-I realized that I'm not actually cut out to be a great teacher. I like to write prose and code and presentations and videos, but I struggled when it came to debugging technical issues or answering students' very thoughtful questions about the content. The asynchronous nature of the content meant that I was already focused on the next course. Sometimes the questions were about something I published two years ago, and I had to do some industrial grade dredging to remember what I was thinking then.
-
-I enjoyed curiosity-driven projects more than topic coverage
-In a curriculum, there is an expectation that topics will be covered somewhat exhaustively. An arithmetic curriculum that only covers subtraction and division would be weird. Machine learning is a broad topic, but there is an expectation that a ML curriculum will cover at least the most popular algorithms, and especially whatever is hot at the moment. (In 2019 that was neural networks.)
-
-However, I found that some of my most satifying work was in exploring deserted corners or experimenting with new methods. Rather than encyclopedic coverage of common regularization methods, what about trying out some new ones? What if we changed convolutional neural networks so that they use sharpened cosine similarity instead of convolution? Can we improve on existing discrete optimization methods for hyperparameter optimization?
-
-Several times I lost steam on a course only to realize after some introspection that I just wasn't interested in that topic at the moment. I was forcing it. Forcing it and powering through the boredom is a normal part of life if someone is paying you to do a job. But after I stopped charging for my courses I realized that I was free to pursue whatver caught my fancy. So I did.
-
-Writing is an indispensible part of my learning process
-Even when I started teaching on a topic I thought I understood or code I felt comfortable with, the writing step transformed it. As I explained the topic in writing I would write a sentence, then stop and second guess whether it was right. This led to a double-checking rabbit hole which, more often than not, would cast a whole new light on the thing I was trying to say. And sometimes I would discover I was flat wrong. But the explaining through writing sent deep taproots down in my comprehension. I might still be wrong, but at least I was wrong on a more profound level.
-
-Writing about code exposed bugs for me. Every time. Some of them were pretty embarassing.
-
-When approaching a subject I didn't know much about, like transformers, writing helped my sort through the hail of factoids and half-formed concepts. Even though I could only hold one pebble of knowledge in my head at once, writing gave me a beach where I could arrange them into a bigger mosaic.
-
-Writing has become inseparable from my learning process. This leads to and unruly set of posts. I've resigned myself to the fact that my blog will be somewhat chaotic, although I've tried to impose a veneer or organization.
-
-Thank you
-If you were part of e2eML, I am grateful to you. Thank you for trusting me with a bit of your time and attention and hard-earned money. I appreciated having you there.
-
-Brandon
-December 30, 2024
     </description>
   </item>
 
