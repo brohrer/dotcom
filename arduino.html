@@ -2,7 +2,7 @@
 <html>
 
   <script type="text/javascript">var blog_title = "Getting started with Arduino";</script>
-  <script type="text/javascript">var publication_date = "July 10, 2025";</script>
+  <script type="text/javascript">var publication_date = "July 12, 2025";</script>
   <head>
     <link rel="icon" href="images/ml_logo.png">
     <meta charset='utf-8'>
@@ -35,10 +35,18 @@ from a microcontroller.
 </p>
 
 <p>
+Microcontrollers com in a single integrated circuit, like this.
+</p>
+
+<p>
 <figure>
   <img title="Renesas RA4M1, a.k.a. Arm® Cortex®-M4" alt="Renesas RA4M1, a.k.a. Arm® Cortex®-M4" src="images/arduino/arm_cortex_m4.png">
   <figcaption>Renesas RA4M1, a.k.a. Arm® Cortex®-M4</figcaption>
 </figure>
+</p>
+
+<p>
+Arduino helps out hobbyists by putting them on a larger board like this.
 </p>
 
 <p>
@@ -50,12 +58,46 @@ from a microcontroller.
 </p>
 
 <p>
-Digital I/O
-Analog input
-DAC
-PWM
-UART
-CAN
+The Arduino board gives easy access to the tiny pins of the IC and makes it
+possible to plug in standard connectors for power and USB communications.
+</p>
+
+<p>
+What makes the microcontroller so powerful isn't its computational capabilities
+(they are pretty pathetic compared to the processor in your phone). What makes
+it special is the large collection of input/output pins.
+</p>
+
+<ul>
+<li> <strong>Digital I/O</strong> pins which can pass high (3.3 or 5 Volts
+depending on the board) and low (0 Volt) signals
+to another circuit, as well as read high and low signals from them.</li>
+<li> <strong>Analog input</strong> pins, which use an analog-to-digital converter to read
+the voltage from an outside source to a fine resolution.</li>
+<li> <strong>Analog output</strong> (DAC) pins, which use a digital-to-analog converter to sustain
+a pin at any voltage from a near-continuous range.</li>
+<li> <strong>PWM</strong> (<a href="https://en.wikipedia.org/wiki/Pulse-width_modulation)">Pulse-width modulated</a>
+pins, which approximate an analog voltage by rapidly switching
+back and forth between high and low voltages. For example, to maintain an
+average voltage of 2.2 Volts, a PWM signal will switch between 0 and 3.3 Volts,
+spending two-thirds of its time at 3.3 V and one-third of its time at 0 V.</li>
+<li> Specialized communication protocol pins, like UART, CAN, I2C, and SPI.</li>
+</ul>
+
+<h3><a id="Shields-and-Carriers"></a><a href="#Shields-and-Carriers">Shields and Carriers</a></h3>
+
+<p>
+A microcontroller on its own is cool in concept, but isn't particularly useful.
+Arduino makes it easy to extend them by adding on other components.
+These extension boards can be stacked below (<strong>carriers</strong>) or above
+(<strong>shields</strong>) the Arduino boards on rows of carefully laid out pins.
+</p>
+
+<p>
+<figure>
+  <img title="from https://www.detailedpedia.com/wiki-Arduino" alt="A stack of Arduino boards" src="images/data_eng_for_beginners/arduino_stack.jpg">
+  <figcaption>from https://www.detailedpedia.com/wiki-Arduino</figcaption>
+</figure>
 </p>
 
         <script src="javascripts/blog_signature.js"></script>

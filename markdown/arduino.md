@@ -13,14 +13,44 @@ If you imagine a laptop, take away the screen and the keyboard, and
 shrink everything else down to a miniature scale, you won't be too far away
 from a microcontroller. 
 
+Microcontrollers com in a single integrated circuit, like this.
+
 ![Renesas RA4M1, a.k.a. Arm® Cortex®-M4](images/arduino/arm_cortex_m4.png "Renesas RA4M1, a.k.a. Arm® Cortex®-M4")
+
+Arduino helps out hobbyists by putting them on a larger board like this.
 
 ![Arm Cortex microcontroller in its native environment, an Arduino UNO R4 Minima
 ](images/arduino/arduino_uno_r4.png "Arm Cortex microcontroller in its native environment, an Arduino UNO R4 Minima")
 
-Digital I/O
-Analog input
-DAC
-PWM
-UART
-CAN
+The Arduino board gives easy access to the tiny pins of the IC and makes it
+possible to plug in standard connectors for power and USB communications.
+
+What makes the microcontroller so powerful isn't its computational capabilities
+(they are pretty pathetic compared to the processor in your phone). What makes
+it special is the large collection of input/output pins.
+
+- **Digital I/O** pins which can pass high (3.3 or 5 Volts
+depending on the board) and low (0 Volt) signals
+to another circuit, as well as read high and low signals from them.
+- **Analog input** pins, which use an analog-to-digital converter to read
+the voltage from an outside source to a fine resolution.
+- **Analog output** (DAC) pins, which use a digital-to-analog converter to sustain
+a pin at any voltage from a near-continuous range.
+- **PWM** ([Pulse-width modulated](https://en.wikipedia.org/wiki/Pulse-width_modulation))
+pins, which approximate an analog voltage by rapidly switching
+back and forth between high and low voltages. For example, to maintain an
+average voltage of 2.2 Volts, a PWM signal will switch between 0 and 3.3 Volts,
+spending two-thirds of its time at 3.3 V and one-third of its time at 0 V.
+- Specialized communication protocol pins, like UART, CAN, I2C, and SPI.
+
+### Shields and Carriers
+
+A microcontroller on its own is cool in concept, but isn't particularly useful.
+Arduino makes it easy to extend them by adding on other components.
+These extension boards can be stacked below (**carriers**) or above
+(**shields**) the Arduino boards on rows of carefully laid out pins.
+
+![A stack of Arduino boards
+](images/data_eng_for_beginners/arduino_stack.jpg "from https://www.detailedpedia.com/wiki-Arduino")
+
+ 
