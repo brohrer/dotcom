@@ -52,7 +52,7 @@ These extension boards can be stacked below (**carriers**) or above
 Shields seem to be much more common than carriers.
 
 ![A stack of Arduino boards
-](images/data_eng_for_beginners/arduino_stack.jpg "from https://www.detailedpedia.com/wiki-Arduino")
+](images/arduino/arduino_stack.jpg "from https://www.detailedpedia.com/wiki-Arduino")
 
 Shields give you a huge Swiss Army knife of tools
 
@@ -120,4 +120,115 @@ which covers both versions.
 ![Screenshot of the Arduino IDE documentation page
 ](images/arduino/arduino_ide_docs.png)
 
+### Connecting the board
+
+The next step is to get the computer with with the IDE connected to the board.
+Most boards come with a power jack and a USB jack. Plug the power into the
+power cord that comes with the board, and connect a USB cable from
+your computer with the IDE to the USB jack on the board.
+
+![An Arduino board plugged in to power and USB
+](images/arduino/plugged_in.jpg "USB and power cords connected")
+
+In the IDE menu select `Tools` -> `Board` and choose your board model.
+Then select `Tools` -> `Port` and select the port it's connect to.
+On mine, the right port identifies itself as being attached to the Arduino
+board. Now you are ready to start with code.
+
+### A first program
+
+Luckily the IDE also has a lot of example code. In the IDE go to
+`File` -> `Examples` -> `01.Basics` -> `Blink`.
+
+![A view of the Blink.ino code in the Arduino IDE
+](images/arduino/blink_ide.png)
+
+This is a bit of C code that blinks a LED on the board.
+
+To check whether it compiles without errors, you can click the checkmark icon
+in the upper left hand corner of the window.
+
+To upload the code to the board
+and run it you can click the right arrow icon in the upper right hand corner
+of the window.
+
+And if everything goes to plan, a green LED on your board will start blinking
+slowly.
+
+TA DA!
+
+^[Blink works as advertised
+](https://player.vimeo.com/video/1101075332?h=c461a541c5)
+
+### Uploading, in detail
+
+Several important things just happened behind the scenes.
+
+1. The `Build.ino` got cleaned up into a proper C++ file.
+2. A compiler turned it into a binary file of raw instruction instructions
+for the microprocessor in the form of a `.hex` file. For the curious,
+this is a nice
+[detailed description of the preoprocessing and compilation steps
+](https://docs.arduino.cc/arduino-cli/sketch-build-process/)
+3. The `.hex` file was uploaded over the USB cable onto the
+[bootloader](https://en.wikipedia.org/wiki/Bootloader)
+on the Arduino board. The bootloader holds the instructions that get run
+automatically by the microprocessor when it is rebooted.
+Here's a deeper dive into
+[how the bootloader works](https://gist.github.com/baalexander/8530398).
+4. The microprocessor is rebooted and the new instructions are run.
+
+![Block diagram illustrating the four steps listed above](images/arduino/upload_process.png)
+
+The fact that so many steps happened with so little effort on our part is
+what the Arduino effort has brought to microprocessor development.
+You can do all these yourself with any microprocessor you want, but
+you have to manually include all the necessary libraries, compile
+the code, and manage the bootloader writing. You also have to create
+the board for the microprocessor to live on, and make sure that it has power,
+input and ouput connections, and the auxiliary chip it needs to talk USB.
+The fact that Arduino makes that process 100 times easier is a credit to
+the developers and an excellent reason to start your microprocessor
+adventures with an Arduino board. (They don't pay me to say that.)
+
+### The blink code
+
+The `Blink.ino` is almost a valid C++ program, but it gets some
+Arduino-specific `#include` lines added to the top before compiling.
+In Arduino talk, an `.ino` file, its supporting files, and the directory
+they are in are collectively called a **sketch**.
+
+The structure is important. The compiler is looking for two files in
+particular.
+
+- `setup()`, which runs once when you press reset or plug in the board.
+- `loop()`, which runs again and again until you forcibly stop it.
+
+Both of these functions return no result.
+The code we ran shows how this gets put together.
+
+```
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+  delay(1000);                      // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+  delay(1000);                      // wait for a second
+}
+```
+
+
+
+I found the book [Programming Arduino: Getting Started with Sketches
+](https://simonmonk.org/prog-arduino-3ed)
+by [Simon Monk](https://simonmonk.org) to be immensely helpful.
+Even if you're already familiar with C and programming, it's a quick way
+to get oriented in Arduino programming. And if you're not, it's a gentle
+but non-patronizing introduction.
 

@@ -356,7 +356,7 @@ in each column means.
 
 ### Data layers
 
-The data warehouse may be the cental hub of a data architecture,
+The data warehouse may be the central hub of a data architecture,
 but there are other important levels, both upstream and down.
 These are sometimes called **data layers**, although they have other names too.
 
