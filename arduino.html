@@ -2,7 +2,7 @@
 <html>
 
   <script type="text/javascript">var blog_title = "Getting started with Arduino";</script>
-  <script type="text/javascript">var publication_date = "July 14, 2025";</script>
+  <script type="text/javascript">var publication_date = "July 16, 2025";</script>
   <head>
     <link rel="icon" href="images/ml_logo.png">
     <meta charset='utf-8'>
@@ -97,7 +97,7 @@ Shields seem to be much more common than carriers.
 <p>
 <figure>
   <img title="from https://www.detailedpedia.com/wiki-Arduino" alt="A stack of Arduino boards
-" src="images/data_eng_for_beginners/arduino_stack.jpg">
+" src="images/arduino/arduino_stack.jpg">
   <figcaption>from https://www.detailedpedia.com/wiki-Arduino</figcaption>
 </figure>
 </p>
@@ -258,7 +258,7 @@ TA DA!
 "></iframe>
 </p>
 
-<h3><a id="Going-deeper"></a><a href="#Going-deeper">Going deeper</a></h3>
+<h3><a id="Uploading,-in-detail"></a><a href="#Uploading,-in-detail">Uploading, in detail</a></h3>
 
 <p>
 Several important things just happened behind the scenes.
@@ -285,14 +285,50 @@ Here's a deeper dive into
 </p>
 
 <p>
+The fact that so many steps happened with so little effort on our part is
+what the Arduino effort has brought to microprocessor development.
+You can do all these yourself with any microprocessor you want, but
+you have to manually include all the necessary libraries, compile
+the code, and manage the bootloader writing. You also have to create
+the board for the microprocessor to live on, and make sure that it has power,
+input and ouput connections, and the auxiliary chip it needs to talk USB.
+The fact that Arduino makes that process 100 times easier is a credit to
+the developers and an excellent reason to start your microprocessor
+adventures with an Arduino board. (They don't pay me to say that.)
+</p>
+
+<h3><a id="The-blink-code"></a><a href="#The-blink-code">The blink code</a></h3>
+
+<p>
+The <code>Blink.ino</code> is almost a valid C++ program, but it gets some
+Arduino-specific <code>#include</code> lines added to the top before compiling.
+In Arduino talk, an <code>.ino</code> file, its supporting files, and the directory
+they are in are collectively called a <strong>sketch</strong>.
+</p>
+
+<p>
+The structure is important. The compiler is looking for two files in
+particular.
+</p>
+
+<ul>
+<li> <code>setup()</code>, which runs once when you press reset or plug in the board.</li>
+<li> <code>loop()</code>, which runs again and again until you forcibly stop it.</li>
+</ul>
+
+<p>
+Both of these functions return no result.
+The code we ran shows how this gets put together.
+</p>
+
+<p>
+<pre>
 // the setup function runs once when you press reset or power the board
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
 }
-</p>
-
-<p>
+<br>
 // the loop function runs over and over again forever
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
@@ -300,6 +336,25 @@ void loop() {
   digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
   delay(1000);                      // wait for a second
 }
+</pre>
+</p>
+
+<p>
+The pre-defined constants scattered through the code&mdash;<code>LED_BUILTIN</code>, <code>OUTPUT</code>,
+<code>HIGH</code>, <code>LOW</code>&mdash;are defined in the header files that automatically added
+to this one before it is compiled. Thanks to the fact that the board
+has already been selected in the IDE, these constants are specific to
+the board we are working with. Having them added in automatically is another
+tedious and error prone step that Arduino takes care of.
+</p>
+
+<p>
+I found the book <a href="https://simonmonk.org/prog-arduino-3ed">Programming Arduino: Getting Started with Sketches
+</a>
+by <a href="https://simonmonk.org">Simon Monk</a> to be immensely helpful.
+Even if you're already familiar with C and programming, it's a quick way
+to get oriented in Arduino programming. And if you're not, it's a gentle
+but non-patronizing introduction.
 </p>
 
         <script src="javascripts/blog_signature.js"></script>

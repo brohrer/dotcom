@@ -213,7 +213,7 @@ void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
 }
-
+<br>
 // the loop function runs over and over again forever
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
@@ -223,7 +223,12 @@ void loop() {
 }
 ```
 
-
+The pre-defined constants scattered through the code--`LED_BUILTIN`, `OUTPUT`,
+`HIGH`, `LOW`--are defined in the header files that automatically added
+to this one before it is compiled. Thanks to the fact that the board
+has already been selected in the IDE, these constants are specific to
+the board we are working with. Having them added in automatically is another
+tedious and error prone step that Arduino takes care of.
 
 I found the book [Programming Arduino: Getting Started with Sketches
 ](https://simonmonk.org/prog-arduino-3ed)
@@ -231,4 +236,5 @@ by [Simon Monk](https://simonmonk.org) to be immensely helpful.
 Even if you're already familiar with C and programming, it's a quick way
 to get oriented in Arduino programming. And if you're not, it's a gentle
 but non-patronizing introduction.
+
 

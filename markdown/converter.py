@@ -16,6 +16,15 @@ def convert(filename):
     with open(filename, "rt") as f:
         content = f.read()
 
+    # Find code blocks
+    done = False
+    while not done:
+        (content, n_subs) = re.subn("```", "<pre>", content, count=1)
+        if n_subs == 0:
+            done = True
+
+        content = re.sub("```", "</pre>", content, count=1)
+
     lines = content.split("\n")
     n_lines = len(lines)
     last_break = n_lines
