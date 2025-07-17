@@ -212,8 +212,7 @@ The code we ran shows how this gets put together.
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
-}
-<br>
+} <br>
 // the loop function runs over and over again forever
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
@@ -237,4 +236,70 @@ Even if you're already familiar with C and programming, it's a quick way
 to get oriented in Arduino programming. And if you're not, it's a gentle
 but non-patronizing introduction.
 
+### Printing
+
+The most awksward part of having a tiny computer with no screen is that
+you can't see what's happening as it runs. Luckily the Arduino folks
+thought of that too and gave us the
+[Serial.print()
+](https://docs.arduino.cc/language-reference/en/functions/communication/serial/print/)
+function. You can slip this into your program and it will print
+to your IDE, back on your laptop.
+
+Getting printing up and running requires the seial port connection to
+be initialized in `setup()`
+```
+Serial.begin(9600); // open the serial port at 9600 bps
+```
+and then called in `loop()`
+```
+Serial.print("blink");
+```
+
+To view the printed text, open the Serial Monitor. From the IDE menu
+go to `Tools` -> `Serial Monitor`. You'll have to select your board
+and port again.
+
+We can take the extra step to initialize a counter at the beginning of
+the program
+```
+int blink_counter = 0;
+```
+and then print it and increment it in each iteration
+```
+Serial.print(blink_counter);
+blink_counter ++;
+```
+
+Here's the resulting program
+```
+int blink_counter = 0; <br>
+void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+  Serial.begin(9600); // open the serial port at 9600 bps:
+} <br>
+// the loop function runs over and over again forever
+void loop() {
+  Serial.print("blink");
+  Serial.print(blink_counter);
+  Serial.print("\n");
+  blink_counter ++; <br>
+  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+  delay(1000);                      // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+  delay(1000);                      // wait for a second
+}
+```
+
+and here is the printing in action.
+
+^[Counting blinks in the IDE
+](https://player.vimeo.com/video/1102052735)
+
+It looks like a small thing in the video but feels SO big when you get it
+running on your own desk.
+
+We covered a lot of ground in a short time - Arduino boards and shields,
+the IDE, coding, compiling, uploading, and printing to the console.
+It's a solid start. The sky's the limit now!
 

@@ -417,7 +417,7 @@ Because people so much spend time in the data lake, some vendors have
 gone out of their way to make it easier to navigate,
 enforcing more structure on what data is there and how it's organized,
 and adding a data catalog. Data lakes with structure start to resemble a
-data warehouse, so a clever marketing team came up with name
+data warehouse, so a clever marketing team came up with the name
 **data lakehouse** to describe them.
 
 Data lakes are available in the regular suspects' cloud platforms
