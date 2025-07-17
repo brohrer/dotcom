@@ -458,7 +458,7 @@ The presentation layer is data that is ready to be lifted and included in
 a PowerPoint slide. Most importantly, its full of data that has been
 shaped in order to do a particular job. There are a zillion different
 ways that the data warehouse inventory could be filtered, aggregated,
-shaped, and rename. The data mart can only host a few of those, and it
+shaped, and renamed. The data mart can only host a few of those, and it
 focuses on data that has been refined for a purpose. The flip side
 of that is that you have to know what your data is going to be used
 for before you can populate your data mart.

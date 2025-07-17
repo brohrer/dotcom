@@ -13,7 +13,7 @@ If you imagine a laptop, take away the screen and the keyboard, and
 shrink everything else down to a miniature scale, you won't be too far away
 from a microcontroller. 
 
-Microcontrollers com in a single integrated circuit, like this.
+Microcontrollers come in a single integrated circuit, like this.
 
 ![Renesas RA4M1, a.k.a. Arm® Cortex®-M4](images/arduino/arm_cortex_m4.png "Renesas RA4M1, a.k.a. Arm® Cortex®-M4")
 
