@@ -104,7 +104,7 @@ There are a few basic data types that come up all the time
 data type	examples
 integers	1, 2, 3, 0, -1, -2, -3, and so on
 floating point numbers	anything with a decimal place
-characters	a, b, c, A, B, C, #, %, &, for example
+characters	a, b, c, A, B, C, #, @ for example
 strings	more than one character, strung together in a row
 boolean	can be just 'true' or 'false'
 
