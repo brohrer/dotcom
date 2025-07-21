@@ -510,7 +510,7 @@ Prefect, Luigi, and Keboola are some that you may run into.
 
 ### Data mesh
 
-Because the the end goal of the data pipeline is data products,
+Because the end goal of the data pipeline is data products,
 built for particular people to answer particular questions, a data mesh
 approach takes this to the extreme and makes every team responsible for their
 own pipelines, from source to mart. On the upside, this gives end users

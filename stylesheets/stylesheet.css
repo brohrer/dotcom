@@ -178,7 +178,10 @@ img {
   max-width: 640px;
   /*max-width: 739px;*/
   /*padding: 5px;*/
-  padding: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
   /*border: 1px solid #212e53;*/
   border: 0;
   /* margin: 10 auto;*/
@@ -193,7 +196,10 @@ p img {
   /* margin: 15px; */
   margin-left: auto;
   margin-right: auto;
-  padding: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
   vertical-align: middle;
   text-align: center;
   border: 0;
