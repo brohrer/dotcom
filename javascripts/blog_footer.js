@@ -19,6 +19,9 @@ document.write('\
           <p>\
             The opinions here are wholly my own.\
           </p>\
+          <p>\
+            Certified 100% Human-generated\
+          </p>\
         </section>\
       </footer>\
     </div>\

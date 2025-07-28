@@ -111,6 +111,15 @@ def convert(filename):
         # \*        exact match for closing square bracket
         block = re.sub(r'\*(.+?)\*', r'<em>\1</em>', block)
 
+        # convert strikethrough
+        # ~~          exact match for "**"
+        #   (         begin group 0
+        #    .        any characters
+        #     +?       1 or more, as few as possible, but as many as it needs to
+        #   )         end group 0
+        # ~~          exact match for closing square bracket
+        block = re.sub(r'~~(.+?)~~', r'<del>\1</del>', block)
+
         # convert inline code
         block = re.sub(r'`(.+?)`', r'<code>\1</code>', block)
 
@@ -166,6 +175,7 @@ def convert(filename):
         block = re.sub(r'\$<\$', "&lt;", block)
         block = re.sub(r'\$>\$', "&gt;", block)
         block = re.sub(r'\$pi\$', "&pi;", block)
+        block = re.sub(r'\$deg\$', "&#176;", block)
         block = re.sub(r'\$epsilon\$', "&epsilon;", block)
         block = re.sub(r'\$theta\$', "&theta;", block)
         block = re.sub(r'\$tau\$', "&tau;", block)
