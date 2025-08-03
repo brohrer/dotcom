@@ -8,6 +8,100 @@
 
   <item>
     <title>
+    Interrogating an Arduino Temperature Sensor
+    </title>
+    <link>
+    https://www.brandonrohrer.com/arduino_temp.html
+    </link>
+    <pubDate>
+    Sun, 03 Aug 2025 07:00:00 EDT
+    </pubDate>
+    <description>
+        <![CDATA[
+        <p>
+My favorite joke about sensors is a variant of
+<a href="https://en.wikipedia.org/wiki/Segal's_law">Segal's law</a>.
+</p>
+
+<p>
+<pre>
+If you have a watch you always know what time it is.
+If you have two watches, you're never sure.
+</pre>
+</p>
+
+<p>
+It's depressingly applicable to electromechanical systems. Once you can
+read a sensor, you suddenly have ten thousand watches.
+</p>
+
+<h3><a id="Sensors-aren't-perfect"></a><a href="#Sensors-aren't-perfect">Sensors aren't perfect</a></h3>
+
+<p>
+You may not be aware of it, but when you have just one watch you tend
+to have a particular mental model of how it's related to the actual time.
+</p>
+
+<p>
+<figure>
+  <img title="In a the simplest model of measurement, the time on the watch is the same as the actual time." alt="A diagram depicting the world time connected with an arrow to a watch
+" src="https://github.com/brohrer/dotcom/blob/93167adc73f99fd2862b2731ff9cc7dd713c1315/images/arduino_temp/trivial_model.png">
+  <figcaption>In a the simplest model of measurement, the time on the watch is the same as the actual time.</figcaption>
+</figure>
+</p>
+
+<p>
+<figure>
+  <img title="In practice, the measurement and tracking of time is a little messier." alt="A diagram depicting the world time connected with an arrow to an icon
+depicting measurement, a pair of old school calipers, which is connected by
+two other arrows to two wristwatches
+" src="https://github.com/brohrer/dotcom/blob/93167adc73f99fd2862b2731ff9cc7dd713c1315/images/arduino_temp/measurement_model.png">
+  <figcaption>In practice, the measurement and tracking of time is a little messier.</figcaption>
+</figure>
+</p>
+
+<p>
+Measuring a thing introduces errors and imperfections. This is immediately
+apparent when working with temperature. If I have one thermometer,
+I can confidently report that I know what the temperature is.
+</p>
+
+<p>
+<img alt="A photo of a thermometer showing the temperature
+" src="images/arduino_temp/one_thermometer.jpg">
+</p>
+
+<p>
+But if I have five of them, I'm no longer sure.
+</p>
+
+<p>
+<img alt="A photo of five thermometers, each showing a slightly different temperature
+" src="images/arduino_temp/five_thermometers.png">
+</p>
+
+<p>
+Presumably all these thermometers are sitting at the same temperature,
+inches apart on the same desk in the same room.
+Some weirdness has been introduced in the process of measuring it though.
+</p>
+
+<p>
+This introduces some troubling questions. Where is this weirdness coming from?
+Can we correct for it? And more fundamentally, what even is the real temperature?
+</p>
+
+<p>
+We'll spend the rest of this post trying to answer them.
+</p>
+        ]]>
+    </description>
+  </item>
+
+
+
+  <item>
+    <title>
     Getting started with Arduino
     </title>
     <link>
@@ -78,120 +172,6 @@ Most Arduino boards and shield are physically compatible, although this post on 
 
 Because all Arduino designs are open, there are a large number of Arduino-compatible , Arduino-adjacent, and Arduino spinoff boards and shields. It can all get a little overwhelming. It's the downside of not having a single corporate overlord dictating a conveniently consumable lineup of marketing-approved SKUs. Read item descriptions and blog posts carefully, prepare for some thoughtful trial and error, and embrace the anarchy.
         ]]>
-    </description>
-  </item>
-
-
-  <item>
-    <title>
-        Data Engineering for the Absolute Beginner
-    </title>
-    <link>
-        https://www.brandonrohrer.com/data_eng_for_beginners
-    </link>
-    <description>
-    There's a bewildering collection of jargon, but most of the concepts in data engineering are ideas that you're already familiar with.
-
-The building blocks
-These are the pieces of which all data engineering projects and systems are built.
-
-Data
-Data is really easy to define until you sit down to write a definition of it.
-
-If you break it down finely enough, data is all made out of ones and zeros. But that’s not really helpful. That’s like saying that if you break down a wristwatch down finely enough, it's made out of a bunch of atoms. It's technically true, but the interesting part of a watch is the structure the atoms take when they’re put together.
-
-Data is one and zeros put together in a way that means something. They might be a name, a phone number, an image of someone’s face, a recording of their voice. These are all different types of data, and what gives them meaning, what makes them worth storing and pushing from one computer to another, is that they represent something.
-
-There are a few basic data types that come up all the time
-
-data type	examples
-integers	1, 2, 3, 0, -1, -2, -3, and so on
-floating point numbers	anything with a decimal place
-characters	a, b, c, A, B, C, #, @ for example
-strings	more than one character, strung together in a row
-boolean	can be just 'true' or 'false'
-
-These go by different names in different computer languages, but are largely the same. The number of ones and zeros used to represent each type can differ by language, operating system, and processing hardware but it is well defined. This is important, because if you tell a data engineer that you want to store a billion credit card numbers, they will be able to work out how many integers that will require, how many ones and zeros they'll need to cover that, and tie it back to how many dollars it will cost you to store them per year.
-
-These fundamental data types can be used to build more complex ones. Global position, given by latitude and longitude, is a pair of floating point numbers (floats), as in (56.431440, -6.341224). Names are a collection of strings for first, last, middle, honorific, suffix, etc., as in
-
-Pablo Diego José Francisco de Paula Juan Nepomuceno María de los Remedios Cipriano de la Santísima Trinidad Ruiz y Picasso
-
-Dates and times (often mushed together into a "datetime" type) can actually be represented by integers, floats, or strings, depending on what you are using them for.
-    </description>
-  </item>
-
-  <item>
-    <title>
-      Build with AI or tradidiontal ML?
-    </title>
-    <link>
-        https://www.brandonrohrer.com/study_shoppi.html
-    </link>
-    <description>
-Summary
-Shoppi, a small company with a shopping list app, is building a list completion feature.
-
-A large language model provides
-
-Simple architecture
-Versatility beyond training data
-A recommender system provides
-
-Item discovery
-High relevance
-A rule-based approach provides
-
-Low computation cost
-Low latency
-Transparency (explainability and debuggability)
-The Shoppi team opted for a rule-based solution as a first step, instead of an LLM or a recommender system, because it suits their limited resources and aligns with their product strategy. They plan to transition to a recommender system in 18 months, as the engineering team and user base grows and allows them to take advantage of their scale.
-
-Scenario
-Choosing whether to power an intelligent feature with a traditional recommender system, hard-coded rules, or an LLM is a game of give and take between several highly desirable charactertistics, including performance, maintainability, and cost. The right answer will be different in every situation.
-
-In this particular example, Shoppi is a fictional startup that has built an app for writing and managing grocery shopping lists. Shoppi is bootstrapped. The company has 22 employees, and the app just passed 80,000 monthly subscribers at 3 USD per month.
-
-Shoppi has 12 engineers, 7 frontend engineers covering iOS, Android, and web versions of the app, and 5 backend engineers covering authentication, data, and infrastructure, They use AWS for cloud services.
-
-Shoppi's moat is their accumulated user list data. While their strategy includes giving customers a friction-free onboarding and a delightful user experience, the team believes that the app's real stickiness will come from using past lists to help users create new ones. This collection of user-generated list items would be the most difficult asset for a competitor to replicate.
-
-Intelligent list completion
-Shoppi's first step in this direction is to create a list completion feature. Once a list is begun, the app will suggest the next five items. Users can either accept, edit, or remove each item, after which another suggestion is added to the list, keeping the queue at five.
-
-If done well, these suggested items will be exactly the ones the user had in mind, making the list creation experience faster and requiring less mental effort. If unsuccessful, these items will be a distraction, slowing the user down and degrading their experience.
-
-Broadly speaking, there are three options for the algorithm behind making these list suggestions: A large language model (LLM), a recommender system, or a rule-based approach. They each have areas where they perform well and areas they struggle with. They are all widely used. The decision of which one Shoppi should use depends on the specifics of their situaion.
-
-    </description>
-  </item>
-
-  <item>
-    <title>
-      Solving an easy RL problem on hard mode
-    </title>
-    <link>
-      https://www.brandonrohrer.com/pendulum.html
-    </link>
-    <description>
-    A story about a reinforcement learning approach learning to make a pendulum stand up straight, while making very few assumptions.
-
-tl;dr
-This is a demonstration of an RL approach that uses a combination of new tools to control a simulated pendulum:
-
-BucketTree to learn a discretization of the pendulum’s continuous state variables, angle and angular velocity,
-Ziptie to bundle the discretized values into discrete states,
-Fuzzy Naive Cartographer (FNC) to learn common state-action-state sequences and to make conditional predictions of reward for each action.
-It all runs in Myrtle, a real-time reinforcement learning workbench.
-
-This approach requires only a little domain specific design and makes very few assumptions about its world.
-
-The game: Inverting a pendulum
-
-The goal of this work was to demonstrate a new method, not to top a leaderboard or solve a previously unsolved problem. Demonstrating a method is best done on a simple, familiar task where successful behavior is obvious and any deviations from that are similarly obvious and straightforward to dissect.
-
-The playing field here is a pendulum. Imagine holding a broomstick by its one end. The goal is to invert the pendulum—to get it to stand straight up and stay there.
-
     </description>
   </item>
 
