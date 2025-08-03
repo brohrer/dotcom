@@ -6,6 +6,11 @@
   <description>Brandon Rohrer's blog</description>
   <atom:link href="http://brandonrohrer.com/feed.xml" rel="self" type="application/rss+xml" />
 
+  <image>
+    <url>images/thumbnails/thumbnail_313.png</url>
+    <title>Brandon Rohrer blog</title>
+    <link>https://www.brandonrohrer.com</link>
+  </image>
   <item>
     <title>
     Interrogating an Arduino Temperature Sensor
@@ -45,7 +50,7 @@ to have a particular mental model of how it's related to the actual time.
 <p>
 <figure>
   <img title="In a the simplest model of measurement, the time on the watch is the same as the actual time." alt="A diagram depicting the world time connected with an arrow to a watch
-" src="https://github.com/brohrer/dotcom/blob/93167adc73f99fd2862b2731ff9cc7dd713c1315/images/arduino_temp/trivial_model.png">
+" src="images/arduino_temp/trivial_model.png">
   <figcaption>In a the simplest model of measurement, the time on the watch is the same as the actual time.</figcaption>
 </figure>
 </p>
@@ -55,7 +60,7 @@ to have a particular mental model of how it's related to the actual time.
   <img title="In practice, the measurement and tracking of time is a little messier." alt="A diagram depicting the world time connected with an arrow to an icon
 depicting measurement, a pair of old school calipers, which is connected by
 two other arrows to two wristwatches
-" src="https://github.com/brohrer/dotcom/blob/93167adc73f99fd2862b2731ff9cc7dd713c1315/images/arduino_temp/measurement_model.png">
+" src="images/arduino_temp/measurement_model.png">
   <figcaption>In practice, the measurement and tracking of time is a little messier.</figcaption>
 </figure>
 </p>
