@@ -467,7 +467,7 @@ It's [the easiest filter to implement
 so it gets used a lot in practical systems.
 
 To low-pass filter the temperature, each new measurement gets combined with
-the running estimate in a lop-side ratio. That ratio can be thought of as
+the running estimate in a lop-sided ratio. That ratio can be thought of as
 an adaptation rate, say 0.1. Then each new measurement gets multiplied 
 by 0.1 and added to the previous estimate, multiplied by 0.9, to get
 the new estimate.
@@ -478,7 +478,48 @@ Expressed as an equation
 filtered temp plus adaptation rate times new measurement
 ](images/arduino_temp/low_pass_eq.png)
 
+In [the C++ Arduino code
+](https://codeberg.org/brohrer/arduinobots/src/branch/main/sketches/uno_wifi_rev2_temp_lo_pass/uno_wifi_rev2_temp_lo_pass.ino)
+it looks like this.
 
-[code](https://codeberg.org/brohrer/arduinobots/src/branch/main/sketches/uno_wifi_rev2_temp_lo_pass/uno_wifi_rev2_temp_lo_pass.ino)
+```temp_filtered = (1.0 - adaptation_rate) * temp_filtered
+    + adaptation_rate * temp_measured;```
 
-```temp_filtered = (1.0 - adaptation_rate) * temp_filtered + adaptation_rate * temp_measured;```
+The effect of the filtering can be seen when overlaying the raw measured
+temperature with the filtered temperature.
+
+![A smooth line overlaid by a wildly jaggedy one.
+](images/arduino_temp/filtered_and_raw_temp.png)
+
+The raw temperature measurement is a jagged line jumping up and 
+down by a full degree C peak-to-peak. The filtered temperature
+tracks changes much more smoothly and slowly, jittering by less than
+a hundredth of a degree. It's easy to imagine that it gets closer to
+measuring the actual world temperature, and that it removes a lot of
+the noise introduced by our measurement process.
+
+This may be true, but it comes at a cost. Filtering in real time like this
+introduces a lag, a time delay. This becomes clear to see when introcducing
+a sudden change, like when I put my hand over the temperature measurement IC.
+
+![A slightly jagged line starts flat and then starts to climb. A much smooother
+line starts at the the same level, and also starts to climb, but it lags
+somewhat.
+](images/arduino_temp/filter_lag.png)
+
+The filtered and raw temperature traces both begin at 28.9$deg$C,
+but when I put my hand over the board, creating a space for heat to build up,
+it starts to rise. The rise is immediately visible in the raw measurements,
+but the filtered measurements lag by about 20 seconds. Because the filter
+is a kind of moving average, it combines new measurements with everything
+that has come before. That helps it to be super chill--to reject noisy
+up and down jumps--but it also makes it slow to respond to legitimate
+shifts in the actual temperature. Those shifts have to persist for a while
+before they can break through the noise-supression effects of the filtering.
+For our purposes, we're interested in larger, sustained temperature changes,
+so a 20 second lag is acceptable.
+
+This post has covered a lot of ground, from connecting to the Arduino and
+starting to collect temperature measurements to refining those down to
+a high degree of accuracy. Now we're ready to start doing something
+interesting with the data we're collecting.
