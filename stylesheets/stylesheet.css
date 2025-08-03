@@ -222,12 +222,15 @@ var {
 pre, code {
   font-size: 14px;
   width: 100%;
+  max-width: 100%;
   color: #fdf1e2; 
   background: #212e53;
   border-radius: 2px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
 }
 
 pre {
@@ -419,63 +422,4 @@ Full-Width Styles
 #footer_wrap {
   background: #212e53;
   text-decoration: none;
-}
-
-
-
-/*******************************************************************************
-Small Device Styles
-*******************************************************************************/
-
-/* @media screen and (max-width: 480px) { */
-@media screen and (max-width: 100%) {
-  body {
-    font-size:14px;
-  }
-
-  #downloads {
-    display: none;
-  }
-
-  .inner {
-    /* min-width: 320px; */
-    /* max-width: 480px; */
-    max-width: 100%;
-  }
-
-  #project_title {
-  font-size: 32px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-
-  h3 {
-    font-size: 21px;
-  }
-
-  h4 {
-    font-size: 18px;
-  }
-
-  h5 {
-    font-size: 14px;
-  }
-
-  h6 {
-    font-size: 12px;
-  }
-
-  code, pre {
-    /* min-width: 320px; */
-    /* max-width: 480px; */
-    max-width: 100%;
-    font-size: 11px;
-  }
-
 }
