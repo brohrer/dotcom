@@ -31,7 +31,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  margin: 0;
+  margin: 10;
   padding: 0;
   border: 0;
   font: inherit;
@@ -52,20 +52,6 @@ ol, ul {
 Theme Styles
 *******************************************************************************/
 /*
-Retro Rocks palette from SlideStream
-https://www.slideteam.net/blog/9-beautiful-color-palettes-for-designing-powerful-powerpoint-slides/
-#04253a : dark blue
-#e1ddbf : tan
-#4c837a : green
-
-https://visme.co/blog/website-color-schemes/
-#182628 turquoise black
-#687864 green gray
-#31708E deep sea
-#5085A5 dawn blue
-#8FC1E3 sky blue
-#F7F9FB off white
-
 Thistle Pinterest picks
 #fdf1e2 off white
 #fbe7d2 light warm
@@ -172,29 +158,20 @@ strong {
 
 img {
   display: block;
-  /* display: inline; */
   margin-left: auto;
   margin-right: auto;
   max-width: 640px;
   width: 100%;
-  /*max-width: 739px;*/
-  /*padding: 5px;*/
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 0px;
   padding-right: 0px;
-  /*border: 1px solid #212e53;*/
   border: 0;
-  /* margin: 10 auto;*/
   text-align: center;
-
-  /*box-shadow: 0 0 5px #ebebeb;*/
 }
 
 p img {
   display: block;
-  /* display: inline;*/
-  /* margin: 15px; */
   margin-left: auto;
   margin-right: auto;
   padding-top: 10px;
