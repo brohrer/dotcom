@@ -639,7 +639,7 @@ It’s usually possible to trade strong  consistency for throughput.
 Maintaining strong consistency typically requires that the whole database
 be locked down whenever a transaction is happening. But if you can
 get away with eventual consistency,
-you can exploit **concurrency** – conducting many transaction simultaneously.
+you can exploit **concurrency** – conducting many transactions simultaneously.
 
 ### Latency
 
